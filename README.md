@@ -1,5 +1,5 @@
 # One Month Rails
 
-This is the pinteresting sample application.
+This is the invoice butler sample application.
 
 by Phil
