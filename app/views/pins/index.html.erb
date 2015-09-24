@@ -1,7 +1,10 @@
-<p id="notice"><%= notice %></p>
+
+<%= render 'pages/home' if !user_signed_in?%>
 
 <% if user_signed_in? %>
-  <%= link_to 'New Pin', new_pin_path %>
+  <%= link_to new_pin_path do %>
+    <span class="glyphicon glyphicon-plus"></span> New Pin
+  <% end %>
 <% end %>
 
 <div id="pins" class="transitions-enabled">
@@ -13,11 +16,17 @@
         <strong><%= pin.user.email if pin.user %></strong>
           <% if pin.user == current_user %>
             <div class="user actions">
-              <%= link_to 'Edit', edit_pin_path(pin) %>
-              <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to edit_pin_path(pin) do %>
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+              <% end %>
+              <%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash"></span> Delete
+              <% end %>
             </div>
           <% end %>
       </div>
     </div>
   <% end %>
 </div>
+
+
