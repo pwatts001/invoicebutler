@@ -2,12 +2,44 @@
 <%= render 'pages/home' if !user_signed_in?%>
 
 <% if user_signed_in? %>
+
+<div class="center">
+  <%= render 'layouts/dashboardpages' %>
+</div>
+
+<br><br>
   <%= link_to new_pin_path do %>
-    <span class="glyphicon glyphicon-plus"></span> New Pin
+    <span class="glyphicon glyphicon-plus"></span> New Invoice
   <% end %>
 <% end %>
 
-<div id="pins" class="transitions-enabled">
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Company</th>
+      <th>User Email</th>
+      <th>Created at</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pins.each do |pin| %>
+      <tr>
+        <th><%= pin.description %></th>
+        <th><%= pin.user.company if pin.user %></th>
+        <th><%= pin.user.email if pin.user %></th>
+        <th><%= pin.created_at %></th>
+        <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
+        <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
+
+
+<!-- <div id="pins" class="transitions-enabled">
   <% @pins.each do |pin| %>
     <div class="box panel panel-default">
       <%= link_to image_tag(pin.image.url(:medium)), pin_path(pin) %>
@@ -27,7 +59,7 @@
       </div>
     </div>
   <% end %>
-</div>
+</div> -->
 
 <div class="center">
    <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
