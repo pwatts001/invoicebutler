@@ -6,7 +6,9 @@ class PinsController < ApplicationController
 
   def index
     @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    # @pins = Pin.where(user_id: current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
+
 
 
   def show
