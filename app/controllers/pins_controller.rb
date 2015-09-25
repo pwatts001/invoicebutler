@@ -9,7 +9,15 @@ class PinsController < ApplicationController
     # @pins = Pin.where(user_id: current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
   end
 
+  def pendingoffers
+    # @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
+    @pins = Pin.where(user_id: current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+  end
 
+  def acceptedoffers
+    # @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
+    @pins = Pin.where(user_id: current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+  end
 
   def show
   end

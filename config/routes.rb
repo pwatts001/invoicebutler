@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   root "pages#home"
   get "about" => "pages#about"
   get "team" => "pages#team"
-  # get "pins" => "pins#index"
   get "dashboard" => "pins#index"
+  get "pendingoffers" => "pins#pendingoffers"
+  get "acceptedoffers" => "pins#acceptedoffers"
 
   as :user do
   get 'dashboard', :to => 'pins#index', :as => :user_root # Rails 3
