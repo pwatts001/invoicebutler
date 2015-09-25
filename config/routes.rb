@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   root "pages#home"
   get "about" => "pages#about"
   get "team" => "pages#team"
-  get "pins" => "pins#index"
+  # get "pins" => "pins#index"
+  get "dashboard" => "pins#index"
 
   as :user do
-  get 'users', :to => 'pins#index', :as => :user_root # Rails 3
+  get 'dashboard', :to => 'pins#index', :as => :user_root # Rails 3
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
