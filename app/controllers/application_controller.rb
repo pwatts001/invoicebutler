@@ -10,4 +10,6 @@ protected
    devise_parameter_sanitizer.for(:sign_up) << :company
    devise_parameter_sanitizer.for(:account_update) << :company
  end
+
+
 end
