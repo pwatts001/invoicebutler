@@ -14,3 +14,32 @@
 .box img {
   width: 100%;
 }
+
+
+.invtable {
+	text-align: center;
+
+	thead tr th a {
+		background-image: image-url('arrow.png');
+	  background-position: 0 5px;
+	  background-repeat: no-repeat;
+	  padding-left: 12px;
+	}
+
+	th {
+		width: 120px;
+
+		.current {
+			 background-repeat: no-repeat;
+			 background-position: left center;
+			 padding-left: 12px;
+		}
+		.asc { 
+	  background-image: image-url('arrow.png');
+	  background-position: 0 -56px;
+		}
+		.desc { 
+	  background-image: image-url('arrow.png');
+		}
+	}
+}

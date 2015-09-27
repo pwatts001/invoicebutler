@@ -5,13 +5,11 @@
 
 <br><br>
 
-<table>
+<table class="invtable">
   <thead>
     <tr>
-      <th>Description</th>
-      <th>Company</th>
-      <th>User Email</th>
-      <th>Created at</th>
+      <th><%= sortable "description", "Description" %></th>
+      <th><%= sortable "created_at", "Created at" %></th>
       <th>Edit</th>
       <th>Delete</th>
       <th>Send Offer</th>
@@ -21,9 +19,7 @@
     <% @pins.each do |pin| %>
       <tr>
         <th><%= pin.description %></th>
-        <th><%= pin.user.company if pin.user %></th>
-        <th><%= pin.user.email if pin.user %></th>
-        <th><%= pin.created_at %></th>
+        <th><%= pin.created_at.to_formatted_s(:short)  %></th>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
         <th><%= link_to "Send", "#" %></th>

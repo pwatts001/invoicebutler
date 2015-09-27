@@ -2,21 +2,20 @@ class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :sort_column, :sort_direction
 
 
   def index
-    @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
-    # @pins = Pin.where(user_id: current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def pendingoffers
-    # @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
-    @pins = Pin.where(user_id: current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def acceptedoffers
-    # @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
-    @pins = Pin.where(user_id: current_user).order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    # @pins = Pin.where(user_id: current_user).order(params[:sort] + ' ' + params[:direction]).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -71,4 +70,14 @@ class PinsController < ApplicationController
     def pin_params
       params.require(:pin).permit(:description, :image)
     end
+
+    def sort_column
+      Pin.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
+    end
+
+
 end
