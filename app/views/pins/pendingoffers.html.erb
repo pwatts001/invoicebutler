@@ -5,6 +5,17 @@
 
 <br><br>
 
+
+<div class="center">
+  <%= filter_form_for @q do |f| %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <%= f.filter_input :description %>
+  <%= f.button :submit %>
+<% end %>
+</div>
+
+
 <table class="invtable">
   <thead>
     <tr>
@@ -16,7 +27,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @pins.each do |pin| %>
+    <% @invoiceresults.each do |pin| %>
       <tr>
         <th><%= pin.description %></th>
         <th><%= pin.created_at.to_formatted_s(:short) %></th>
@@ -28,8 +39,11 @@
   </tbody>
 </table>
 
-
 <div class="center">
-   <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
+   <%= will_paginate @invoiceresults, renderer: BootstrapPagination::Rails %>
 </div>
+
+
+
+
 

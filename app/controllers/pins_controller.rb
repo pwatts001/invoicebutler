@@ -10,7 +10,8 @@ class PinsController < ApplicationController
   end
 
   def pendingoffers
-    @pins = Pin.where(user_id: current_user).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @q = Pin.order(sort_column + ' ' + sort_direction).search(params[:q])
+    @invoiceresults = @q.result.paginate(:page => params[:page], :per_page => 20)
   end
 
   def acceptedoffers
