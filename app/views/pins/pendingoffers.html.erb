@@ -11,7 +11,9 @@
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
   <%= f.filter_input :description %>
-  <%= f.button :submit %>
+  <%= f.filter_input :created_at %>
+  <%= f.button :submit, "Filter" %>
+  <%= link_to "Clear", pendingoffers_path %>
 <% end %>
 </div>
 
