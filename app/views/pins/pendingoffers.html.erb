@@ -5,18 +5,24 @@
 
 <br><br>
 
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
 
 <div class="center">
   <%= filter_form_for @q do |f| %>
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
-  <%= f.filter_input :created_at, as: :select, predicate: :gt %>
-  <%= f.filter_input :created_at, as: :select, predicate: :lt %>
+  <%= f.filter_input :created_at, as: :date, predicate: :gt %>
+  <%= f.filter_input :created_at, as: :date, predicate: :lt %>
   <%= f.button :submit, "Filter" %>
   <%= link_to "Clear", pendingoffers_path %>
 <% end %>
 </div>
 
+<input id="datepicker">
 
 <table class="invtable">
   <thead>
