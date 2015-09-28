@@ -11,11 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.ui.datepicker
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.turbolinks
 //= require turbolinks
 //= require masonry/jquery.masonry
 //= require masonry/jquery.imagesloaded.min
+//= require select2
+//= require filter_form
 //= require_tree .
 

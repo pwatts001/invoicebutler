@@ -18,6 +18,7 @@ gem 'masonry-rails', '~> 0.2.0'
 gem 'will_paginate', '~> 3.0.5'
 gem 'will_paginate-bootstrap'
 gem 'filter_form'
+gem 'jquery-ui-rails', '~> 4.2.1'
 
 
 group :development, :test do
