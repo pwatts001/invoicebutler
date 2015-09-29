@@ -10,7 +10,7 @@ class PinsController < ApplicationController
   end
 
   def pendingoffers
-    @pins = Pin.where(user_id: current_user).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, status: "pending").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
 
     # @q = Pin.order(sort_column + ' ' + sort_direction).search(params[:q])
     # @invoiceresults = @q.result.paginate(:page => params[:page], :per_page => 20)
@@ -37,7 +37,7 @@ class PinsController < ApplicationController
     @pin = current_user.pins.build(pin_params)
 
     if @pin.save
-      redirect_to @pin, notice: 'Invoice was successfully added.'
+      redirect_to importinvoices_path, notice: 'Invoice was successfully added.'
     else
       render :new
     end
@@ -46,7 +46,8 @@ class PinsController < ApplicationController
 
   def update
     if @pin.update(pin_params)
-      redirect_to @pin, notice: 'Invoice was successfully updated.'
+      #redirect_to @pin, notice: 'Invoice was successfully updated.'
+      redirect_to pins_url, notice: 'Invoice was successfully updated.'
     else
       render :edit
     end
@@ -76,7 +77,7 @@ class PinsController < ApplicationController
     end
 
     def pin_params
-      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status)
+      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving)
     end
 
     def sort_column

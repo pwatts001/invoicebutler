@@ -43,9 +43,6 @@
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
-      <th>Send Offer</th>
-      <th>Edit</th>
-      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -63,11 +60,7 @@
         <th><%= pin.status %></th>
         <th><%= pin.prop_settlement_date %></th>
         <th><%= pin.offer_amount %></th>
-        <th><%= pin.saving %></th>
-        <th><%= link_to "Send", "#" %></th>
-        <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
-        <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
-        
+        <th><%= pin.saving %></th>        
       </tr>
     <% end %>  
   </tbody>
