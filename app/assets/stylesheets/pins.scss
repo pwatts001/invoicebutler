@@ -17,7 +17,11 @@
 
 
 .invtable {
-	text-align: center;
+
+	thead tr th {
+		background-color: white;
+		text-align: center;
+	}
 
 	thead tr th a {
 		background-image: image-url('arrow.png');
@@ -28,6 +32,7 @@
 
 	th {
 		width: 120px;
+		border: 1px solid black;
 
 		.current {
 			 background-repeat: no-repeat;

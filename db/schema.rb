@@ -11,19 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925085929) do
+ActiveRecord::Schema.define(version: 20150929110143) do
 
   create_table "pins", force: :cascade do |t|
     t.string   "description"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "ref"
+    t.string   "suppler_ref"
+    t.string   "suppler_name"
+    t.string   "string"
+    t.string   "invoice_number"
+    t.date     "invoice_date"
+    t.date     "due_date"
+    t.decimal  "invoice_amount"
+    t.string   "invoice_curr"
+    t.string   "status"
+    t.date     "prop_settlement_date"
+    t.decimal  "offer_amount"
+    t.decimal  "saving"
   end
 
+  add_index "pins", ["status"], name: "index_pins_on_status"
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
 
   create_table "users", force: :cascade do |t|

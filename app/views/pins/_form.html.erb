@@ -1,7 +1,7 @@
 <%= form_for @pin, html: { multipart: true } do |f| %>
   <% if @pin.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@pin.errors.count, "error") %> prohibited this pin from being saved:</h2>
+      <h2><%= pluralize(@pin.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
       <ul>
       <% @pin.errors.full_messages.each do |msg| %>
@@ -12,8 +12,23 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :image %>
-    <%= f.file_field :image, class: "form-control" %>
+    <%= f.label :ref %>
+    <%= f.text_field :ref, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :supplier_ref %>
+    <%= f.text_field :suppler_ref, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :supplier_name %>
+    <%= f.text_field :suppler_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :invoice_number %>
+    <%= f.text_field :invoice_number, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -22,6 +37,36 @@
   </div>
 
   <div class="form-group">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.label :invoice_date %>
+    <%= f.date_select :invoice_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :due_date %>
+    <%= f.date_select :due_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :invoice_currency %>
+    <%= f.text_field :invoice_curr, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :invoice_amount %>
+    <%= f.text_field :invoice_amount, class: "form-control" %>
+  </div>
+
+  <% if !@pin.status %>
+    <%= f.hidden_field :status, :value => "imported" %>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= f.submit "Add Invoice", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+
+
+
+

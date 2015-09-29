@@ -1,22 +1,23 @@
 class PinsController < ApplicationController
-  before_action :set_pin, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_pin, only: [:show, :edit, :update, :destroy, :send_offer]
+  before_action :correct_user, only: [:edit, :update, :destroy, :send_offer]
   before_action :authenticate_user!
   helper_method :sort_column, :sort_direction
 
 
   def index
-    @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def pendingoffers
-    @q = Pin.order(sort_column + ' ' + sort_direction).search(params[:q])
-    @invoiceresults = @q.result.paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+
+    # @q = Pin.order(sort_column + ' ' + sort_direction).search(params[:q])
+    # @invoiceresults = @q.result.paginate(:page => params[:page], :per_page => 20)
   end
 
   def acceptedoffers
     @pins = Pin.where(user_id: current_user).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-    # @pins = Pin.where(user_id: current_user).order(params[:sort] + ' ' + params[:direction]).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -57,6 +58,12 @@ class PinsController < ApplicationController
     redirect_to pins_url, notice: 'Invoice was successfully deleted.'
   end
 
+
+  def send_offer
+    #perform some action
+  end
+
+
   private
   
     def set_pin
@@ -69,7 +76,7 @@ class PinsController < ApplicationController
     end
 
     def pin_params
-      params.require(:pin).permit(:description, :image)
+      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status)
     end
 
     def sort_column

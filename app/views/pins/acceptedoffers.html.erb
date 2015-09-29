@@ -4,32 +4,57 @@
 </div>
 
 <br><br>
+<br><br>
 
 <table class="invtable">
   <thead>
     <tr>
+      <th><%= sortable "ref", "Ref" %></th>
+      <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
+      <th><%= sortable "suppler_name", "Supplier Name" %></th>
+      <th><%= sortable "invoice_number", "Invoice Number" %></th>
       <th><%= sortable "description", "Description" %></th>
-      <th><%= sortable "created_at", "Created at" %></th>
+      <th><%= sortable "invoice_date", "Invoice Date" %></th>
+      <th><%= sortable "due_date", "Due Date" %></th>
+      <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
+      <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
+      <th><%= sortable "status", "Invoice Status" %></th>
+      <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
+      <th><%= sortable "offer_amount", "Offer Amount" %></th>
+      <th><%= sortable "saving", "Potential Saving" %></th>
+      <th>Send Offer</th>
       <th>Edit</th>
       <th>Delete</th>
-      <th>Send Offer</th>
     </tr>
   </thead>
   <tbody>
     <% @pins.each do |pin| %>
       <tr>
+        <th><%= pin.ref %></th>
+        <th><%= pin.suppler_ref %></th>
+        <th><%= pin.suppler_name %></th>
+        <th><%= pin.invoice_number %></th>
         <th><%= pin.description %></th>
-        <th><%= pin.created_at.to_formatted_s(:short)  %></th>
+        <th><%= pin.invoice_date %></th>
+        <th><%= pin.due_date %></th>
+        <th><%= pin.invoice_curr %></th>
+        <th><%= pin.invoice_amount %></th>
+        <th><%= pin.status %></th>
+        <th><%= pin.prop_settlement_date %></th>
+        <th><%= pin.offer_amount %></th>
+        <th><%= pin.saving %></th>
+        <th><%= link_to "Send", "#" %></th>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
-        <th><%= link_to "Send", "#" %></th>
+        
       </tr>
     <% end %>  
   </tbody>
 </table>
 
 
-<!-- <div class="center">
+
+<div class="center">
    <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
 </div>
- -->
+
