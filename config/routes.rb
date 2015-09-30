@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 #guess?
   resources :pins do  
-  #resources :loans  
+    post :delete_selected, :on => :collection
     member do  
       match 'sendrequest' => 'pins#sendrequest', :via => [:get, :post]
     end  

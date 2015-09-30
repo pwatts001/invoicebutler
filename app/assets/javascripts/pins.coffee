@@ -8,3 +8,7 @@ $ ->
     $('#pins').masonry
       itemSelector: '.box'
       isFitWidth: true
+
+$ ->
+  $('#select_all').click ->
+    $('input:checkbox').not(this).prop 'checked', @checked

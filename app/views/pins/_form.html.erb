@@ -60,6 +60,10 @@
     <%= f.hidden_field :status, :value => "imported" %>
   <% end %>
 
+
+  <%= f.text_field :offer_amount, class: "form-control" %>
+  <%= f.text_field :status, :value => "imported", class: "form-control" %>
+
   <% if @pin.invoice_amount %>
     <div class="form-group">
       <%= f.submit "Edit Invoice", class: "btn btn-primary" %>

@@ -1,6 +1,6 @@
 class PinsController < ApplicationController
-  before_action :set_pin, only: [:show, :edit, :update, :destroy, :send_offer]
-  before_action :correct_user, only: [:edit, :update, :destroy, :send_offer]
+  before_action :set_pin, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
   helper_method :sort_column, :sort_direction
 
@@ -45,17 +45,27 @@ class PinsController < ApplicationController
 
 
   def update
-    if @pin.update(pin_params)
-      if @pin.offer_amount
-        @pin = Pin.find(params[:id]) #is this line needed?
-        OfferMailer.offer_email(@pin).deliver
-        redirect_to pins_url, notice: 'Offer sent!'
-      else
-        redirect_to pins_url, notice: 'Invoice was successfully updated.'
-      end
-    else
-      render :edit
-    end
+      # if (params[:id] == "delete_selected")
+      #   params[:ids].each do |id|
+      #     @pin = Pin.find(id)
+      #     @pin.destroy
+      #   end unless params[:ids].blank?
+      #   redirect_to pins_url, :notice => 'Selected invoices were deleted successfully!'
+      # else
+
+        if @pin.update(pin_params)
+          if @pin.offer_amount
+            #send email
+            # @pin = Pin.find(params[:id]) #is this line needed?
+            # OfferMailer.offer_email(@pin).deliver
+            redirect_to pins_url, notice: 'Offer sent!'
+          else
+            redirect_to pins_url, notice: 'Invoice was successfully updated.'
+          end
+        else
+          render :edit
+        end
+      #end
   end
 
 
@@ -65,15 +75,27 @@ class PinsController < ApplicationController
   end
 
 
+  def delete_selected
+    # params[:ids].each do |id|
+    #   @pin = Pin.find(id)
+    #   @pin.destroy
+    # end unless params[:ids].blank?
+    # redirect_to pins_url, :notice => 'Selectedlly!'
+  end
+
+
   private
   
     def set_pin
-      @pin = Pin.find(params[:id])
+      #if (params[:id] == "delete_selected")
+      #else
+        @pin = Pin.find(params[:id])
+      #end
     end
 
     def correct_user 
-      @pin = current_user.pins.find_by(id: params[:id])
-      redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
+      # @pin = current_user.pins.find_by(id: params[:id])
+      # redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
     end
 
     def pin_params
