@@ -45,21 +45,21 @@ class PinsController < ApplicationController
 
 
   def update
-      # if (params[:id] == "delete_selected")
+      #if (params[:id] == "delete_selected")
       #   params[:ids].each do |id|
       #     @pin = Pin.find(id)
       #     @pin.destroy
       #   end unless params[:ids].blank?
       #   redirect_to pins_url, :notice => 'Selected invoices were deleted successfully!'
-      # else
+      #else
 
         if @pin.update(pin_params)
-          if @pin.offer_amount
+            if params[:commit] == 'Send'
             #send email
             # @pin = Pin.find(params[:id]) #is this line needed?
             # OfferMailer.offer_email(@pin).deliver
             redirect_to pins_url, notice: 'Offer sent!'
-          else
+          elsif params[:commit] == 'Edit Invoice'
             redirect_to pins_url, notice: 'Invoice was successfully updated.'
           end
         else
@@ -87,10 +87,11 @@ class PinsController < ApplicationController
   private
   
     def set_pin
-      #if (params[:id] == "delete_selected")
-      #else
+      if (params[:id] == "delete_selected")
+        #no need to set pin
+      else
         @pin = Pin.find(params[:id])
-      #end
+      end
     end
 
     def correct_user 
