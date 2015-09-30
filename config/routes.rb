@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :pins
+  #resources :pins
+
+#guess?
+  resources :pins do  
+  #resources :loans  
+    member do  
+      match 'sendrequest' => 'pins#sendrequest', :via => [:get, :post]
+    end  
+  end  
+
+
+
   devise_for :users
 
   root "pages#home"

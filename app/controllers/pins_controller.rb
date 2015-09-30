@@ -47,6 +47,8 @@ class PinsController < ApplicationController
   def update
     if @pin.update(pin_params)
       if @pin.offer_amount
+        @pin = Pin.find(params[:id]) #is this line needed?
+        OfferMailer.offer_email(@pin).deliver
         redirect_to pins_url, notice: 'Offer sent!'
       else
         redirect_to pins_url, notice: 'Invoice was successfully updated.'
@@ -60,11 +62,6 @@ class PinsController < ApplicationController
   def destroy
     @pin.destroy
     redirect_to pins_url, notice: 'Invoice was successfully deleted.'
-  end
-
-
-  def send_offer
-    #perform some action
   end
 
 
