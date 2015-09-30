@@ -47,7 +47,7 @@
           <th><%= f.date_select :prop_settlement_date, class: "form-control"%><%= f.hidden_field :status, :value => "pending" %></th>
           <th><%= f.text_field :offer_amount, :readonly => true, :value => pin.invoice_amount - 10, class: "form-control" %></th>
           <th><%= f.text_field :saving, :readonly => true, :value => 10, class: "form-control" %></th>
-          <th><%= f.submit "Send", class: "btn btn-primary" %></th>
+          <th><%= f.submit "Send", :onclick => "return confirm('Send offer?')" , class: "btn btn-primary" %></th>
         <% end %>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>

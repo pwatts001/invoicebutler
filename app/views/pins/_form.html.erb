@@ -60,11 +60,16 @@
     <%= f.hidden_field :status, :value => "imported" %>
   <% end %>
 
+  <% if @pin.invoice_amount %>
+    <div class="form-group">
+      <%= f.submit "Edit Invoice", class: "btn btn-primary" %>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= f.submit "Add Invoice", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 
-  <div class="form-group">
-    <%#= f.submit "Add Invoice", class: "btn btn-primary" %>
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
 <% end %>
 
 

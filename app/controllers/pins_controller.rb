@@ -46,8 +46,11 @@ class PinsController < ApplicationController
 
   def update
     if @pin.update(pin_params)
-      #redirect_to @pin, notice: 'Invoice was successfully updated.'
-      redirect_to pins_url, notice: 'Invoice was successfully updated.'
+      if @pin.offer_amount
+        redirect_to pins_url, notice: 'Offer sent!'
+      else
+        redirect_to pins_url, notice: 'Invoice was successfully updated.'
+      end
     else
       render :edit
     end
