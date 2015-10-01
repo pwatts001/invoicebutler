@@ -9,23 +9,23 @@
 <table class="invtable">
   <thead>
     <tr>
-      <th><%= sortable "ref", "Ref" %></th>
+      <th><%= sortable "ref", "Your Invoice Ref" %></th>
       <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
       <th><%= sortable "suppler_name", "Supplier Name" %></th>
       <th><%= sortable "invoice_number", "Invoice Number" %></th>
       <th><%= sortable "description", "Description" %></th>
       <th><%= sortable "invoice_date", "Invoice Date" %></th>
-      <th><%= sortable "due_date", "Due Date" %></th>
+      <th><%= sortable "due_date", "Old Due Date" %></th>
       <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
-      <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
-      <th><%= sortable "status", "Invoice Status" %></th>
-      <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
-      <th><%= sortable "offer_amount", "Offer Amount" %></th>
-      <th><%= sortable "saving", "Potential Saving" %></th>
+      <th><%= sortable "invoice_amount", "Old Invoice Amount" %></th>
       <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
+      <th><%= sortable "status", "Offer Status" %></th>
+      <th><%= sortable "prop_settlement_date", "New Due Date" %></th>
+      <th><%= sortable "offer_amount", "New Invoice Amount" %></th>
+      <th><%= sortable "saving", "Money Saved" %></th>
       <th><%= sortable "offer_accepted_date", "Offer Accepted Date" %></th>
-      <th>Edit</th>
-      <th>Delete</th>
+<!--       <th>Edit</th>
+      <th>Delete</th> -->
     </tr>
   </thead>
   <tbody>
@@ -40,15 +40,14 @@
         <th><%= pin.due_date %></th>
         <th><%= pin.invoice_curr %></th>
         <th><%= pin.invoice_amount %></th>
+        <th><%= pin.offer_sent_date %></th>
         <th><%= pin.status %></th>
         <th><%= pin.prop_settlement_date %></th>
         <th><%= pin.offer_amount %></th>
         <th><%= pin.saving %></th>
-        <th><%= pin.offer_sent_date %></th>
         <th><%= pin.offer_accepted_date %></th>
-        <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
-        <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
-        
+<!--         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
+        <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th> --> 
       </tr>
     <% end %>  
   </tbody>

@@ -16,7 +16,7 @@ class PinsController < ApplicationController
   end
 
   def acceptedoffers
-    @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, status: "accepted").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def offersreceived
@@ -66,7 +66,7 @@ class PinsController < ApplicationController
             redirect_to pins_url, notice: 'Invoice was successfully updated.'
           elsif params[:commit] == 'Accept Offer'
             #send emails
-            redirect_to offersreceived_path, notice: 'Offer accepted! We have informed xxx'          
+            redirect_to offersreceived_path, notice: "Offer accepted! We have informed #{@pin.customer_name}."
           elsif params[:commit] == 'Reject Offer'
             #send emails
             redirect_to offersreceived_path, notice: 'Offer rejected!'           
@@ -109,7 +109,7 @@ class PinsController < ApplicationController
     end
 
     def pin_params
-      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving, :supplier_email, :offer_sent_date, :offer_accepted_date)
+      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving, :supplier_email, :offer_sent_date, :offer_accepted_date, :customer_name)
     end
 
     def sort_column

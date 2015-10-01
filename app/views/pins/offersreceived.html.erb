@@ -8,20 +8,18 @@
   <thead>
     <tr>
       <th><%= check_box_tag "select_all" %></th>
-      <th><%= sortable "ref", "Ref" %></th>
-      <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
-      <th><%= sortable "suppler_name", "Supplier Name" %></th>
+      <th><%= sortable "ref", "Customer Invoice Ref" %></th>
+      <th><%= sortable "suppler_ref", "Customer Name" %></th>
       <th><%= sortable "invoice_number", "Invoice Number" %></th>
       <th><%= sortable "description", "Description" %></th>
       <th><%= sortable "invoice_date", "Invoice Date" %></th>
       <th><%= sortable "due_date", "Due Date" %></th>
       <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
       <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
-      <th><%= sortable "status", "Invoice Status" %></th>
-      <th><%= sortable "supplier_email", "Supplier Email" %></th>
+      <th><%= sortable "status", "Offer Status" %></th>
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
-      <th><%= sortable "offer_amount", "Offer Amount" %></th>
-      <th><%= sortable "saving", "Potential Saving" %></th>
+      <th><%= sortable "offer_amount", "New Offer Amount" %></th>
+      <th><%= sortable "saving", "Requested Discount" %></th>
       <th>Action</th>
       <th>Action Date</th>
     </tr>
@@ -31,16 +29,14 @@
       <tr>
         <th><%= check_box_tag "ids[]", pin.id %></th>
         <th><%= pin.ref %></th>
-        <th><%= pin.suppler_ref %></th>
-        <th><%= pin.suppler_name %></th>
+        <th><%= pin.customer_name %></th>
         <th><%= pin.invoice_number %></th>
-        <th><%= pin.description %></th>
+        <th><%= pin.description %></th> 
         <th><%= pin.invoice_date %></th>
         <th><%= pin.due_date %></th>
         <th><%= pin.invoice_curr %></th>
         <th><%= pin.invoice_amount %></th>
         <th><%= pin.status %></th>
-        <th><%= pin.supplier_email %></th>
         <th><%= pin.prop_settlement_date %></th>
         <th><%= pin.offer_amount %></th>
         <th><%= pin.saving %></th>   
