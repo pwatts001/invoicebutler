@@ -60,7 +60,7 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     address: "smtpout.europe.secureserver.net",
-    port: 80,
+    port: 3535,
     domain: ENV["GMAIL_DOMAIN"],
     authentication: "plain",
     enable_starttls_auto: true,
