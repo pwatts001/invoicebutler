@@ -20,7 +20,7 @@ class PinsController < ApplicationController
   end
 
   def offersreceived
-    @pins = Pin.where(user_id: current_user, supplier_email: current_user.email).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, supplier_email: current_user.email).where.not(status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show

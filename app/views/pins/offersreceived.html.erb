@@ -23,7 +23,7 @@
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
       <th>Action</th>
-      <th>Offer Accepted Date</th>
+      <th>Action Date</th>
     </tr>
   </thead>
   <tbody>
@@ -57,6 +57,7 @@
         <%= form_for pin, html: { multipart: true } do |f| %>
             <div style="display: none;">
               <%= f.text_field :status, :value => "rejected" %>
+              <%= f.date_select :offer_accepted_date %>
             </div>
             <% if pin.status == "pending" %>
               <%= f.submit "Reject Offer", :onclick => "return confirm('Sure you reject?')" , class: "btn btn-primary" %>
