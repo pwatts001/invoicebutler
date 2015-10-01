@@ -11,13 +11,16 @@ class PinsController < ApplicationController
 
   def pendingoffers
     @pins = Pin.where(user_id: current_user, status: "pending").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-
     # @q = Pin.order(sort_column + ' ' + sort_direction).search(params[:q])
     # @invoiceresults = @q.result.paginate(:page => params[:page], :per_page => 20)
   end
 
   def acceptedoffers
     @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+  end
+
+  def offersreceived
+    @pins = Pin.where(user_id: current_user, supplier_email: current_user.email).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -45,13 +48,13 @@ class PinsController < ApplicationController
 
 
   def update
-      if (params[:id] == "delete_selected")
+      #if (params[:id] == "delete_selected")
       #   params[:ids].each do |id|
       #     @pin = Pin.find(id)
       #     @pin.destroy
       #   end unless params[:ids].blank?
       #   redirect_to pins_url, :notice => 'Selected invoices were deleted successfully!'
-      else
+      #else
 
         if @pin.update(pin_params)
             if params[:commit] == 'Send'
@@ -61,11 +64,17 @@ class PinsController < ApplicationController
             redirect_to pins_url, notice: 'Offer sent!'
           elsif params[:commit] == 'Edit Invoice'
             redirect_to pins_url, notice: 'Invoice was successfully updated.'
+          elsif params[:commit] == 'Accept Offer'
+            #send emails
+            redirect_to offersreceived_path, notice: 'Offer accepted! We have informed xxx'          
+          elsif params[:commit] == 'Reject Offer'
+            #send emails
+            redirect_to offersreceived_path, notice: 'Offer rejected!'           
           end
         else
           render :edit
         end
-      end
+      #end
   end
 
 
@@ -75,23 +84,23 @@ class PinsController < ApplicationController
   end
 
 
-  def delete_selected
+  #def delete_selected
     # params[:ids].each do |id|
     #   @pin = Pin.find(id)
     #   @pin.destroy
     # end unless params[:ids].blank?
     # redirect_to pins_url, :notice => 'Selectedlly!'
-  end
+  #end
 
 
   private
   
     def set_pin
-      if (params[:id] == "delete_selected")
+      #if (params[:id] == "delete_selected")
         #no need to set pin
-      else
+      #else
         @pin = Pin.find(params[:id])
-      end
+      #end
     end
 
     def correct_user 

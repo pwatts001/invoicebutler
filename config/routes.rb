@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 #guess?
   resources :pins do  
-    post :delete_selected, :on => :collection
+   # post :delete_selected, :on => :collection
     member do  
       match 'sendrequest' => 'pins#sendrequest', :via => [:get, :post]
     end  
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "importinvoices" => "pins#index"
   get "pendingoffers" => "pins#pendingoffers"
   get "acceptedoffers" => "pins#acceptedoffers"
+  get "offersreceived" => "pins#offersreceived"
 
   as :user do
   get 'dashboard', :to => "pages#dashboard", :as => :user_root # Rails 3
