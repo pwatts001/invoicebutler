@@ -20,7 +20,7 @@ class PinsController < ApplicationController
   end
 
   def offersreceived
-    @pins = Pin.where(user_id: current_user, supplier_email: current_user.email).where.not(status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(supplier_email: current_user.email).where.not(status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -105,7 +105,7 @@ class PinsController < ApplicationController
 
     def correct_user 
       @pin = current_user.pins.find_by(id: params[:id])
-      redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
+      #redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
     end
 
     def pin_params
