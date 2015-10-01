@@ -17,7 +17,7 @@ class PinsController < ApplicationController
   end
 
   def acceptedoffers
-    @pins = Pin.where(user_id: current_user).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -56,8 +56,8 @@ class PinsController < ApplicationController
         if @pin.update(pin_params)
             if params[:commit] == 'Send'
             #send email
-            # @pin = Pin.find(params[:id]) #is this line needed?
-            # OfferMailer.offer_email(@pin).deliver
+            @pin = Pin.find(params[:id]) #is this line needed?
+            OfferMailer.offer_email(@pin).deliver
             redirect_to pins_url, notice: 'Offer sent!'
           elsif params[:commit] == 'Edit Invoice'
             redirect_to pins_url, notice: 'Invoice was successfully updated.'

@@ -1,6 +1,36 @@
+Early payment discount is available for thie invoice.
 
-
-<div class="center">
-  offer
-  <%= @pin %>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>ref</th>
+      <th>Supplier Ref</th>
+      <th>Supplier Name</th>
+      <th>invoice no</th>
+      <th>inv desc</th>
+      <th>invoice date</th>
+      <th>due date</th>
+      <th>amount</th>
+      <th>status</th>
+      <th>your email</th>
+      <th>new opffer date</th>
+      <th>offer amount</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <th><%= @pin.ref %></th>
+        <th><%= @pin.suppler_ref %></th>
+        <th><%= @pin.suppler_name %></th>
+        <th><%= @pin.invoice_number %></th>
+        <th><%= @pin.description %></th>
+        <th><%= @pin.invoice_date %></th>
+        <th><%= @pin.due_date %></th>
+        <th><%= @pin.invoice_amount %></th>
+        <th><%= @pin.status %></th>
+        <th><%= @pin.supplier_email %></th>
+        <th><%= @pin.prop_settlement_date %></th>
+        <th><%= @pin.offer_amount %></th>
+      </tr>
+  </tbody>
+</table>
