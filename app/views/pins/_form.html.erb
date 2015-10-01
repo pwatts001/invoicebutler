@@ -37,6 +37,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :supplier_email %>
+    <%= f.email_field :supplier_email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :invoice_date %>
     <%= f.date_select :invoice_date, class: "form-control" %>
   </div>

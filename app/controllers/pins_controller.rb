@@ -45,13 +45,13 @@ class PinsController < ApplicationController
 
 
   def update
-      #if (params[:id] == "delete_selected")
+      if (params[:id] == "delete_selected")
       #   params[:ids].each do |id|
       #     @pin = Pin.find(id)
       #     @pin.destroy
       #   end unless params[:ids].blank?
       #   redirect_to pins_url, :notice => 'Selected invoices were deleted successfully!'
-      #else
+      else
 
         if @pin.update(pin_params)
             if params[:commit] == 'Send'
@@ -65,7 +65,7 @@ class PinsController < ApplicationController
         else
           render :edit
         end
-      #end
+      end
   end
 
 
@@ -95,12 +95,12 @@ class PinsController < ApplicationController
     end
 
     def correct_user 
-      # @pin = current_user.pins.find_by(id: params[:id])
-      # redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
+      @pin = current_user.pins.find_by(id: params[:id])
+      redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
     end
 
     def pin_params
-      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving)
+      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving, :supplier_email, :offer_sent_date, :offer_accepted_date)
     end
 
     def sort_column

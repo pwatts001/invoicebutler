@@ -24,6 +24,7 @@
       <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
       <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
       <th><%= sortable "status", "Invoice Status" %></th>
+      <th><%= sortable "supplier_email", "Supplier Email" %></th>
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
@@ -46,8 +47,15 @@
         <th><%= pin.invoice_curr %></th>
         <th><%= pin.invoice_amount %></th>
         <th><%= pin.status %></th>
+        <th><%= pin.supplier_email %></th>
         <%= form_for pin, html: { multipart: true } do |f| %>
-          <th><%= f.date_select :prop_settlement_date, class: "form-control"%><%= f.hidden_field :status, :value => "pending" %></th>
+          <th>
+            <%= f.date_select :prop_settlement_date, class: "form-control"%>
+            <div style="display: none;">
+              <%= f.text_field :status, :value => "pending" %>
+              <%= f.date_select :offer_sent_date %>
+            </div>
+          </th>
           <th><%= f.text_field :offer_amount, :readonly => true, :value => pin.invoice_amount - 10, class: "form-control" %></th>
           <th><%= f.text_field :saving, :readonly => true, :value => 10, class: "form-control" %></th>
           <th><%= f.submit "Send", :onclick => "return confirm('Send offer?')" , class: "btn btn-primary" %></th>
@@ -61,7 +69,8 @@
 </table>
 
 <br><br>
-<%#= f.button "Delete Multiple", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+
+<%#= f.button "Delete Multiple", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
 <%# end %>
 
 <br><br>
