@@ -1,6 +1,6 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   helper_method :sort_column, :sort_direction
 
@@ -48,33 +48,23 @@ class PinsController < ApplicationController
 
 
   def update
-      #if (params[:id] == "delete_selected")
-      #   params[:ids].each do |id|
-      #     @pin = Pin.find(id)
-      #     @pin.destroy
-      #   end unless params[:ids].blank?
-      #   redirect_to pins_url, :notice => 'Selected invoices were deleted successfully!'
-      #else
-
-        if @pin.update(pin_params)
-            if params[:commit] == 'Send'
-            #send email
-            @pin = Pin.find(params[:id]) #is this line needed?
-            OfferMailer.offer_email(@pin).deliver
-            redirect_to pins_url, notice: 'Offer sent!'
-          elsif params[:commit] == 'Edit Invoice'
-            redirect_to pins_url, notice: 'Invoice was successfully updated.'
-          elsif params[:commit] == 'Accept Offer'
-            #send emails
-            redirect_to offersreceived_path, notice: "Offer accepted! We have informed #{@pin.customer_name}."
-          elsif params[:commit] == 'Reject Offer'
-            #send emails
-            redirect_to offersreceived_path, notice: 'Offer rejected!'           
-          end
-        else
-          render :edit
-        end
-      #end
+    if @pin.update(pin_params)
+      if params[:commit] == 'Send'
+        @pin = Pin.find(params[:id]) #is this line needed?
+        OfferMailer.offer_email(@pin).deliver
+        redirect_to pins_url, notice: 'Offer sent!'
+      elsif params[:commit] == 'Edit Invoice'
+        redirect_to pins_url, notice: 'Invoice was successfully updated.'
+      elsif params[:commit] == 'Accept Offer'
+        #send emails
+        redirect_to offersreceived_path, notice: "Offer accepted! We have informed #{@pin.customer_name}."
+      elsif params[:commit] == 'Reject Offer'
+        #send emails
+        redirect_to offersreceived_path, notice: 'Offer rejected!'           
+      end
+    else
+      render :edit
+    end
   end
 
 
@@ -84,23 +74,10 @@ class PinsController < ApplicationController
   end
 
 
-  #def delete_selected
-    # params[:ids].each do |id|
-    #   @pin = Pin.find(id)
-    #   @pin.destroy
-    # end unless params[:ids].blank?
-    # redirect_to pins_url, :notice => 'Selectedlly!'
-  #end
-
-
   private
   
     def set_pin
-      #if (params[:id] == "delete_selected")
-        #no need to set pin
-      #else
         @pin = Pin.find(params[:id])
-      #end
     end
 
     def correct_user 
@@ -108,7 +85,7 @@ class PinsController < ApplicationController
         #allow user to edit
       else
         @pin = current_user.pins.find_by(id: params[:id])
-        redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
+        redirect_to pins_path, notice: "Can't find this invoice. (Not authorised to view or edit this invoice)" if @pin.nil?
       end
     end
 

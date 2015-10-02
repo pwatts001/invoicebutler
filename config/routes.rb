@@ -1,15 +1,10 @@
 Rails.application.routes.draw do
-  #resources :pins
 
-#guess?
   resources :pins do  
-   # post :delete_selected, :on => :collection
     member do  
-      match 'sendrequest' => 'pins#sendrequest', :via => [:get, :post]
-    end  
+      match 'sendrequest' => 'pins#sendrequest', :via => [:get, :post]  
+    end 
   end  
-
-
 
   devise_for :users
 
@@ -21,6 +16,7 @@ Rails.application.routes.draw do
   get "pendingoffers" => "pins#pendingoffers"
   get "acceptedoffers" => "pins#acceptedoffers"
   get "offersreceived" => "pins#offersreceived"
+  
 
   as :user do
   get 'dashboard', :to => "pages#dashboard", :as => :user_root # Rails 3
