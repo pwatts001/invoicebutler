@@ -5,6 +5,7 @@ class PinsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
 
+
   def index
     @pins = Pin.where(user_id: current_user, status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
@@ -21,6 +22,7 @@ class PinsController < ApplicationController
 
   def offersreceived
     @pins = Pin.where(supplier_email: current_user.email).where.not(status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @action_count = Pin.where(supplier_email: current_user.email, status: "pending").count
   end
 
   def show

@@ -3,5 +3,5 @@
 	<li><%= link_to "Import Invoices", importinvoices_path %></li>
 	<li><%= link_to "Sent Offers", pendingoffers_path %></li>
 	<li><%= link_to "Accepted Offers", acceptedoffers_path %></li>
-	<li><%= link_to "Offers Received", offersreceived_path %></li>
+	<li><%= link_to "Offers Received (#{@action_count})", offersreceived_path %></li>
 </ul>
