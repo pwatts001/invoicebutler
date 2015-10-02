@@ -45,6 +45,7 @@
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
+      <th><%= sortable "offer_accepted_date", "Supplier Action Date" %></th>
     </tr>
   </thead>
   <tbody>
@@ -64,7 +65,8 @@
         <th><%= pin.offer_sent_date %></th>
         <th><%= pin.prop_settlement_date %></th>
         <th><%= pin.offer_amount %></th>
-        <th><%= pin.saving %></th>        
+        <th><%= pin.saving %></th>
+        <th><%= pin.offer_accepted_date %></th>
       </tr>
     <% end %>  
   </tbody>

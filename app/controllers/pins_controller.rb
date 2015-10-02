@@ -10,7 +10,7 @@ class PinsController < ApplicationController
   end
 
   def pendingoffers
-    @pins = Pin.where(user_id: current_user, status: "pending").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, status: ["pending","rejected"]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
     # @q = Pin.order(sort_column + ' ' + sort_direction).search(params[:q])
     # @invoiceresults = @q.result.paginate(:page => params[:page], :per_page => 20)
   end
@@ -104,8 +104,12 @@ class PinsController < ApplicationController
     end
 
     def correct_user 
-      @pin = current_user.pins.find_by(id: params[:id])
-      #redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
+      if params[:commit] == 'Accept Offer' || params[:commit] == 'Reject Offer'
+        #allow user to edit
+      else
+        @pin = current_user.pins.find_by(id: params[:id])
+        redirect_to pins_path, notice: "Not authorised to edit this invoice" if @pin.nil?
+      end
     end
 
     def pin_params
