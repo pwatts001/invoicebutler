@@ -2,7 +2,7 @@ class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :set_action_count
 
 
 
@@ -22,7 +22,7 @@ class PinsController < ApplicationController
 
   def offersreceived
     @pins = Pin.where(supplier_email: current_user.email).where.not(status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-    @action_count = Pin.where(supplier_email: current_user.email, status: "pending").count
+    #@action_count = Pin.where(supplier_email: current_user.email, status: "pending").count
   end
 
   def show
@@ -101,6 +101,11 @@ class PinsController < ApplicationController
   
     def sort_direction
       %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
+    end
+
+    def set_action_count
+      #@action_count = Pin.where(supplier_email: current_user.email, status: "pending").count
+      @action_count = "2"
     end
 
 
