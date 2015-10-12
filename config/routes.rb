@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end 
   end  
 
+  get :sendEmails, to: 'pins#sendEmails', as: :sendEmails
 
   devise_for :users
 

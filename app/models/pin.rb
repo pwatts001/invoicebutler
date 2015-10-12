@@ -9,7 +9,6 @@ class Pin < ActiveRecord::Base
   	#validates :description, presence: true
 
 
-
   def self.import(file, user_id)
   	CSV.foreach(file.path, headers: true) do |row|
 		Pin.create! row.to_hash.merge(user_id: user_id, created_at: Time.now)

@@ -38,6 +38,24 @@ class PinsController < ApplicationController
   end
 
 
+  def sendEmails
+    i = 0
+    @pins = Pin.where(user_id: current_user)
+    @pins.each do |f|
+      sendEmailsLoop(f)
+      i += 1
+    end
+    redirect_to importinvoices_path, notice:"Successfully sent #{i} emails"
+  end
+
+
+def sendEmailsLoop(pin)
+  OfferMailer.offer_email(pin).deliver
+end
+
+
+
+
   def edit
   end
 
@@ -58,7 +76,6 @@ class PinsController < ApplicationController
       if params[:commit] == 'Send'
         @pin = Pin.find(params[:id]) #is this line needed?
         OfferMailer.offer_email(@pin).deliver
-
         redirect_to pins_url, notice: 'Offer sent!'
       elsif params[:commit] == 'Edit Invoice'
         redirect_to pins_url, notice: 'Invoice was successfully updated.'

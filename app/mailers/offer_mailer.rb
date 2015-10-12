@@ -3,6 +3,7 @@ class OfferMailer < ActionMailer::Base
 
   def offer_email(pin)  
     @pin = pin  
-    mail(:to => @pin.supplier_email, :replyto => "paulroiter@gmail.com", :subject => "Good news! #{pin.user.company} has approved your invoice #{pin.invoice_number}.")  
+    mail(:to => @pin.suppler_name, :replyto => "paulroiter@gmail.com", :subject => "This happened")  
+    #mail(:to => @pin.supplier_email, :replyto => "paulroiter@gmail.com", :subject => "Good news! #{pin.user.company} has approved your invoice #{pin.invoice_number}.")  
   end  
 end  
