@@ -5,7 +5,7 @@ class PinsController < ApplicationController
   helper_method :sort_column, :sort_direction, :set_action_count
 
   def import
-    Pin.import(params[:file])
+    Pin.import(params[:file], current_user.id)
     redirect_to root_url, notice: "Invoices imported."
   end
 
