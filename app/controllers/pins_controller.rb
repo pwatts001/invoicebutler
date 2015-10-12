@@ -4,10 +4,14 @@ class PinsController < ApplicationController
   before_action :authenticate_user!
   helper_method :sort_column, :sort_direction, :set_action_count
 
-
+  def import
+    Pin.import(params[:file])
+    redirect_to root_url, notice: "Invoices imported."
+  end
 
   def index
-    @pins = Pin.where(user_id: current_user, status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    #@pins = Pin.where(user_id: current_user, status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def pendingoffers
@@ -54,6 +58,7 @@ class PinsController < ApplicationController
       if params[:commit] == 'Send'
         @pin = Pin.find(params[:id]) #is this line needed?
         OfferMailer.offer_email(@pin).deliver
+
         redirect_to pins_url, notice: 'Offer sent!'
       elsif params[:commit] == 'Edit Invoice'
         redirect_to pins_url, notice: 'Invoice was successfully updated.'

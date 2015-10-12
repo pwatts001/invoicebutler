@@ -8,6 +8,12 @@
     <span class="glyphicon glyphicon-plus"></span> New Invoice
   <% end %>
 
+<br><br>
+<%= form_tag import_pins_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import CSV" %>
+<% end %>
+<br><br>
 
 <table class="invtable">
   <thead>
@@ -55,7 +61,7 @@
               <%= f.date_select :offer_sent_date %>
             </div>
           </th>
-          <th><%= f.text_field :offer_amount, :readonly => true, :value => pin.invoice_amount - 10, class: "form-control" %></th>
+          <th><%#= f.text_field :offer_amount, :readonly => true, :value => pin.invoice_amount - 10, class: "form-control" %></th>
           <th><%= f.text_field :saving, :readonly => true, :value => 10, class: "form-control" %></th>
           <th><%= f.submit "Send", :onclick => "return confirm('Send offer?')" , class: "btn btn-primary" %></th>
         <% end %>

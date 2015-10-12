@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :pins do  
+  resources :pins do
+    collection { post :import }
     member do  
       match 'sendrequest' => 'pins#sendrequest', :via => [:get, :post]  
     end 
   end  
 
+
   devise_for :users
 
-  root "pages#home"
+  root to: "pins#index"
+
   get "about" => "pages#about"
   get "dashboard" => "pages#dashboard"
   get "team" => "pages#team"
