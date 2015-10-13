@@ -49,13 +49,20 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
+    # address: "smtpout.europe.secureserver.net",
+    # port: 3535,
+    # domain: ENV["GMAIL_DOMAIN"],
+    # authentication: "plain",
+    # enable_starttls_auto: true,
+    # user_name: ENV["GMAIL_USERNAME"],
+    # password: ENV["GMAIL_PASSWORD"]
     address: "smtpout.europe.secureserver.net",
-    port: 3535,
-    domain: ENV["GMAIL_DOMAIN"],
+    port: 80,
+    domain: "dingoapp.co.uk",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: "info@dingoapp.co.uk",
+    password: "Dingo123"
   }
 
 
