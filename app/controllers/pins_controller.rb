@@ -44,6 +44,7 @@ class PinsController < ApplicationController
     @pins.each do |f|
       sendEmailsLoop(f)
       i += 1
+      f.destroy
     end
     redirect_to importinvoices_path, notice:"Successfully sent #{i} emails"
   end
@@ -105,12 +106,12 @@ end
     end
 
     def correct_user 
-      if params[:commit] == 'Accept Offer' || params[:commit] == 'Reject Offer'
-        #allow user to edit
-      else
-        @pin = current_user.pins.find_by(id: params[:id])
-        redirect_to pins_path, notice: "Can't find this invoice. (Not authorised to view or edit this invoice)" if @pin.nil?
-      end
+      # if params[:commit] == 'Accept Offer' || params[:commit] == 'Reject Offer'
+      #   #allow user to edit
+      # else
+      #   @pin = current_user.pins.find_by(id: params[:id])
+      #   redirect_to pins_path, notice: "Can't find this invoice. (Not authorised to view or edit this invoice)" if @pin.nil?
+      # end
     end
 
     def pin_params
