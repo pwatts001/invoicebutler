@@ -42,7 +42,7 @@ class PinsController < ApplicationController
     i = 0
     @pins = Pin.where(user_id: current_user)
     @pins.each do |f|
-      sendEmailsLoop(f)
+      #sendEmailsLoop(f)
       i += 1
       f.destroy
     end
