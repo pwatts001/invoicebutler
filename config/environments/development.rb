@@ -58,10 +58,10 @@ Rails.application.configure do
     # password: ENV["GMAIL_PASSWORD"]
     address: "smtpout.europe.secureserver.net",
     port: 80,
-    domain: "dingoapp.co.uk",
+    domain: "ticketbutler.co.uk",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "info@dingoapp.co.uk",
+    user_name: "3@ticketbutler.co.uk",
     password: "Dingo123"
   }
 
