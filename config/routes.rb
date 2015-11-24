@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     end 
   end  
 
-  get :sendEmails, to: 'pins#sendEmails', as: :sendEmails
+  #get :sendEmails, to: 'pins#sendEmails', as: :sendEmails
+  get :deleteAll, to: 'pins#deleteAll', as: :deleteAll
+  get :sendGroupOffers, to: 'pins#sendGroupOffers', as: :sendGroupOffers
+
+  
 
   devise_for :users
 

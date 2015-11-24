@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label "Your Invoice Ref" %>
+    <%= f.label "Suppler Contact Name" %>
     <%= f.text_field :ref, class: "form-control" %>
   </div>
 
@@ -61,6 +61,21 @@
     <%= f.text_field :invoice_amount, class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label "Proposed Settlement Date" %>
+    <%= f.date_select :prop_settlement_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :offer_amount %>
+    <%= f.text_field :offer_amount, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :saving %>
+    <%= f.text_field :saving, class: "form-control" %>
+  </div>
+
   <% if !@pin.status %>
     <%= f.hidden_field :status, :value => "imported" %>
   <% end %>
@@ -68,8 +83,10 @@
   <%= f.hidden_field :customer_name, :value => @pin.user.company %>
 
 
-  <%= f.text_field :offer_amount, class: "form-control" %>
-  <%= f.text_field :status, :value => "imported", class: "form-control" %>
+  <div class="form-group">
+    <%= f.label :status %>
+    <%= f.text_field :status, :value => "imported", class: "form-control" %>
+  </div>
 
   <% if @pin.invoice_amount %>
     <div class="form-group">

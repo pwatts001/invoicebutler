@@ -19,7 +19,7 @@
   <thead>
     <tr>
       <th><%= check_box_tag "select_all" %></th>
-      <th><%= sortable "ref", "Ref" %></th>
+      <th><%= sortable "ref", "Suppler Contact Name" %></th>
       <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
       <th><%= sortable "suppler_name", "Supplier Name" %></th>
       <th><%= sortable "invoice_number", "Invoice Number" %></th>
@@ -53,18 +53,19 @@
         <th><%= pin.invoice_amount %></th>
         <th><%= pin.status %></th>
         <th><%= pin.supplier_email %></th>
+        <th><%= pin.prop_settlement_date %></th>
+        <th><%= pin.offer_amount %></th>
+        <th><%= pin.saving %></th>
         <%= form_for pin, html: { multipart: true } do |f| %>
           <th>
-            <%= f.date_select :prop_settlement_date, class: "form-control"%>
             <div style="display: none;">
               <%= f.text_field :status, :value => "pending" %>
               <%= f.date_select :offer_sent_date %>
             </div>
+            <%= f.submit "Send", :onclick => "return confirm('Send offer?')" , class: "btn btn-primary" %>
           </th>
-          <th><%#= f.text_field :offer_amount, :readonly => true, :value => pin.invoice_amount - 10, class: "form-control" %></th>
-          <th><%= f.text_field :saving, :readonly => true, :value => 10, class: "form-control" %></th>
-          <th><%= f.submit "Send", :onclick => "return confirm('Send offer?')" , class: "btn btn-primary" %></th>
         <% end %>
+
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
         
@@ -75,14 +76,13 @@
 
 <br><br>
 
-<%= link_to "Send Email to all", :action => "sendEmails" %>
+<p><%= link_to "Send Offers", :action => "sendGroupOffers" %></p>
+<br>
+<p><%= link_to "Delete All Invoices", :action => "deleteAll" %></p>
 <%#= button "Send Emails", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
 <%# end %>
 
-
-
 <br><br>
-
 
 <div class="center">
    <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>

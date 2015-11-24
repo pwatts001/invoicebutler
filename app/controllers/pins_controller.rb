@@ -38,7 +38,7 @@ class PinsController < ApplicationController
   end
 
 
-  def sendEmails
+  def deleteAll
     i = 0
     @pins = Pin.where(user_id: current_user)
     @pins.each do |f|
@@ -46,13 +46,27 @@ class PinsController < ApplicationController
       i += 1
       f.destroy
     end
-    redirect_to importinvoices_path, notice:"Successfully sent #{i} emails"
+    redirect_to importinvoices_path, notice:"Successfully deleted #{i} invoices"
   end
 
-
+#loop here not needed, was using for spamming bot
 def sendEmailsLoop(pin)
   OfferMailer.offer_email(pin).deliver
 end
+
+
+
+  def sendGroupOffers
+
+    @pins = Pin.where(user_id: current_user)
+    OfferMailer.offers_email(@pins).deliver
+  
+    #need to change status of invoices to "pending" here
+      
+    end
+
+    redirect_to importinvoices_path, notice:"Successfully sent offers"
+  end
 
 
 

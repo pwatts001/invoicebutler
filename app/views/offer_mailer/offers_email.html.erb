@@ -1,0 +1,46 @@
+
+
+<img id="logo" src="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-logo.png" width="195" height="80" alt="Fat Face" title="Fat Face">
+
+<p>Good news from Fat Face!</p>
+
+<p>Hi <%= @pins.first.ref %>, Fat Face have approved you invoice(s) with the option of early payment.</p>
+
+<p>You will received the full amount on the below invoice(s) on the invoice due date OR you can receive as early payment on <%= @pins.first.prop_settlement_date %> as per the below table.<p>
+
+<table>
+  <thead>
+		<tr>
+			<th>Supplier Name</th>
+      <th>Invoice Number</th>
+      <th>Description</th>
+      <th>Invoice Date</th>
+      <th>Due Date</th>
+      <th>Invoice Currency</th>
+      <th>Invoice Amount</th>
+      <th>New Proposed Settlement Date</th>
+      <th>New Proposed Amount</th>
+   	</tr>
+  </thead>
+  <tbody>
+    <% @pins.each do |pin| %>
+      <tr>
+        <th><%= pin.suppler_name %></th>
+        <th><%= pin.invoice_number %></th>
+        <th><%= pin.description %></th>
+        <th><%= pin.invoice_date %></th>
+        <th><%= pin.due_date %></th>
+        <th><%= pin.invoice_curr %></th>
+        <th><%= pin.invoice_amount %></th>
+        <th><%= pin.prop_settlement_date %></th>
+        <th><%= pin.offer_amount %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>To accept click here<p>
+
+<p>If you have any questinos please get in touch,<p>
+
+<p>Invoicely Team, on behalf of Fat Face<p>

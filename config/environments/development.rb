@@ -58,11 +58,11 @@ Rails.application.configure do
     # password: ENV["GMAIL_PASSWORD"]
     address: "smtpout.europe.secureserver.net",
     port: 80,
-    domain: "ticketbutler.net",
+    domain: "invoicely.co.uk",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "info@ticketbutler.net",
-    password: "Dingo123"
+    user_name: "phil@invoicely.co.uk",
+    password: "Invo1cely123"
   }
 
 

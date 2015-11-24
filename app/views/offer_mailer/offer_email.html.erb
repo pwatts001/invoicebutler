@@ -1,20 +1,44 @@
-<p>Hi <%= @pin.suppler_ref %>,</p>
 
-<p>Apologies for the email out of the blue. My name is Paul and I am the Commercial Director of a new company called Invoicely.</p>
 
-<p>Having looked at your accounts on Companies House I can see that <%= @pin.invoice_number %> has a very healthy cash balance. Given the historic low rates of interest, however, earning a decent return at the bank has become near impossible.</p>
+<img id="logo" src="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-logo.png" width="195" height="80" alt="Fat Face" title="Fat Face">
 
-<p>My company can help deliver a far superior return on your cash, with absolutely no risk. Our software facilitates something called dynamic discounting - where you can offer your suppliers early payment on invoices in return for a discount on the invoice value. You simply set the discount you want - expressed as an APR - and our software manages the pricing and offer process with your chosen suppliers, requiring no change to your existing invoice acceptance or payment processes. Other businesses are already achieving double-digit APR’s with this technology.</p>
+<p>Good news from Fat Face!</p>
 
-<p>It is totally flexible - offer early payment only when you have the cash, and only to your chosen suppliers.</p>
+<p>Hi <%= @pin.ref %>, Fat Face have approved you invoice(s) with the option of early payment.</p>
 
-<p>The savings we can provide will go straight to your bottom line and we estimate that for  <%= @pin.invoice_number %> they would have a material impact on net profit margin. What’s more, you keep your suppliers happy as they don’t need to borrow or factor their invoices for much needed cash flow.</p>
+<p>You will received the full amount on the below invoice(s) on the invoice due date OR you can receive as early payment on <%= @pin.prop_settlement_date %> as per the below table.<p>
 
-<p>I would love the opportunity to discuss this with you (or someone in your team) over the phone or in person. I assure you there are no gimmicks here. Our mission at Invoicely is to unlock inefficient cash flow in supply chains across the UK and we are already working wih several major corporations in this regard. </p>
+<table>
+  <thead>
+		<tr>
+			<th>Supplier Name</th>
+      <th>Invoice Number</th>
+      <th>Description</th>
+      <th>Invoice Date</th>
+      <th>Due Date</th>
+      <th>Invoice Currency</th>
+      <th>Invoice Amount</th>
+      <th>New Proposed Settlement Date</th>
+      <th>New Proposed Amount</th>
+   	</tr>
+  </thead>
+  <tbody>
+      <tr>
+        <th><%= @pin.suppler_name %></th>
+        <th><%= @pin.invoice_number %></th>
+        <th><%= @pin.description %></th>
+        <th><%= @pin.invoice_date %></th>
+        <th><%= @pin.due_date %></th>
+        <th><%= @pin.invoice_curr %></th>
+        <th><%= @pin.invoice_amount %></th>
+        <th><%= @pin.prop_settlement_date %></th>
+        <th><%= @pin.offer_amount %></th>
+      </tr>
+  </tbody>
+</table>
 
-<p>I hope to hear back from you.</p>
+<p>To accept click here<p>
 
-<p>Kind regards,</p>
-<p>Paul</p>
-<p>paulroiter@gmail.com</p>
-<p>07903276249</p>
+<p>If you have any questinos please get in touch,<p>
+
+<p>Invoicely Team, on behalf of Fat Face<p>
