@@ -6,12 +6,16 @@ class PinsController < ApplicationController
 
   def import
     Pin.import(params[:file], current_user.id)
-    redirect_to root_url, notice: "Invoices imported."
+    redirect_to importinvoices_path, notice: "Invoices imported."
+  end
+
+
+  def all_invoices
+    @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def index
-    #@pins = Pin.where(user_id: current_user, status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-    @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def pendingoffers
@@ -38,37 +42,43 @@ class PinsController < ApplicationController
   end
 
 
-  def deleteAll
+  def deleteAllImported
     i = 0
-    @pins = Pin.where(user_id: current_user)
+    @pins = Pin.where(user_id: current_user, status: "imported")
     @pins.each do |f|
-      #sendEmailsLoop(f)
       i += 1
       f.destroy
     end
     redirect_to importinvoices_path, notice:"Successfully deleted #{i} invoices"
   end
 
-#loop here not needed, was using for spamming bot
-def sendEmailsLoop(pin)
-  OfferMailer.offer_email(pin).deliver
-end
+  def deleteAll
+    i = 0
+    @pins = Pin.all
+    @pins.each do |f|
+      i += 1
+      f.destroy
+    end
+    redirect_to all_invoices_path, notice:"Successfully deleted all #{i} invoices"
+  end
+
 
 
 
   def sendGroupOffers
+    @pins = Pin.where(user_id: current_user, status: "imported")
+    @pinscount = Pin.where(user_id: current_user, status: "imported").count
+    #OfferMailer.offers_email(@pins).deliver
+    time = Time.new
 
-    @pins = Pin.where(user_id: current_user)
-    OfferMailer.offers_email(@pins).deliver
-  
-    #need to change status of invoices to "pending" here
-      
+    if @pinscount == 0
+        @recipient = "no one"
+    else
+        @recipient = @pins.first.supplier_email
     end
-
-    redirect_to importinvoices_path, notice:"Successfully sent offers"
+    redirect_to importinvoices_path, notice:"Successfully sent offer for #{@pinscount} invoices to #{@recipient}."
+    @pins.update_all "status = 'pending', offer_sent_date ='#{time}'"
   end
-
-
 
 
   def edit
@@ -93,7 +103,7 @@ end
         OfferMailer.offer_email(@pin).deliver
         redirect_to pins_url, notice: 'Offer sent!'
       elsif params[:commit] == 'Edit Invoice'
-        redirect_to pins_url, notice: 'Invoice was successfully updated.'
+        redirect_to all_invoices_path, notice: 'Invoice was successfully updated.'
       elsif params[:commit] == 'Accept Offer'
         #send emails
         redirect_to offersreceived_path, notice: "Offer accepted! We have informed #{@pin.customer_name}."

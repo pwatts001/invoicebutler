@@ -37,11 +37,6 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :supplier_email %>
-    <%= f.email_field :supplier_email, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
     <%= f.label :invoice_date %>
     <%= f.date_select :invoice_date, class: "form-control" %>
   </div>
@@ -62,6 +57,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :supplier_email %>
+    <%= f.email_field :supplier_email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label "Proposed Settlement Date" %>
     <%= f.date_select :prop_settlement_date, class: "form-control" %>
   </div>
@@ -75,6 +75,23 @@
     <%= f.label :saving %>
     <%= f.text_field :saving, class: "form-control" %>
   </div>
+
+
+  <% if @pin.offer_sent_date %>
+    <div class="form-group">
+      <%= f.label :offer_sent_date %>
+      <%= f.date_select :offer_sent_date, class: "form-control" %>
+    </div>
+  <% end %>
+
+  <% if @pin.offer_accepted_date %>
+    <div class="form-group">
+      <%= f.label :offer_accepted_date %>
+      <%= f.date_select :offer_accepted_date, class: "form-control" %>
+    </div>
+  <% end %>
+
+
 
   <% if !@pin.status %>
     <%= f.hidden_field :status, :value => "imported" %>

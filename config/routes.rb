@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end  
 
   #get :sendEmails, to: 'pins#sendEmails', as: :sendEmails
+  get :deleteAllImported, to: 'pins#deleteAllImported', as: :deleteAllImported
   get :deleteAll, to: 'pins#deleteAll', as: :deleteAll
   get :sendGroupOffers, to: 'pins#sendGroupOffers', as: :sendGroupOffers
 
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
   get "pendingoffers" => "pins#pendingoffers"
   get "acceptedoffers" => "pins#acceptedoffers"
   get "offersreceived" => "pins#offersreceived"
+  get "all_invoices" => "pins#all_invoices"
   
 
   as :user do

@@ -4,21 +4,15 @@
 </div>
 
 <br><br>
-  <%= link_to new_pin_path do %>
-    <span class="glyphicon glyphicon-plus"></span> New Invoice
-  <% end %>
 
-<br><br>
-<%= form_tag import_pins_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import CSV" %>
-<% end %>
 <br><br>
 
 <table class="invtable">
   <thead>
     <tr>
       <th><%= check_box_tag "select_all" %></th>
+      <th><%= sortable "created_at", "Created At" %></th>
+      <th><%= sortable "user_id", "User Id" %></th>
       <th><%= sortable "ref", "Suppler Contact Name" %></th>
       <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
       <th><%= sortable "suppler_name", "Supplier Name" %></th>
@@ -33,6 +27,9 @@
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
+      <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
+      <th><%= sortable "offer_accepted_date", "Offer Accepted Date" %></th>
+      <th><%= sortable "customer_name", "Customer" %></th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
@@ -41,20 +38,25 @@
     <% @pins.each do |pin| %>
       <tr>
         <th><%= check_box_tag "ids[]", pin.id %></th>
+        <th><%= pin.created_at.strftime("%d %b %Y") %></th>
+        <th><%= pin.user_id %></th>
         <th><%= pin.ref %></th>
         <th><%= pin.suppler_ref %></th>
         <th><%= pin.suppler_name %></th>
         <th><%= pin.invoice_number %></th>
         <th><%= pin.description %></th>
-        <th><%= pin.invoice_date %></th>
-        <th><%= pin.due_date %></th>
+        <th><%= pin.invoice_date.strftime("%d %b %Y") %></th>
+        <th><%= pin.due_date.strftime("%d %b %Y") %></th>
         <th><%= pin.invoice_curr %></th>
         <th><%= pin.invoice_amount %></th>
         <th><%= pin.supplier_email %></th>
         <th><%= pin.status %></th>
-        <th><%= pin.prop_settlement_date %></th>
+        <th><%= pin.prop_settlement_date.strftime("%d %b %Y") %></th>
         <th><%= pin.offer_amount %></th>
         <th><%= pin.saving %></th>
+        <th><%= pin.offer_sent_date %></th>
+        <th><%= pin.offer_accepted_date %></th>
+        <th><%= pin.customer_name %></th>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
         
@@ -65,9 +67,10 @@
 
 <br><br>
 
-<p><%= link_to "Send Offer on Imported Invoices", :action => "sendGroupOffers" %></p>
+
+
 <br>
-<p><%= link_to "Delete All Imported Invoices", :action => "deleteAllImported" %></p>
+<p><%= link_to "Delete All Invoices", :action => "deleteAll" %></p>
 <%#= button "Send Emails", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
 <%# end %>
 
