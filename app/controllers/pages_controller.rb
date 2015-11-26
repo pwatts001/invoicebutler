@@ -7,4 +7,10 @@ class PagesController < ApplicationController
   end
   def about
   end
+
+
+ 	def dashboard
+    @users = User.all
+  end
+
 end

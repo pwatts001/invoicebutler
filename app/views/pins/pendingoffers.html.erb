@@ -5,26 +5,7 @@
 
 <br><br>
 
-   <script>
-  // $(function() {
-  //   $( "#datepicker" ).datepicker();
-  // });
-  // </script>
 
-<!-- <div class="form-group center">
-  <%#= filter_form_for @q do |f| %>
-  <%#= hidden_field_tag :direction, params[:direction] %>
-  <%#= hidden_field_tag :sort, params[:sort] %>
-  <%#= f.filter_input :description, class: "form-control" %>
-  <%#= f.filter_input :description, as: :select %>
-  <%#= f.filter_input :created_at, as: :date, predicate: :gt %>
-  <%#= f.filter_input :created_at, as: :date, predicate: :lt %>
-  <%#= f.button :submit, "Filter" %>
-  <%#= link_to "Clear", pendingoffers_path %>
-<%# end %>
-</div> -->
-
-<!-- <input id="datepicker"> -->
 <br><br>
 
 <table class="invtable">
@@ -72,6 +53,8 @@
   </tbody>
 </table>
 
+<br><br>
+<p><%= link_to "Expire All Pending Offers", :action => "ExpirePendingOffers" %></p>
 
 
 <div class="center">

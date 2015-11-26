@@ -6,13 +6,11 @@ Rails.application.routes.draw do
       match 'sendrequest' => 'pins#sendrequest', :via => [:get, :post]  
     end 
   end  
-
-  #get :sendEmails, to: 'pins#sendEmails', as: :sendEmails
+  
   get :deleteAllImported, to: 'pins#deleteAllImported', as: :deleteAllImported
   get :deleteAll, to: 'pins#deleteAll', as: :deleteAll
   get :sendGroupOffers, to: 'pins#sendGroupOffers', as: :sendGroupOffers
-
-  
+  get :ExpirePendingOffers, to: 'pins#ExpirePendingOffers', as: :ExpirePendingOffers
 
   devise_for :users
 
@@ -27,10 +25,11 @@ Rails.application.routes.draw do
   get "acceptedoffers" => "pins#acceptedoffers"
   get "offersreceived" => "pins#offersreceived"
   get "all_invoices" => "pins#all_invoices"
+  get "acceptedoffersadmin" => "pins#acceptedoffersadmin"
   
 
   as :user do
-  get 'dashboard', :to => "pages#dashboard", :as => :user_root # Rails 3
+  get 'offersreceived', :to => "pages#offersreceived", :as => :user_root # Rails 3
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

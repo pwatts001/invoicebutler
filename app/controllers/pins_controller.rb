@@ -19,18 +19,19 @@ class PinsController < ApplicationController
   end
 
   def pendingoffers
-    @pins = Pin.where(user_id: current_user, status: ["pending","rejected"]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-    # @q = Pin.order(sort_column + ' ' + sort_direction).search(params[:q])
-    # @invoiceresults = @q.result.paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, status: "pending").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+  end
+
+  def acceptedoffersadmin
+    @pins = Pin.where(user_id: current_user).where.not(status: ["imported","pending"]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def acceptedoffers
-    @pins = Pin.where(user_id: current_user, status: "accepted").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(supplier_email: current_user.email).where.not(status: ["imported","pending"]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def offersreceived
-    @pins = Pin.where(supplier_email: current_user.email).where.not(status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-    #@action_count = Pin.where(supplier_email: current_user.email, status: "pending").count
+    @pins = Pin.where(supplier_email: current_user.email, status: "pending").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -70,7 +71,6 @@ class PinsController < ApplicationController
     @pinscount = Pin.where(user_id: current_user, status: "imported").count
     #OfferMailer.offers_email(@pins).deliver
     time = Time.new
-
     if @pinscount == 0
         @recipient = "no one"
     else
@@ -78,6 +78,15 @@ class PinsController < ApplicationController
     end
     redirect_to importinvoices_path, notice:"Successfully sent offer for #{@pinscount} invoices to #{@recipient}."
     @pins.update_all "status = 'pending', offer_sent_date ='#{time}'"
+  end
+
+
+  def ExpirePendingOffers
+    @pins = Pin.where(user_id: current_user, status: "pending")
+    @pinscount = Pin.where(user_id: current_user, status: "pending").count
+    time = Time.new
+    redirect_to pendingoffers_path, notice:"Successfully expired offers for #{@pinscount} invoices."
+    @pins.update_all "status = 'expired', offer_accepted_date ='#{time}'"
   end
 
 
@@ -97,21 +106,21 @@ class PinsController < ApplicationController
 
 
   def update
-    if @pin.update(pin_params)
-      if params[:commit] == 'Send'
-        @pin = Pin.find(params[:id]) #is this line needed?
-        OfferMailer.offer_email(@pin).deliver
-        redirect_to pins_url, notice: 'Offer sent!'
-      elsif params[:commit] == 'Edit Invoice'
-        redirect_to all_invoices_path, notice: 'Invoice was successfully updated.'
-      elsif params[:commit] == 'Accept Offer'
-        #send emails
-        redirect_to offersreceived_path, notice: "Offer accepted! We have informed #{@pin.customer_name}."
-      elsif params[:commit] == 'Reject Offer'
-        #send emails
-        redirect_to offersreceived_path, notice: 'Offer rejected!'           
+    if params[:pins]
+      @pins = []
+      params[:pins].each do |id, attrs|
+        pin = Pin.find_by_id(id)
+        time = Time.new
+        pin.update(status: attrs)
+        pin.update(offer_accepted_date: time)
       end
-    else
+      redirect_to offersreceived_path, notice: "Repsonse noted. We'll sent confirmation emails"
+      #send email to both parties
+    elsif @pin.update(pin_params)
+      if params[:commit] == 'Edit Invoice'
+        redirect_to all_invoices_path, notice: 'Invoice was successfully updated.'          
+      end
+    elsif
       render :edit
     end
   end
@@ -139,7 +148,7 @@ class PinsController < ApplicationController
     end
 
     def pin_params
-      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving, :supplier_email, :offer_sent_date, :offer_accepted_date, :customer_name)
+      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :string, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving, :supplier_email, :offer_sent_date, :offer_accepted_date, :customer_name)
     end
 
     def sort_column
@@ -154,6 +163,5 @@ class PinsController < ApplicationController
       #@action_count = Pin.where(supplier_email: current_user.email, status: "pending").count
       @action_count = "2"
     end
-
 
 end

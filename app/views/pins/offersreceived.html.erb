@@ -1,69 +1,60 @@
 <div class="center">
-  <%= render 'layouts/dashboardpages' %>
+  <%= render 'layouts/supplierdashboardpages' %>
 </div>
 
 <br><br>
 
-<table class="invtable">
-  <thead>
-    <tr>
-      <th><%= check_box_tag "select_all" %></th>
-      <th><%= sortable "ref", "Customer Invoice Ref" %></th>
-      <th><%= sortable "suppler_ref", "Customer Name" %></th>
-      <th><%= sortable "invoice_number", "Invoice Number" %></th>
-      <th><%= sortable "description", "Description" %></th>
-      <th><%= sortable "invoice_date", "Invoice Date" %></th>
-      <th><%= sortable "due_date", "Due Date" %></th>
-      <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
-      <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
-      <th><%= sortable "status", "Offer Status" %></th>
-      <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
-      <th><%= sortable "offer_amount", "New Offer Amount" %></th>
-      <th><%= sortable "saving", "Requested Discount" %></th>
-      <th>Available Actions</th>
-      <th><%= sortable "offer_accepted_date", "Action Date" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pins.each do |pin| %>
-      <tr>
-        <th><%= check_box_tag "ids[]", pin.id %></th>
-        <th><%= pin.ref %></th>
-        <th><%= pin.customer_name %></th>
-        <th><%= pin.invoice_number %></th>
-        <th><%= pin.description %></th> 
-        <th><%= pin.invoice_date %></th>
-        <th><%= pin.due_date %></th>
-        <th><%= pin.invoice_curr %></th>
-        <th><%= pin.invoice_amount %></th>
-        <th><%= pin.status %></th>
-        <th><%= pin.prop_settlement_date %></th>
-        <th><%= pin.offer_amount %></th>
-        <th><%= pin.saving %></th>   
-        <%= form_for pin, html: { multipart: true } do |f| %>
-          <th>
-            <div style="display: none;">
-              <%= f.text_field :status, :value => "accepted" %>
-              <%= f.date_select :offer_accepted_date %>
-            </div>
-            <% if pin.status == "pending" %>
-              <%= f.submit "Accept Offer", :onclick => "return confirm('Sure you accept?')" , class: "btn btn-primary" %>
-            <% end %>
+
+<% if @pins.first %>
+  <%= form_for @pins.first, html: { multipart: true } do |f| %>
+
+    <table class="invtable">
+      <thead>
+        <tr>
+          <th><%#= check_box_tag "select_all" %></th>
+          <th><%= sortable "ref", "Customer Invoice Ref" %></th>
+          <th><%= sortable "suppler_ref", "Customer Name" %></th>
+          <th><%= sortable "invoice_number", "Invoice Number" %></th>
+          <th><%= sortable "description", "Description" %></th>
+          <th><%= sortable "invoice_date", "Invoice Date" %></th>
+          <th><%= sortable "due_date", "Due Date" %></th>
+          <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
+          <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
+          <th><%= sortable "status", "Offer Status" %></th>
+          <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
+          <th><%= sortable "offer_amount", "New Offer Amount" %></th>
+          <th><%= sortable "saving", "Requested Discount" %></th>
+          <th>Available Actions</th>
+          <th><%= sortable "offer_accepted_date", "Action Date" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pins.each do |pin| %>
+          <tr>
+            <th><%#= check_box_tag "ids[]", pin.id %></th>
+            <th><%= pin.ref %></th>
+            <th><%= pin.customer_name %></th>
+            <th><%= pin.invoice_number %></th>
+            <th><%= pin.description %></th> 
+            <th><%= pin.invoice_date %></th>
+            <th><%= pin.due_date %></th>
+            <th><%= pin.invoice_curr %></th>
+            <th><%= pin.invoice_amount %></th>
+            <th><%= pin.status %></th>
+            <th><%= pin.prop_settlement_date %></th>
+            <th><%= pin.offer_amount %></th>
+            <th><%= pin.saving %></th>   
+            <th> <%= render :partial => 'accept_reject_form', :locals => {:pin => pin} %> </th>
+            <th><%= pin.offer_accepted_date %></th>
+          </tr>
         <% end %>  
-        <%= form_for pin, html: { multipart: true } do |f| %>
-            <div style="display: none;">
-              <%= f.text_field :status, :value => "rejected" %>
-              <%= f.date_select :offer_accepted_date %>
-            </div>
-            <% if pin.status == "pending" %>
-              <%= f.submit "Reject Offer", :onclick => "return confirm('Sure you reject?')" , class: "btn btn-primary" %>
-            <% end %>
-          </th>
-        <% end %>
-        <th><%= pin.offer_accepted_date %></th>
-      </tr>
-    <% end %>  
-  </tbody>
-</table>
+      </tbody>
+    </table>
+    <br><br>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
 
 <br><br>
+

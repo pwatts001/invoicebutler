@@ -3,4 +3,45 @@
 </div>
 
 
-dashbaord
+
+<br><br>
+
+<br><br>
+
+
+<table class="invtable">
+  <thead>
+    <tr>
+    	<th>Company Name</th>
+      <th>Email</th>
+      <th>Sign In Count</th>
+      <th>current_sign_in_at</th>
+      <th>last_sign_in_at</th>
+      <th>created_at</th>
+      <th>updated_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+      	<th><%= user.company %></th>     
+        <th><%= user.email %></th>
+        <th><%= user.sign_in_count %></th>
+        <th><%= user.current_sign_in_at.strftime("%d %b %Y") %></th>
+        <th><%= user.last_sign_in_at.strftime("%d %b %Y") %></th>
+        <th><%= user.created_at.strftime("%d %b %Y") %></th>
+        <th><%= user.updated_at.strftime("%d %b %Y") %></th>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
+
+<br><br>
+
+
+<br><br>
+
+<div class="center">
+   <%#= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
+

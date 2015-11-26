@@ -5,15 +5,13 @@
 
 <br><br>
 
+
 <br><br>
 
 <table class="invtable">
   <thead>
     <tr>
-      <th><%= check_box_tag "select_all" %></th>
-      <th><%= sortable "created_at", "Created At" %></th>
-      <th><%= sortable "user_id", "User Id" %></th>
-      <th><%= sortable "ref", "Suppler Contact Name" %></th>
+      <th><%= sortable "ref", "Your Invoice Ref" %></th>
       <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
       <th><%= sortable "suppler_name", "Supplier Name" %></th>
       <th><%= sortable "invoice_number", "Invoice Number" %></th>
@@ -22,25 +20,18 @@
       <th><%= sortable "due_date", "Due Date" %></th>
       <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
       <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
-      <th><%= sortable "supplier_email", "Supplier Email" %></th>
-      <th><%= sortable "string", "Email link" %></th>
-      <th><%= sortable "status", "Invoice Status" %></th>
+      <th><%= sortable "status", "Offer Status" %></th>
+      <th><%= sortable "supplier_email", "Offer Sent to" %></th>
+      <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
-      <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
-      <th><%= sortable "offer_accepted_date", "Offer Accepted Date" %></th>
-      <th><%= sortable "customer_name", "Customer" %></th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th><%= sortable "offer_accepted_date", "Supplier Action Date" %></th>
     </tr>
   </thead>
   <tbody>
     <% @pins.each do |pin| %>
       <tr>
-        <th><%= check_box_tag "ids[]", pin.id %></th>
-        <th><%= pin.created_at.strftime("%d %b %Y") %></th>
-        <th><%= pin.user_id %></th>
         <th><%= pin.ref %></th>
         <th><%= pin.suppler_ref %></th>
         <th><%= pin.suppler_name %></th>
@@ -50,38 +41,25 @@
         <th><%= pin.due_date %></th>
         <th><%= pin.invoice_curr %></th>
         <th><%= pin.invoice_amount %></th>
-        <th><%= pin.supplier_email %></th>
-        <th><%= pin.string %></th>
         <th><%= pin.status %></th>
+        <th><%= pin.supplier_email %></th>
+        <th><%= pin.offer_sent_date %></th>
         <th><%= pin.prop_settlement_date %></th>
         <th><%= pin.offer_amount %></th>
         <th><%= pin.saving %></th>
-        <th><%= pin.offer_sent_date %></th>
         <th><%= pin.offer_accepted_date %></th>
-        <th><%= pin.customer_name %></th>
-        <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
-        <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
-        
       </tr>
     <% end %>  
   </tbody>
 </table>
 
-<br><br>
 
-
-
-<br>
-<p><%= link_to "Delete All Invoices", :action => "deleteAll" %></p>
-<%#= button "Send Emails", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-<%# end %>
-
-<br><br>
 
 <div class="center">
    <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
 </div>
 
 
+<br><br>
 
 
