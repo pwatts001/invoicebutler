@@ -11,7 +11,6 @@
     <table class="invtable">
       <thead>
         <tr>
-          <th><%#= check_box_tag "select_all" %></th>
           <th><%= sortable "ref", "Customer Invoice Ref" %></th>
           <th><%= sortable "suppler_ref", "Customer Name" %></th>
           <th><%= sortable "invoice_number", "Invoice Number" %></th>
@@ -31,7 +30,6 @@
       <tbody>
         <% @pins.each do |pin| %>
           <tr>
-            <th><%#= check_box_tag "ids[]", pin.id %></th>
             <th><%= pin.ref %></th>
             <th><%= pin.customer_name %></th>
             <th><%= pin.invoice_number %></th>
@@ -52,7 +50,7 @@
     </table>
     <br><br>
 
-  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <%= f.submit "Submit", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
   <% end %>
 <% end %>
 

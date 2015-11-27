@@ -46,18 +46,18 @@
         <th><%= pin.suppler_name %></th>
         <th><%= pin.invoice_number %></th>
         <th><%= pin.description %></th>
-        <th><%= pin.invoice_date %></th>
-        <th><%= pin.due_date %></th>
+        <th><%= pin.invoice_date.strftime("%d %b %Y") %></th>
+        <th><%= pin.due_date.strftime("%d %b %Y") %></th>
         <th><%= pin.invoice_curr %></th>
         <th><%= pin.invoice_amount %></th>
         <th><%= pin.supplier_email %></th>
         <th><%= pin.string %></th>
         <th><%= pin.status %></th>
-        <th><%= pin.prop_settlement_date %></th>
+        <th><%= pin.prop_settlement_date.strftime("%d %b %Y") %></th>
         <th><%= pin.offer_amount %></th>
         <th><%= pin.saving %></th>
-        <th><%= pin.offer_sent_date %></th>
-        <th><%= pin.offer_accepted_date %></th>
+        <th><% if pin.offer_sent_date %><%= pin.offer_sent_date.strftime("%d %b %Y") %><% end %></th>
+        <th><% if pin.offer_accepted_date %><%= pin.offer_accepted_date.strftime("%d %b %Y") %><% end %></th>
         <th><%= pin.customer_name %></th>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
@@ -68,8 +68,6 @@
 </table>
 
 <br><br>
-
-
 
 <br>
 <p><%= link_to "Delete All Invoices", :action => "deleteAll" %></p>

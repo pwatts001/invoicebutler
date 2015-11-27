@@ -27,7 +27,10 @@ class PinsController < ApplicationController
   end
 
   def acceptedoffers
-    @pins = Pin.where(supplier_email: current_user.email).where.not(status: ["imported","pending"]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pinsaccepted = Pin.where(supplier_email: current_user.email, status: 'Accept').order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pinsrejected = Pin.where(supplier_email: current_user.email, status: 'Reject').order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+
+
   end
 
   def offersreceived
@@ -69,7 +72,7 @@ class PinsController < ApplicationController
   def sendGroupOffers
     @pins = Pin.where(user_id: current_user, status: "imported")
     @pinscount = Pin.where(user_id: current_user, status: "imported").count
-    #OfferMailer.offers_email(@pins).deliver
+    OfferMailer.offers_email(@pins).deliver
     time = Time.new
     if @pinscount == 0
         @recipient = "no one"
@@ -107,15 +110,22 @@ class PinsController < ApplicationController
 
   def update
     if params[:pins]
-      @pins = []
+      @pinsaccepted = []
+      @pinsrejected = []
       params[:pins].each do |id, attrs|
         pin = Pin.find_by_id(id)
         time = Time.new
         pin.update(status: attrs)
         pin.update(offer_accepted_date: time)
+        if attrs == "Accept"
+          @pinsaccepted << pin
+        else
+          @pinsrejected << pin
+        end
       end
       redirect_to offersreceived_path, notice: "Repsonse noted. We'll sent confirmation emails"
-      #send email to both parties
+      OfferMailer.response_email(@pinsaccepted,@pinsrejected).deliver
+      OfferMailer.fatface_email(@pinsaccepted,@pinsrejected).deliver
     elsif @pin.update(pin_params)
       if params[:commit] == 'Edit Invoice'
         redirect_to all_invoices_path, notice: 'Invoice was successfully updated.'          

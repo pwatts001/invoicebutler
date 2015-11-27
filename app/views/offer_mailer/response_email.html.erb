@@ -1,0 +1,91 @@
+
+
+<img id="logo" src="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-logo.png" width="195" height="80" alt="Fat Face" title="Fat Face">
+
+
+<p>Hi <%= name %>,</p>
+
+<p>Fat Face have received your response.</p>
+
+<% if @pinsaccepted.first %>
+	<p>You have accepted an early payment on below invoice(s):</p>
+
+	<table>
+	  <thead>
+			<tr>
+				<th>Supplier Name</th>
+	      <th>Invoice Number</th>
+	      <th>Description</th>
+	      <th>Invoice Date</th>
+	      <th>Old Due Date</th>
+	      <th>Invoice Currency</th>
+	      <th>Old Invoice Amount</th>
+	      <th>New Due Date</th>
+	      <th>New Invoice Amount</th>
+	      <th>Response</th>
+	   	</tr>
+	  </thead>
+	  <tbody>
+	    <% @pinsaccepted.each do |pin| %>
+	      <tr>
+	        <th><%= pin.suppler_name %></th>
+	        <th><%= pin.invoice_number %></th>
+	        <th><%= pin.description %></th>
+	        <th><%= pin.invoice_date %></th>
+	        <th><%= pin.due_date %></th>
+	        <th><%= pin.invoice_curr %></th>
+	        <th><%= pin.invoice_amount %></th>
+	        <th><%= pin.prop_settlement_date %></th>
+	        <th><%= pin.offer_amount %></th>
+	        <th><%= pin.status %></th>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	<br><br>
+	<p>You will receive <%= totalEarlyPayment %> on <%= date %>.</p>
+	<p>Thank you.</p>
+<% end %>
+
+<% if @pinsrejected.first %>
+	<p>Payment details will remain the same on the below invoice(s):</p>
+	<table>
+	  <thead>
+			<tr>
+				<th>Supplier Name</th>
+	      <th>Invoice Number</th>
+	      <th>Description</th>
+	      <th>Invoice Date</th>
+	      <th>Old Due Date</th>
+	      <th>Invoice Currency</th>
+	      <th>Old Invoice Amount</th>
+	      <th>New Due Date</th>
+	      <th>New Invoice Amount</th>
+	      <th>Response</th>
+	   	</tr>
+	  </thead>
+	  <tbody>
+	    <% @pinsrejected.each do |pin| %>
+	      <tr>
+	        <th><%= pin.suppler_name %></th>
+	        <th><%= pin.invoice_number %></th>
+	        <th><%= pin.description %></th>
+	        <th><%= pin.invoice_date %></th>
+	        <th><%= pin.due_date %></th>
+	        <th><%= pin.invoice_curr %></th>
+	        <th><%= pin.invoice_amount %></th>
+	        <th><%= pin.prop_settlement_date %></th>
+	        <th><%= pin.offer_amount %></th>
+	        <th><%= pin.status %></th>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	<p>If you'd like to receive an accelerated payment before the due date but after <%= @pinsrejected.first.prop_settlement_date %> on any of the above invoices please let us know by responding to this email.<p>
+<% end %>
+
+<p>You can login to the Invoicely supplier portal at any point to keep track of your offer history by clicking <a href=<%= link %>>here</a>.<p>
+<p>If you have any questinos please get in touch,<p>
+
+<p>Invoicely Team, on behalf of Fat Face.<p>
+	<br>

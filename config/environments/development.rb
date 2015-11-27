@@ -61,7 +61,7 @@ Rails.application.configure do
     domain: "invoicely.co.uk",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "phil@invoicely.co.uk",
+    user_name: "fatface.offers@invoicely.co.uk",
     password: "Invo1cely123"
   }
 
