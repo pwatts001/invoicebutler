@@ -17,18 +17,16 @@
 
 <p>You will receive the full invoice amount on the invoice due dates or you can select which you'd like to receive early payments on. To do this selcet Accept/Reject options in the table below and press "Submit".</p>
 
-<p>The new payment amounts are as per the table below. The date on which these would be paid is <%= @pins.first.prop_settlement_date %>.</p>
+<p>The new payment amounts are as per the table below. The date on which these would be paid is <%= fulldate(@pins.first.prop_settlement_date) %>.</p>
 
-<p>This offer will expire on <%= @pins.first.offer_expirey_date %>.</p>
+<p>This offer will expire on <%= fulldate(@pins.first.offer_expirey_date) %>.</p>
 
 <br>
   <%= form_for @pins.first, html: { multipart: true } do |f| %>
 
-    <table class="invtable">
+    <table class="table table-hover table-bordered table-striped invtable">
       <thead>
         <tr>
-          <th><%= sortable "ref", "Customer Invoice Ref" %></th>
-          <th><%= sortable "suppler_ref", "Customer Name" %></th>
           <th><%= sortable "invoice_number", "Invoice Number" %></th>
           <th><%= sortable "description", "Description" %></th>
           <th><%= sortable "invoice_date", "Invoice Date" %></th>
@@ -46,19 +44,17 @@
       <tbody>
         <% @pins.each do |pin| %>
           <tr>
-            <th><%= pin.ref %></th>
-            <th><%= pin.customer_name %></th>
             <th><%= pin.invoice_number %></th>
             <th><%= pin.description %></th> 
-            <th><%= pin.invoice_date %></th>
-            <th><%= pin.due_date.strftime("%d %b %Y") %></th>
+            <th><%= date(pin.invoice_date) %></th>
+            <th><%= date(pin.due_date) %></th>
             <th><%= pin.invoice_curr %></th>
-            <th><%= pin.invoice_amount %></th>
+            <th><%= currency(pin.invoice_amount) %></th>
             <th><%= pin.status %></th>
-            <th><%= pin.prop_settlement_date.strftime("%d %b %Y") %></th>
-            <th><%= pin.offer_amount %></th>
-            <th><%= pin.saving %></th>
-            <th><%= pin.offer_expirey_date.strftime("%d %b %Y") %></th>
+            <th><%= date(pin.prop_settlement_date) %></th>
+            <th><%= currency(pin.offer_amount) %></th>
+            <th><%= currency(pin.saving) %></th>
+            <th><%= date(pin.offer_expirey_date) %></th>
             <th> <%= render :partial => 'accept_reject_form', :locals => {:pin => pin} %> </th>
           </tr>
         <% end %>  

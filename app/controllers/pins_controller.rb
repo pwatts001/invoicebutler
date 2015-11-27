@@ -4,6 +4,7 @@ class PinsController < ApplicationController
   before_action :authenticate_user!
   helper_method :sort_column, :sort_direction, :set_action_count
 
+
   def import
     Pin.import(params[:file], current_user.id)
     redirect_to importinvoices_path, notice: "Invoices imported."
@@ -15,7 +16,7 @@ class PinsController < ApplicationController
       respond_to do |format|
       format.html
       format.csv { send_data @pins.to_csv }
-  end
+      end
   end
 
   def index
@@ -171,10 +172,4 @@ class PinsController < ApplicationController
     def sort_direction
       %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
     end
-
-    def set_action_count
-      #@action_count = Pin.where(supplier_email: current_user.email, status: "pending").count
-      @action_count = "2"
-    end
-
 end

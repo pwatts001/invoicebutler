@@ -7,10 +7,10 @@
 
 <br><br>
 
-<table class="invtable">
+<table class="table table-hover table-bordered table-striped invtable">
   <thead>
     <tr>
-      <th><%= check_box_tag "select_all" %></th>
+      <!-- <th><%#= check_box_tag "select_all" %></th> -->
       <th><%= sortable "created_at", "Created At" %></th>
       <th><%= sortable "user_id", "User Id" %></th>
       <th><%= sortable "ref", "Suppler Contact Name" %></th>
@@ -39,27 +39,27 @@
   <tbody>
     <% @pins.each do |pin| %>
       <tr>
-        <th><%= check_box_tag "ids[]", pin.id %></th>
-        <th><%= pin.created_at.strftime("%d %b %Y") %></th>
+        <!-- <th><%#= check_box_tag "ids[]", pin.id %></th> -->
+        <th><%= date(pin.created_at) %></th>
         <th><%= pin.user_id %></th>
         <th><%= pin.ref %></th>
         <th><%= pin.suppler_ref %></th>
         <th><%= pin.suppler_name %></th>
         <th><%= pin.invoice_number %></th>
         <th><%= pin.description %></th>
-        <th><%= pin.invoice_date.strftime("%d %b %Y") %></th>
-        <th><%= pin.due_date.strftime("%d %b %Y") %></th>
+        <th><%= date(pin.invoice_date) %></th>
+        <th><%= date(pin.due_date) %></th>
         <th><%= pin.invoice_curr %></th>
-        <th><%= pin.invoice_amount %></th>
+        <th><%= currency(pin.invoice_amount) %></th>
         <th><%= pin.supplier_email %></th>
         <!-- <th><%#= pin.string %></th> -->
         <th><%= pin.status %></th>
-        <th><%= pin.prop_settlement_date.strftime("%d %b %Y") %></th>
-        <th><%= pin.offer_amount %></th>
-        <th><%= pin.saving %></th>
-        <th><% if pin.offer_sent_date %><%= pin.offer_sent_date.strftime("%d %b %Y") %><% end %></th>
-        <th><% if pin.offer_expirey_date %><%= pin.offer_expirey_date.strftime("%d %b %Y") %><% end %></th>
-        <th><% if pin.offer_accepted_date %><%= pin.offer_accepted_date.strftime("%d %b %Y") %><% end %></th>
+        <th><%= date(pin.prop_settlement_date) %></th>
+        <th><%= currency(pin.offer_amount) %></th>
+        <th><%= currency(pin.saving) %></th>
+        <th><%= date(pin.offer_sent_date) %></th>
+        <th><%= date(pin.offer_expirey_date) %></th>
+        <th><%= date(pin.offer_accepted_date) %></th>
         <th><%= pin.customer_name %></th>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>

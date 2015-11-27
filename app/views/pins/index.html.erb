@@ -15,7 +15,7 @@
 <% end %>
 <br><br>
 
-<table class="invtable">
+<table class="table table-hover table-bordered table-striped invtable">
   <thead>
     <tr>
       <th><%= check_box_tag "select_all" %></th>
@@ -47,16 +47,16 @@
         <th><%= pin.suppler_name %></th>
         <th><%= pin.invoice_number %></th>
         <th><%= pin.description %></th>
-        <th><%= pin.invoice_date %></th>
-        <th><%= pin.due_date %></th>
+        <th><%= date(pin.invoice_date) %></th>
+        <th><%= date(pin.due_date) %></th>
         <th><%= pin.invoice_curr %></th>
-        <th><%= pin.invoice_amount %></th>
+        <th><%= currency(pin.invoice_amount) %></th>
         <th><%= pin.supplier_email %></th>
         <th><%= pin.status %></th>
-        <th><%= pin.prop_settlement_date %></th>
-        <th><%= pin.offer_amount %></th>
-        <th><%= pin.saving %></th>
-        <th><%= pin.offer_expirey_date %></th>
+        <th><%= date(pin.prop_settlement_date) %></th>
+        <th><%= currency(pin.offer_amount) %></th>
+        <th><%= currency(pin.saving) %></th>
+        <th><%= date(pin.offer_expirey_date) %></th>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
         

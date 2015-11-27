@@ -8,11 +8,9 @@
 
 <br><br>
 
-<table class="invtable">
+<table class="table table-hover table-bordered table-striped invtable">
   <thead>
     <tr>
-      <th><%= sortable "ref", "Your Invoice Ref" %></th>
-      <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
       <th><%= sortable "suppler_name", "Supplier Name" %></th>
       <th><%= sortable "invoice_number", "Invoice Number" %></th>
       <th><%= sortable "description", "Description" %></th>
@@ -32,22 +30,20 @@
   <tbody>
     <% @pins.each do |pin| %>
       <tr>
-        <th><%= pin.ref %></th>
-        <th><%= pin.suppler_ref %></th>
         <th><%= pin.suppler_name %></th>
         <th><%= pin.invoice_number %></th>
         <th><%= pin.description %></th>
-        <th><%= pin.invoice_date %></th>
-        <th><%= pin.due_date %></th>
+        <th><%= date(pin.invoice_date) %></th>
+        <th><%= date(pin.due_date) %></th>
         <th><%= pin.invoice_curr %></th>
-        <th><%= pin.invoice_amount %></th>
+        <th><%= currency(pin.invoice_amount) %></th>
         <th><%= pin.status %></th>
         <th><%= pin.supplier_email %></th>
-        <th><%= pin.offer_sent_date %></th>
-        <th><%= pin.prop_settlement_date %></th>
-        <th><%= pin.offer_amount %></th>
-        <th><%= pin.saving %></th>
-        <th><%= pin.offer_expirey_date %></th>
+        <th><%= date(pin.offer_sent_date) %></th>
+        <th><%= date(pin.prop_settlement_date) %></th>
+        <th><%= currency(pin.offer_amount) %></th>
+        <th><%= currency(pin.saving) %></th>
+        <th><%= date(pin.offer_expirey_date) %></th>
       </tr>
     <% end %>  
   </tbody>

@@ -16,12 +16,9 @@
 <% if @pinsaccepted.first %>
 <p><b>Accepted</b></p>
 <p>You have accepted an early payment on below invoices:</p>
-<table class="invtable">
+<table class="table table-hover table-bordered table-striped invtable">
   <thead>
     <tr>
-      <th><%= sortable "ref", "Your Invoice Ref" %></th>
-      <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
-      <th><%= sortable "suppler_name", "Supplier Name" %></th>
       <th><%= sortable "invoice_number", "Invoice Number" %></th>
       <th><%= sortable "description", "Description" %></th>
       <th><%= sortable "invoice_date", "Invoice Date" %></th>
@@ -39,21 +36,18 @@
   <tbody>
     <% @pinsaccepted.each do |pin| %>
       <tr>
-        <th><%= pin.ref %></th>
-        <th><%= pin.suppler_ref %></th>
-        <th><%= pin.suppler_name %></th>
         <th><%= pin.invoice_number %></th>
         <th><%= pin.description %></th>
-        <th><%= pin.invoice_date %></th>
-        <th><%= pin.due_date %></th>
+        <th><%= date(pin.invoice_date) %></th>
+        <th><%= date(pin.due_date) %></th>
         <th><%= pin.invoice_curr %></th>
-        <th><%= pin.invoice_amount %></th>
-        <th><%= pin.offer_sent_date %></th>
+        <th><%= currency(pin.invoice_amount) %></th>
+        <th><%= date(pin.offer_sent_date) %></th>
         <th><%= pin.status %></th>
-        <th><%= pin.prop_settlement_date %></th>
-        <th><%= pin.offer_amount %></th>
-        <th><%= pin.saving %></th>
-        <th><%= pin.offer_accepted_date %></th>
+        <th><%= date(pin.prop_settlement_date) %></th>
+        <th><%= currency(pin.offer_amount) %></th>
+        <th><%= currency(pin.saving) %></th>
+        <th><%= date(pin.offer_accepted_date) %></th>
       </tr>
     <% end %>  
   </tbody>
@@ -69,12 +63,9 @@
 <% if @pinsrejected.first %>
   <p><b>Rejected/Expired</b></p>
   <p>Offers were rejected/expired on the below invoice(s):</p>
-  <table class="invtable">
+  <table class="table table-hover table-bordered table-striped invtable">
     <thead>
       <tr>
-        <th><%= sortable "ref", "Your Invoice Ref" %></th>
-        <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
-        <th><%= sortable "suppler_name", "Supplier Name" %></th>
         <th><%= sortable "invoice_number", "Invoice Number" %></th>
         <th><%= sortable "description", "Description" %></th>
         <th><%= sortable "invoice_date", "Invoice Date" %></th>
@@ -92,21 +83,18 @@
     <tbody>
       <% @pinsrejected.each do |pin| %>
         <tr>
-          <th><%= pin.ref %></th>
-          <th><%= pin.suppler_ref %></th>
-          <th><%= pin.suppler_name %></th>
           <th><%= pin.invoice_number %></th>
           <th><%= pin.description %></th>
-          <th><%= pin.invoice_date %></th>
-          <th><%= pin.due_date %></th>
+          <th><%= date(pin.invoice_date) %></th>
+          <th><%= date(pin.due_date) %></th>
           <th><%= pin.invoice_curr %></th>
-          <th><%= pin.invoice_amount %></th>
-          <th><%= pin.offer_sent_date %></th>
+          <th><%= currency(pin.invoice_amount) %></th>
+          <th><%= date(pin.offer_sent_date) %></th>
           <th><%= pin.status %></th>
-          <th><%= pin.prop_settlement_date %></th>
-          <th><%= pin.offer_amount %></th>
-          <th><%= pin.saving %></th>
-          <th><%= pin.offer_accepted_date %></th>
+          <th><%= date(pin.prop_settlement_date) %></th>
+          <th><%= currency(pin.offer_amount) %></th>
+          <th><%= currency(pin.saving) %></th>
+          <th><%= date(pin.offer_accepted_date) %></th>
         </tr>
       <% end %>  
     </tbody>
