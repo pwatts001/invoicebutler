@@ -33,6 +33,7 @@
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
+      <th><%= sortable "offer_expirey_date", "Offer Expirey Date" %></th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
@@ -55,6 +56,7 @@
         <th><%= pin.prop_settlement_date %></th>
         <th><%= pin.offer_amount %></th>
         <th><%= pin.saving %></th>
+        <th><%= pin.offer_expirey_date %></th>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
         
@@ -62,6 +64,9 @@
     <% end %>  
   </tbody>
 </table>
+<div class="center">
+   <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
+</div>
 
 <br><br>
 
@@ -73,9 +78,7 @@
 
 <br><br>
 
-<div class="center">
-   <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
-</div>
+
 
 
 

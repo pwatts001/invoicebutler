@@ -6,7 +6,7 @@
 
 <p>Hi <%= @pins.first.ref %>, Fat Face have approved you invoice(s) with the option of early payment.</p>
 
-<p>You will received the full amount on the below invoice(s) on the invoice due date OR you can receive as early payment on <%= @pins.first.prop_settlement_date %> as per the below table.<p>
+<p>You will received the full amount on the below invoice(s) on the invoice due date OR you can receive an early payment on <%= @pins.first.prop_settlement_date %> as per the below table.<p>
 
 <table>
   <thead>
@@ -39,9 +39,9 @@
   </tbody>
 </table>
 
-<p>To accept click <a href=<%= @pins.first.string %>>here</a><p>
+<p>To review your offers and accept the new terms click <a href=<%= @pins.first.string %>>here</a><p>
 
-
+<p>This offer will expire on <%= @pins.first.offer_expirey_date %>, please make sure to action ebfore then. <p>
 
 <p>If you have any questinos please get in touch,<p>
 

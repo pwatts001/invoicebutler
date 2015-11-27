@@ -26,7 +26,7 @@
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
-      <th><%= sortable "offer_accepted_date", "Supplier Action Date" %></th>
+      <th><%= sortable "offer_expirey_date", "Offer Expirey Date" %></th>
     </tr>
   </thead>
   <tbody>
@@ -47,19 +47,20 @@
         <th><%= pin.prop_settlement_date %></th>
         <th><%= pin.offer_amount %></th>
         <th><%= pin.saving %></th>
-        <th><%= pin.offer_accepted_date %></th>
+        <th><%= pin.offer_expirey_date %></th>
       </tr>
     <% end %>  
   </tbody>
 </table>
+<div class="center">
+   <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
+</div>
 
 <br><br>
 <p><%= link_to "Expire All Pending Offers", :action => "ExpirePendingOffers" %></p>
 
 
-<div class="center">
-   <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
-</div>
+
 
 
 <br><br>

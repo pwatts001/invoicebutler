@@ -1,11 +1,27 @@
+<h1>Welcome <%= current_user.user_name %></h1>
+<hr style="height: 2px; background-color: grey;"></hr>
+
 <div class="center">
   <%= render 'layouts/supplierdashboardpages' %>
 </div>
 
 <br><br>
 
+<% if !@pins.first %>
+ <p>You currently have no available offers</p>
+<% end %>
 
 <% if @pins.first %>
+
+<p>FatFace have recenlty approved <%= @pinscount %> of your invoice(s) with the option of early payment.</p>
+
+<p>You will receive the full invoice amount on the invoice due dates or you can select which you'd like to receive early payments on. To do this selcet Accept/Reject options in the table below and press "Submit".</p>
+
+<p>The new payment amounts are as per the table below. The date on which these would be paid is <%= @pins.first.prop_settlement_date %>.</p>
+
+<p>This offer will expire on <%= @pins.first.offer_expirey_date %>.</p>
+
+<br>
   <%= form_for @pins.first, html: { multipart: true } do |f| %>
 
     <table class="invtable">
@@ -23,8 +39,8 @@
           <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
           <th><%= sortable "offer_amount", "New Offer Amount" %></th>
           <th><%= sortable "saving", "Requested Discount" %></th>
+          <th><%= sortable "offer_expirey_date", "Offer Expirey Date" %></th>
           <th>Available Actions</th>
-          <th><%= sortable "offer_accepted_date", "Action Date" %></th>
         </tr>
       </thead>
       <tbody>
@@ -35,15 +51,15 @@
             <th><%= pin.invoice_number %></th>
             <th><%= pin.description %></th> 
             <th><%= pin.invoice_date %></th>
-            <th><%= pin.due_date %></th>
+            <th><%= pin.due_date.strftime("%d %b %Y") %></th>
             <th><%= pin.invoice_curr %></th>
             <th><%= pin.invoice_amount %></th>
             <th><%= pin.status %></th>
-            <th><%= pin.prop_settlement_date %></th>
+            <th><%= pin.prop_settlement_date.strftime("%d %b %Y") %></th>
             <th><%= pin.offer_amount %></th>
-            <th><%= pin.saving %></th>   
+            <th><%= pin.saving %></th>
+            <th><%= pin.offer_expirey_date.strftime("%d %b %Y") %></th>
             <th> <%= render :partial => 'accept_reject_form', :locals => {:pin => pin} %> </th>
-            <th><%= pin.offer_accepted_date %></th>
           </tr>
         <% end %>  
       </tbody>
@@ -52,6 +68,8 @@
 
   <%= f.submit "Submit", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
   <% end %>
+  <br>
+  <p>By pressing submit you are formally agreeing on the new offer price etc.  </p>
 <% end %>
 
 <br><br>

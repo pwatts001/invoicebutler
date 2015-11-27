@@ -12,6 +12,10 @@ class PinsController < ApplicationController
 
   def all_invoices
     @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+      respond_to do |format|
+      format.html
+      format.csv { send_data @pins.to_csv }
+  end
   end
 
   def index
@@ -28,13 +32,12 @@ class PinsController < ApplicationController
 
   def acceptedoffers
     @pinsaccepted = Pin.where(supplier_email: current_user.email, status: 'Accept').order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-    @pinsrejected = Pin.where(supplier_email: current_user.email, status: 'Reject').order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-
-
+    @pinsrejected = Pin.where(supplier_email: current_user.email, status: ['Reject','expired']).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def offersreceived
-    @pins = Pin.where(supplier_email: current_user.email, status: "pending").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(supplier_email: current_user.email, status: "pending").order(sort_column + ' ' + sort_direction)
+    @pinscount = Pin.where(supplier_email: current_user.email, status: "pending").count
   end
 
   def show

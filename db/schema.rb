@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001201554) do
+ActiveRecord::Schema.define(version: 20151127144950) do
 
   create_table "pins", force: :cascade do |t|
     t.string   "description"
@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(version: 20151001201554) do
     t.date     "offer_sent_date"
     t.date     "offer_accepted_date"
     t.string   "customer_name"
+    t.date     "offer_expirey_date"
+    t.decimal  "invoice_VAT"
+    t.decimal  "gross_invoice_amount"
   end
 
   add_index "pins", ["status"], name: "index_pins_on_status"
@@ -58,6 +61,7 @@ ActiveRecord::Schema.define(version: 20151001201554) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "company"
+    t.string   "user_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

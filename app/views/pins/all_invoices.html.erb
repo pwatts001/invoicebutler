@@ -23,12 +23,13 @@
       <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
       <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
       <th><%= sortable "supplier_email", "Supplier Email" %></th>
-      <th><%= sortable "string", "Email link" %></th>
+      <!-- <th><%#= sortable "string", "Email link" %></th> -->
       <th><%= sortable "status", "Invoice Status" %></th>
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <th><%= sortable "saving", "Potential Saving" %></th>
       <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
+      <th><%= sortable "offer_expirey_date", "Offer Expirey Date" %></th>
       <th><%= sortable "offer_accepted_date", "Offer Accepted Date" %></th>
       <th><%= sortable "customer_name", "Customer" %></th>
       <th>Edit</th>
@@ -51,12 +52,13 @@
         <th><%= pin.invoice_curr %></th>
         <th><%= pin.invoice_amount %></th>
         <th><%= pin.supplier_email %></th>
-        <th><%= pin.string %></th>
+        <!-- <th><%#= pin.string %></th> -->
         <th><%= pin.status %></th>
         <th><%= pin.prop_settlement_date.strftime("%d %b %Y") %></th>
         <th><%= pin.offer_amount %></th>
         <th><%= pin.saving %></th>
         <th><% if pin.offer_sent_date %><%= pin.offer_sent_date.strftime("%d %b %Y") %><% end %></th>
+        <th><% if pin.offer_expirey_date %><%= pin.offer_expirey_date.strftime("%d %b %Y") %><% end %></th>
         <th><% if pin.offer_accepted_date %><%= pin.offer_accepted_date.strftime("%d %b %Y") %><% end %></th>
         <th><%= pin.customer_name %></th>
         <th><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
@@ -67,7 +69,15 @@
   </tbody>
 </table>
 
+<div class="center">
+   <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
+</div>
+
 <br><br>
+
+<p>Download All:
+  <%= link_to "CSV", all_invoices_path(format: "csv") %> 
+</p>
 
 <br>
 <p><%= link_to "Delete All Invoices", :action => "deleteAll" %></p>
@@ -76,9 +86,7 @@
 
 <br><br>
 
-<div class="center">
-   <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
-</div>
+
 
 
 

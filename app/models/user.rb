@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :pins, dependent: :destroy
 
-  validates :company, presence: true
+  #validates :company, presence: true
 end

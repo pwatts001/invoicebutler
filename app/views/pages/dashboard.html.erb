@@ -13,6 +13,7 @@
   <thead>
     <tr>
     	<th>Company Name</th>
+      <th>User Name</th>
       <th>Email</th>
       <th>Sign In Count</th>
       <th>current_sign_in_at</th>
@@ -24,7 +25,8 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-      	<th><%= user.company %></th>     
+      	<th><%= user.company %></th>
+        <th><%= user.user_name %></th>       
         <th><%= user.email %></th>
         <th><%= user.sign_in_count %></th>
         <th><%= user.current_sign_in_at.strftime("%d %b %Y") %></th>
