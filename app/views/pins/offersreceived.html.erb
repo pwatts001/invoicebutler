@@ -12,18 +12,14 @@
 <% end %>
 
 <% if @pins.first %>
-
-<p>FatFace have recenlty approved <%= @pinscount %> of your invoice(s) with the option of early payment.</p>
-
-<p>You will receive the full invoice amount on the invoice due dates or you can select which you'd like to receive early payments on. To do this selcet Accept/Reject options in the table below and press "Submit".</p>
-
-<p>The new payment amounts are as per the table below. The date on which these would be paid is <%= fulldate(@pins.first.prop_settlement_date) %>.</p>
-
-<p>This offer will expire on <%= fulldate(@pins.first.offer_expirey_date) %>.</p>
-
-<br>
+  <div>
+    <p>FatFace have recenlty approved <%= @pinscount %> of your invoice(s) with the option of early payment.</p>
+    <p>You will receive the full invoice amount on the invoice due dates or you can select which you'd like to receive early payments on. To do this selcet Accept/Reject options in the table below and press "Submit".</p>
+    <p>The new payment amounts are as per the table below. The date on which these would be paid is <%= fulldate(@pins.first.prop_settlement_date) %>.</p>
+    <p>This offer will expire on <%= fulldate(@pins.first.offer_expirey_date) %>.</p>
+  </div>
+  <br>
   <%= form_for @pins.first, html: { multipart: true } do |f| %>
-
     <table class="table table-hover table-bordered table-striped invtable">
       <thead>
         <tr>
@@ -60,13 +56,78 @@
         <% end %>  
       </tbody>
     </table>
-    <br><br>
 
-  <%= f.submit "Submit", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-  <% end %>
-  <br>
-  <p>By pressing submit you are formally agreeing on the new offer price etc.  </p>
+    <div class="pull-right">
+      <button type="button" id="markAllAccepted" data-complete-text="finished!" class="btn btn-success" autocomplete="off">
+        Mark all
+      </button>
+      <button type="button" id="markAllRejected" data-complete-text="finished!" class="btn btn-primary" autocomplete="off">
+        Mark all
+      </button>
+    </div>
+    <br><br>
+    <div>
+      <div style='float: left'>Total selected for early payments:</div>
+      <div id="totalEarlyPayment" ><%= @totalEarlyPayment %></div>
+    </div>
+    <br><br>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Submit
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document" style="left: 0px">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+            By confirming you agree to the new payment terms etc etc
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+  <%= f.submit "Confirm", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>
 
 <br><br>
+
+
+       
+<script>
+  $('#markAllAccepted').on('click', function () {
+    $(Accept).button('toggle')
+  })
+  $('#markAllRejected').on('click', function () {
+    $(Reject).button('toggle')
+  })
+
+$('input[type=radio]').change( function() {
+   calculateTotalEarlyPayment() 
+});
+
+var list = document.getElementById('totalEarlyPayment');
+var a = 1;
+      function calculateTotalEarlyPayment(){
+              // fetch all accepted and calculate new total here
+              list.removeChild(list.firstChild);
+              var li = a;
+              var z = document.createElement('div');
+              z.innerHTML = li;
+              document.body.appendChild(z);
+              list.appendChild(z);
+              a++;
+      }    
+</script>
+
+
+
+
 

@@ -39,6 +39,7 @@ class PinsController < ApplicationController
   def offersreceived
     @pins = Pin.where(supplier_email: current_user.email, status: "pending").order(sort_column + ' ' + sort_direction)
     @pinscount = Pin.where(supplier_email: current_user.email, status: "pending").count
+    @totalEarlyPayment = Pin.where(supplier_email: current_user.email, status: "pending").sum("offer_amount")
   end
 
   def show
@@ -76,7 +77,7 @@ class PinsController < ApplicationController
   def sendGroupOffers
     @pins = Pin.where(user_id: current_user, status: "imported")
     @pinscount = Pin.where(user_id: current_user, status: "imported").count
-    OfferMailer.offers_email(@pins).deliver
+    #OfferMailer.offers_email(@pins).deliver
     time = Time.new
     if @pinscount == 0
         @recipient = "no one"
@@ -128,8 +129,8 @@ class PinsController < ApplicationController
         end
       end
       redirect_to offersreceived_path, notice: "Repsonse noted. We'll sent confirmation emails"
-      OfferMailer.response_email(@pinsaccepted,@pinsrejected).deliver
-      OfferMailer.fatface_email(@pinsaccepted,@pinsrejected).deliver
+      #OfferMailer.response_email(@pinsaccepted,@pinsrejected).deliver
+      #OfferMailer.fatface_email(@pinsaccepted,@pinsrejected).deliver
     elsif @pin.update(pin_params)
       if params[:commit] == 'Edit Invoice'
         redirect_to all_invoices_path, notice: 'Invoice was successfully updated.'          
