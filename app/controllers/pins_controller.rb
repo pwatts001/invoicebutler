@@ -165,7 +165,7 @@ class PinsController < ApplicationController
     end
 
     def pin_params
-      params.require(:pin).permit(:description, :ref, :suppler_ref, :suppler_name, :invoice_number, :string, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving, :supplier_email, :offer_sent_date, :offer_accepted_date, :customer_name)
+      params.require(:pin).permit(:offer_expirey_date, :description, :ref, :suppler_ref, :suppler_name, :invoice_number, :string, :invoice_date, :due_date, :invoice_curr, :invoice_amount, :status, :prop_settlement_date, :offer_amount, :saving, :supplier_email, :offer_sent_date, :offer_accepted_date, :customer_name)
     end
 
     def sort_column
