@@ -72,6 +72,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label "Expirey Date" %>
+    <%= f.date_select :offer_expirey_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :offer_amount %>
     <%= f.text_field :offer_amount, class: "form-control" %>
   </div>
