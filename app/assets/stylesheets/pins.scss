@@ -41,13 +41,29 @@
 			 padding-left: 12px;
 		}
 		.asc { 
-	  background-image: image-url('arrow.png');
-	  background-position: 0 -56px;
+		  background-image: image-url('arrow.png');
+		  background-position: 0 -56px;
 		}
 		.desc { 
-	  background-image: image-url('arrow.png');
+		  background-image: image-url('arrow.png');
 		}
 	}
+	.btn-default{
+		background-color: white;
+	}
+	.btn-yes.active {
+     background-color: #5DB85C;
+  }
+  .btn-no.active {
+    background-color: #C0382B;
+  }
 }
 
+.modal-open, .modal-open .navbar-fixed-top {
+  margin-right: 0 !important;
+}
+
+.modal-dialog{
+	left: 30px
+}
 
