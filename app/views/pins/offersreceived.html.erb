@@ -98,33 +98,79 @@
 <% end %>
 
 <br><br>
+<%= @pinsOffers %>
 
+<%#
+
+      @pins.each do |pin, id|
+        pin = @Pins.find_by_id(id)
+        pin.offer_amount
+      end
+%>
 
        
 <script>
   $('#markAllAccepted').on('click', function () {
     $(Accept).button('toggle')
   })
+
   $('#markAllRejected').on('click', function () {
     $(Reject).button('toggle')
   })
 
-$('input[type=radio]').change( function() {
-   calculateTotalEarlyPayment() 
-});
+  $('input[type=radio]').change( function() { 
+    getCheckedPins()
+    calculateTotal()
+    addTotal()
+  });
 
-var list = document.getElementById('totalEarlyPayment');
-var a = 1;
-      function calculateTotalEarlyPayment(){
-              // fetch all accepted and calculate new total here
-              list.removeChild(list.firstChild);
-              var li = a;
-              var z = document.createElement('div');
-              z.innerHTML = li;
-              document.body.appendChild(z);
-              list.appendChild(z);
-              a++;
-      }    
+  var list = document.getElementById('totalEarlyPayment');
+  var pinsid = <%=raw @pinsid%>;
+  var pinOfferHash = <%=raw @pinsOffers %>
+  var radios = [[]];
+  var acceptedPins = [];
+
+
+  for( i = 0; i < pinsid.length; i++ ) {
+    var number = pinsid[i]
+    radios[i] = document.getElementsByName( 'pins[' + number + ']' );
+  }
+
+  function getCheckedPins() {
+    acceptedPins = [];
+    for( i = 0; i < radios.length; i++ ) {
+      var radios2 = radios[i];
+      for( x = 0; x < radios2.length; x++ ) {
+        if( radios2[x].checked ) {    
+          if (radios2[x].value == 'Accept'){
+            var num = radios2[x].name.replace(/^\D+|\D+$/g, "")  
+            acceptedPins[i] = num           
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  function calculateTotal(){
+    // for( i = 0; i < radios.length; i++ ) {
+    //   acceptedPins[i]
+    var offeramount = pinOfferHash.get('46253'); 
+    alert(offeramount)
+    // }
+
+  }
+
+
+  function addTotal(){
+    list.removeChild(list.firstChild);
+    var li = acceptedPins;
+    var z = document.createElement('div');
+    z.innerHTML = li;
+    document.body.appendChild(z);
+    list.appendChild(z);            
+  }    
+
 </script>
 
 

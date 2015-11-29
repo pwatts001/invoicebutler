@@ -22,6 +22,5 @@ module PinsHelper
       		date.strftime("#{date.day.ordinalize} %b %Y")
       	end
     end
-
 end
 
