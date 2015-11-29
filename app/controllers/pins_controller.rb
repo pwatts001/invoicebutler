@@ -42,7 +42,7 @@ class PinsController < ApplicationController
     @totalEarlyPayment = @pins.map {|s| s['offer_amount']}.reduce(0, :+)
     @pinsid = @pins.map(&:id)
     @RubyHash = Hash[@pins.map{|pin| [pin.id, "#{pin.offer_amount}"]}]
-    @pinsOffers = @RubyHash.to_json
+    @offerAmounts = @RubyHash.to_json
   end
 
   def show

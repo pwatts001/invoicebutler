@@ -1,5 +1,6 @@
 class Pin < ActiveRecord::Base
 		require 'csv'
+    require 'json'
 
     belongs_to :user
 

@@ -98,18 +98,15 @@
 <% end %>
 
 <br><br>
-<%= @pinsOffers %>
-
-<%#
-
-      @pins.each do |pin, id|
-        pin = @Pins.find_by_id(id)
-        pin.offer_amount
-      end
-%>
-
        
 <script>
+  var list = document.getElementById('totalEarlyPayment');
+  var pinsid = <%=raw @pinsid%>;
+  var pinOfferHash = <%=raw @offerAmounts %>;
+  var radios = [[]];
+  var acceptedPins = [];
+  var totalOfferAmount = 0
+
   $('#markAllAccepted').on('click', function () {
     $(Accept).button('toggle')
   })
@@ -124,13 +121,7 @@
     addTotal()
   });
 
-  var list = document.getElementById('totalEarlyPayment');
-  var pinsid = <%=raw @pinsid%>;
-  var pinOfferHash = <%=raw @pinsOffers %>
-  var radios = [[]];
-  var acceptedPins = [];
-
-
+  //get radio buttons
   for( i = 0; i < pinsid.length; i++ ) {
     var number = pinsid[i]
     radios[i] = document.getElementsByName( 'pins[' + number + ']' );
@@ -153,18 +144,18 @@
   }
 
   function calculateTotal(){
-    // for( i = 0; i < radios.length; i++ ) {
-    //   acceptedPins[i]
-    var offeramount = pinOfferHash.get('46253'); 
-    alert(offeramount)
-    // }
-
+    totalOfferAmount = 0
+    for( i = 0; i < radios.length; i++ ) {
+      if(acceptedPins[i]){
+      var invoiceOfferString = pinOfferHash[acceptedPins[i]];
+      totalOfferAmount = totalOfferAmount + Number(invoiceOfferString)
+      }
+    }
   }
-
 
   function addTotal(){
     list.removeChild(list.firstChild);
-    var li = acceptedPins;
+    var li = totalOfferAmount;
     var z = document.createElement('div');
     z.innerHTML = li;
     document.body.appendChild(z);
