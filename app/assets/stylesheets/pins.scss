@@ -20,11 +20,22 @@
 
 	font-size: 13px;
 
+	.darkhead {
+		background-color: #7EB5B6;
+		color: white;
+		font-style: italic;
+		a{
+			color: white;
+			font-style: italic;
+		}
+	}
+
 	thead tr th {
-		background-color: white;
+		background-color: #7A3D54;
 		text-align: center;
 		vertical-align: middle;
 		padding: 3px;
+		font-weight: 700;
 	}
 
 	thead tr th a {
@@ -32,12 +43,15 @@
 	  background-position: 0 5px;
 	  background-repeat: no-repeat;
 	  padding-left: 12px;
+	  font-weight: 700;
+	  color: white;
 	}
 
 	th {
-		width: 120px;
-		border: 1px solid black;
+		border: 1px solid grey !important;
 		font-weight: 500;
+
+	
 
 		.current {
 			 background-repeat: no-repeat;
@@ -70,7 +84,36 @@
   .left{
   	text-align: left;
   }
+  .date{
+  	width: 100px;
+  }
+  .thin{
+  	width: 80px;
+  }
+  .currency{
+  	width: 130px;
+  	font-weight: bold;
+  }
+   .buttons{
+  	width: 150px;
+  }
 }
+
+	// table-striped>tbody>tr:nth-child(odd)>td.dark, .table-striped>tbody>tr:nth-child(odd)>th.dark{
+	// 	background-color: #7EB5B6;
+	// 	color: white;
+	// }
+	// 	table-striped>tbody>tr:nth-child(even)>td.dark, .table-striped>tbody>tr:nth-child(even)>th.dark{
+	// 	background-color: #7EB5B6;
+	// 	color: white;
+	// }
+
+// 		.table-hover>tbody>tr:hover>td.dark, .table-hover>tbody>tr:hover>th.dark {
+//     background-color: red;
+// }
+
+// 7EB5B6
+// 7A3D54
 
 .modal-open, .modal-open .navbar-fixed-top {
   margin-right: 0 !important;

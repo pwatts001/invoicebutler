@@ -1,68 +1,24 @@
-<h1>Welcome <%= current_user.user_name %></h1>
-<hr style="height: 2px; background-color: grey;"></hr>
+<div class='ffportal'>
 
-<div class="center">
-  <%= render 'layouts/supplierdashboardpages' %>
-</div>
-
-
-
-<br><br>
-<br><br>
-<% if !@pinsaccepted.first && !@pinsrejected.first %>
- <p>You currently have no offer history</p>
-<% end %>
-
-<% if @pinsaccepted.first %>
-<p><b>Accepted</b></p>
-<p>You have accepted an early payment on below invoices:</p>
-<table class="table table-hover table-bordered table-striped invtable">
-  <thead>
-    <tr>
-      <th><%= sortable "invoice_number", "Invoice Number" %></th>
-      <th><%= sortable "description", "Description" %></th>
-      <th><%= sortable "invoice_date", "Invoice Date" %></th>
-      <th><%= sortable "due_date", "Old Due Date" %></th>
-      <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
-      <th><%= sortable "invoice_amount", "Old Invoice Amount" %></th>
-      <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
-      <th><%= sortable "status", "Offer Status" %></th>
-      <th><%= sortable "prop_settlement_date", "New Due Date" %></th>
-      <th><%= sortable "offer_amount", "New Invoice Amount" %></th>
-      <th><%= sortable "saving", "Money Saved" %></th>
-      <th><%= sortable "offer_accepted_date", "Offer Accepted Date" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pinsaccepted.each do |pin| %>
-      <tr>
-        <th class="middle"><%= pin.invoice_number %></th>
-        <th class="left"  ><%= pin.description %></th>
-        <th class="middle"><%= date(pin.invoice_date) %></th>
-        <th class="middle"><%= date(pin.due_date) %></th>
-        <th class="middle"><%= pin.invoice_curr %></th>
-        <th class="right" ><%= currency(pin.invoice_amount) %></th>
-        <th class="middle"><%= date(pin.offer_sent_date) %></th>
-        <th class="middle"><%= pin.status %></th>
-        <th class="middle"><%= date(pin.prop_settlement_date) %></th>
-        <th class="right" ><%= currency(pin.offer_amount) %></th>
-        <th class="right" ><%= currency(pin.saving) %></th>
-        <th class="middle"><%= date(pin.offer_accepted_date) %></th>
-      </tr>
-    <% end %>  
-  </tbody>
-</table>
-  <div class="center">
-   <%= will_paginate @pinsaccepted, renderer: BootstrapPagination::Rails %>
+  <div class='welcometitle'>
+    <h1>Welcome <%= current_user.user_name %></h1>
   </div>
-<% end %>
+  
+  <hr style="height: 2px; background-color: grey;"></hr>
 
-<br>
-<br><br>
+  <div class="center">
+    <%= render 'layouts/supplierdashboardpages' %>
+  </div>
 
-<% if @pinsrejected.first %>
-  <p><b>Rejected/Expired</b></p>
-  <p>Offers were rejected/expired on the below invoice(s):</p>
+  <br><br>
+  <br><br>
+  <% if !@pinsaccepted.first && !@pinsrejected.first %>
+   <p>You currently have no offer history.</p>
+  <% end %>
+
+  <% if @pinsaccepted.first %>
+  <p><b>Accepted</b></p>
+  <p>You have accepted an early payment on below invoices:</p>
   <table class="table table-hover table-bordered table-striped invtable">
     <thead>
       <tr>
@@ -74,14 +30,14 @@
         <th><%= sortable "invoice_amount", "Old Invoice Amount" %></th>
         <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
         <th><%= sortable "status", "Offer Status" %></th>
-        <th><%= sortable "prop_settlement_date", "New Due Date" %></th>
+        <th><%= sortable "prop_settlement_date", "New Settlement Date" %></th>
         <th><%= sortable "offer_amount", "New Invoice Amount" %></th>
         <th><%= sortable "saving", "Money Saved" %></th>
         <th><%= sortable "offer_accepted_date", "Offer Accepted Date" %></th>
       </tr>
     </thead>
     <tbody>
-      <% @pinsrejected.each do |pin| %>
+      <% @pinsaccepted.each do |pin| %>
         <tr>
           <th class="middle"><%= pin.invoice_number %></th>
           <th class="left"  ><%= pin.description %></th>
@@ -99,12 +55,59 @@
       <% end %>  
     </tbody>
   </table>
-  <div class="center">
-   <%= will_paginate @pinsrejected, renderer: BootstrapPagination::Rails %>
-  </div>
-  <br>
-  <p>If you'd like a new offer on any rejected/expired invoices please email us <%= mail_to 'fatface.offers@invoicely.co.uk' do %>fatface.offers@invoicely.co.uk<% end %>.</p>
-<% end %>
+    <div class="center">
+     <%= will_paginate @pinsaccepted, renderer: BootstrapPagination::Rails %>
+    </div>
+  <% end %>
 
+  <br>
+  <br><br>
+
+  <% if @pinsrejected.first %>
+    <p><b>Rejected/Expired</b></p>
+    <p>Offers were rejected/expired on the below invoice(s):</p>
+    <table class="table table-hover table-bordered table-striped invtable">
+      <thead>
+        <tr>
+          <th><%= sortable "invoice_number", "Invoice Number" %></th>
+          <th><%= sortable "description", "Description" %></th>
+          <th><%= sortable "invoice_date", "Invoice Date" %></th>
+          <th><%= sortable "due_date", "Due Date" %></th>
+          <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
+          <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
+          <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
+          <th><%= sortable "status", "Offer Status" %></th>
+          <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
+          <th><%= sortable "offer_amount", "Offered Amount" %></th>
+          <th><%= sortable "saving", "Money Saved" %></th>
+          <th><%= sortable "offer_accepted_date", "Offer Response/Expired Date" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pinsrejected.each do |pin| %>
+          <tr>
+            <th class="middle"><%= pin.invoice_number %></th>
+            <th class="left"  ><%= pin.description %></th>
+            <th class="middle"><%= date(pin.invoice_date) %></th>
+            <th class="middle"><%= date(pin.due_date) %></th>
+            <th class="middle"><%= pin.invoice_curr %></th>
+            <th class="right" ><%= currency(pin.invoice_amount) %></th>
+            <th class="middle"><%= date(pin.offer_sent_date) %></th>
+            <th class="middle"><%= pin.status %></th>
+            <th class="middle"><%= date(pin.prop_settlement_date) %></th>
+            <th class="right" ><%= currency(pin.offer_amount) %></th>
+            <th class="right" ><%= currency(pin.saving) %></th>
+            <th class="middle"><%= date(pin.offer_accepted_date) %></th>
+          </tr>
+        <% end %>  
+      </tbody>
+    </table>
+    <div class="center">
+     <%= will_paginate @pinsrejected, renderer: BootstrapPagination::Rails %>
+    </div>
+    <br>
+    <p>If you'd like a new offer on any rejected/expired invoices please email us <%= mail_to 'fatface.offers@invoicely.co.uk' do %>fatface.offers@invoicely.co.uk<% end %>.</p>
+  <% end %>
+</div>
 
 

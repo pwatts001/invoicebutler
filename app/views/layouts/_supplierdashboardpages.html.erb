@@ -1,14 +1,14 @@
 
 <% if current_page?(offersreceived_path) %>
 	<ul class="nav nav-tabs">
-	  <li role="presentation" class="active"><%= link_to "Offers Received", offersreceived_path %></li>
-	  <li role="presentation"><%= link_to "Previous Offers", acceptedoffers_path %></li>
+	  <li role="presentation" class="active"><%= link_to "New Offers", offersreceived_path, :class => 'tablink'%></li>
+	  <li role="presentation"><%= link_to "Previous Offers", acceptedoffers_path, :class => 'tablink' %></li>
 	</ul>
 <% end %>
 
 <% if current_page?(acceptedoffers_path) %>
 	<ul class="nav nav-tabs">
-	  <li role="presentation"><%= link_to "Offers Received", offersreceived_path %></li>
-	  <li role="presentation" class="active"><%= link_to "Previous Offers", acceptedoffers_path %></li>
+	  <li role="presentation"><%= link_to "New Offers", offersreceived_path, :class => 'tablink' %></li>
+	  <li role="presentation" class="active"><%= link_to "Previous Offers", acceptedoffers_path, :class => 'tablink'%></li>
 	</ul>
 <% end %>

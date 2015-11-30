@@ -1,16 +1,21 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900);
 
-$body-bg:                         #ecf0f1;
+$body-bg:                         #F6F5F1;
 $font-family-sans-serif:          'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $navbar-height:                   45px;
 $navbar-default-bg:               white;
 $navbar-default-brand-color:      #c0392b;
-$brand-primary:                		#c0392b;
+$brand-primary:                		#7EB5B6;
 $jumbotron-bg:                    white;
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
+
+
+// 7EB5B6
+// 7A3D54
 
 .center {
 	text-align: center;
@@ -23,3 +28,50 @@ $jumbotron-bg:                    white;
 #remember_me_label{
 	padding-left: 0px;
 }
+
+.alert-info{
+	margin-top: 20px;
+}
+
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.fatfaceheader{
+	background-color: #424242;
+	opacity: 1;
+	height: 120px;
+
+	.logohelper {
+	  display: inline-block;
+	  height: 100%;
+	  vertical-align: middle;
+	}
+
+	img {
+	  height: 85px;
+	}
+}
+
+
+.ffportal{
+	font-family: 'Maven Pro', sans-serif;
+	color: #424242;
+	font-size: 15px;
+
+	.welcometitle h1{
+		font-size: 55px;
+		margin: 30px 0px 30px 0px;
+	}
+
+	.tablink{
+		font-weight: 700;
+	}
+}
+
+
+
+
+
+

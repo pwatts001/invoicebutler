@@ -1,7 +1,6 @@
 
-<div class="btn-group" data-toggle="buttons" style='position: absolute' id="radios">
+<div class="btn-group" data-toggle="buttons" id="radios">
   <label class="btn btn-default btn-yes" id='Accept'>
-    <%#= radio_button_tag("pins[#{pin.id}]", "Accept", checked = true) %> <!-- Accept -->
     <%= radio_button_tag("pins[#{pin.id}]", "Accept") %> Accept
   </label>
   <label class="btn btn-default btn-no" id='Reject'>

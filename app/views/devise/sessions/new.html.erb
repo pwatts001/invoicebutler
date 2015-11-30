@@ -1,13 +1,11 @@
-<div class="panel panel-default">
 
   <!-- if come from email link -->
   <% if params[:fe] == 'true' %>
-
-      <div class="panel-heading">
-        <div class="panel-title">
-          <h1>Welcome <%= params[:name] %> </h1>
-        </div>
+    <div class='ffportal'>
+      <div class='welcometitle'>
+        <h1>Welcome <%= params[:name] %></h1>
       </div>
+      <hr style="height: 2px; background-color: grey;"></hr>
 
       <div class="panel-body">
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -33,17 +31,19 @@
           </div>
 
           <div class="form-group">
-            <%= f.submit "Enter", class: "btn btn-primary" %>
+            <%= f.submit "Enter ->", class: "btn btn-primary btn-lg" %>
           </div>
         <% end %>
       </div>
 
-      <div class="panel-footer">
-        <%= render "devise/shared/links" %>
-      </div>
+<!--       <div class="panel-footer">
+        <%#= render "devise/shared/links" %>
+      </div> -->
+    </div>
   <!-- not from email link -->
 
   <% else %>
+<div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title">
           <h1>Log in</h1>

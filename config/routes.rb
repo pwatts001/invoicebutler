@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "about" => "pages#about"
   get "dashboard" => "pages#dashboard"
   get "team" => "pages#team"
+  get "faqs" => "pages#FAQS"
   get "importinvoices" => "pins#index"
   get "pendingoffers" => "pins#pendingoffers"
   get "acceptedoffers" => "pins#acceptedoffers"

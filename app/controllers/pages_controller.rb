@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :authenticate_user!, :except => [:team, :home, :about]
+	before_action :authenticate_user!, :except => [:team, :home, :about, :FAQS]
 
   def home
   end

@@ -1,130 +1,139 @@
-<h1>Welcome <%= current_user.user_name %></h1>
-<hr style="height: 2px; background-color: grey;"></hr>
+<div class='ffportal'>
 
-<div class="center">
-  <%= render 'layouts/supplierdashboardpages' %>
-</div>
-
-<br><br>
-
-<% if !@pins.first %>
- <p>You currently have no available offers</p>
-<% end %>
-
-<% if @pins.first %>
-  <div>
-    <p>FatFace have recenlty approved <%= @pinscount %> of your invoice(s) with the option of early payment.</p>
-    <p>You will receive the full invoice amount on the invoice due dates or you can select which you'd like to receive early payments on. To do this selcet Accept/Reject options in the table below and press "Submit".</p>
-    <p>The new payment amounts are as per the table below. The date on which these would be paid is <%= fulldate(@pins.first.prop_settlement_date) %>.</p>
-    <p>This offer will expire on <%= fulldate(@pins.first.offer_expirey_date) %>.</p>
+  <div class='welcometitle'>
+    <h1>Welcome <%= current_user.user_name %></h1>
   </div>
-  <br>
-  <%= form_for @pins.first, html: { multipart: true } do |f| %>
-    <table class="table table-hover table-bordered table-striped invtable">
-      <thead>
-        <tr>
-          <th><%= sortable "invoice_number", "Invoice Number" %></th>
-          <th><%= sortable "description", "Description" %></th>
-          <th><%= sortable "invoice_date", "Invoice Date" %></th>
-          <th><%= sortable "due_date", "Due Date" %></th>
-          <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
-          <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
-          <th><%= sortable "status", "Offer Status" %></th>
-          <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
-          <th><%= sortable "offer_amount", "New Offer Amount" %></th>
-          <th><%= sortable "saving", "Requested Discount" %></th>
-          <th><%= sortable "offer_expirey_date", "Offer Expirey Date" %></th>
-          <th>Available Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @pins.each do |pin| %>
-          <tr>
-            <th class="middle"><%= pin.invoice_number %></th>
-            <th class="left"  ><%= pin.description %></th> 
-            <th class="middle"><%= date(pin.invoice_date) %></th>
-            <th class="middle"><%= date(pin.due_date) %></th>
-            <th class="middle"><%= pin.invoice_curr %></th>
-            <th class="right"><%= currency(pin.invoice_amount) %></th>
-            <th class="middle"><%= pin.status %></th>
-            <th class="middle"><%= date(pin.prop_settlement_date) %></th>
-            <th class="right"><%= currency(pin.offer_amount) %></th>
-            <th class="right"><%= currency(pin.saving) %></th>
-            <th class="middle"><%= date(pin.offer_expirey_date) %></th>
-            <th> <%= render :partial => 'accept_reject_form', :locals => {:pin => pin} %> </th>
-          </tr>
-        <% end %>  
-      </tbody>
-    </table>
+  <hr style="height: 2px; background-color: grey;"></hr>
 
-    <div class="pull-right">
-      <button type="button" id="markAllAccepted" data-complete-text="finished!" class="btn btn-success" autocomplete="off">
-        Mark all
-      </button>
-      <button type="button" id="markAllRejected" data-complete-text="finished!" class="btn btn-primary" autocomplete="off">
-        Mark all
-      </button>
-    </div>
-    <br><br>
+  <div class="center">
+    <%= render 'layouts/supplierdashboardpages' %>
+  </div>
+
+  <br><br>
+
+  <% if !@pins.first %>
+   <p>You currently have no available offers</p>
+  <% end %>
+
+  <% if @pins.first %>
     <div>
-      <div style='float: left'>Total selected for early payments:&nbsp;</div>
-      <div id="totalEarlyPayment" >£ 0.00</div>
+      <p>FatFace have recenlty approved <%= @pinscount %> of your invoice(s) with the option of early payment.</p>
+      <p>Please select which invoices you wish to accept early payment on and finish by submitting your responses. The new payment amounts are as per the table below. The date on which these would be paid is <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
+      <p>This offer will expire on <b><%= fulldate(@pins.first.offer_expirey_date) %></b>.</p>
     </div>
-    <br><br>
+    <br>
+    <%= form_for @pins.first, html: { multipart: true } do |f| %>
+      <table class="table table-hover table-bordered table-striped invtable">
+        <thead>
+          <tr>
+            <th><%= sortable "invoice_number", "Invoice Number" %></th>
+            <th><%= sortable "description", "Description" %></th>
+            <th><%= sortable "invoice_date", "Invoice Date" %></th>
+            <th><%= sortable "due_date", "Due Date" %></th>
+            <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
+            <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
+            <!-- <th><%#= sortable "status", "Offer Status" %></th> -->
+            <th class='darkhead'><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
+            <th class='darkhead'>Acceleration</th>  
+            <th class='darkhead'><%= sortable "offer_amount", "New Offer Amount" %></th>
+            <!-- <th><%#= sortable "saving", "Requested Discount" %></th> -->
+            <th class='darkhead'><%= sortable "offer_expirey_date", "Offer Expiry Date" %></th>
+            <th class='darkhead'>Available Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pins.each do |pin| %>
+            <tr>
+              <th class="middle thin"><%= pin.invoice_number %></th>
+              <th class="left"  ><%= pin.description %></th> 
+              <th class="middle date"><%= date(pin.invoice_date) %></th>
+              <th class="middle date"><%= date(pin.due_date) %></th>
+              <!-- <th class="middle thin"><%#= pin.invoice_curr %></th> -->
+              <th class="right currency">£<%= currency(pin.invoice_amount) %></th>
+              <!-- <th class="middle"><%#= pin.status %></th> -->
+              <th class="middle date dark"><%= date(pin.prop_settlement_date) %></th>
+              <th class="right date dark"><%= (pin.due_date - pin.prop_settlement_date).to_i %> days</th>
+              <th class="right currency dark">£<%= currency(pin.offer_amount) %></th>
+              <!-- <th class="right"><%#= currency(pin.saving) %></th> -->
+              <th class="middle date dark"><%= date(pin.offer_expirey_date) %></th>
+              <th class="middle buttons dark"> <%= render :partial => 'accept_reject_form', :locals => {:pin => pin} %> </th>
+            </tr>
+          <% end %>  
+        </tbody>
+      </table>
 
-    <button type="button" class="btn btn-primary btn-lg" id="modalBtn">
-      Submit
-    </button>
+      <div class="pull-right">
+        <button type="button" id="markAllAccepted" data-complete-text="finished!" class="btn btn-success" autocomplete="off">
+          Mark all
+        </button>
+        <button type="button" id="markAllRejected" data-complete-text="finished!" class="btn btn-danger" autocomplete="off">
+          Mark all
+        </button>
+      </div>
+      <br><br>
+      <div>
+        <div style='float:left; font-size: 20px; padding-top: 24px'>Total selected for early payment:&nbsp;&nbsp;</div>
+        <div id="totalEarlyPayment" style='font-size: 40px; float: left;'>£ 0.00</div>
+        <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 24px'>£ 0.00</div>
+      </div>
+      <br><br><br><br>
+      <button type="button" class="btn btn-primary btn-lg pull-left" id="modalBtn">
+        Submit
+      </button>
 
-    <!-- Modal OK-->
-    <div class="modal fade" id="myModalOK" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
-          </div>
-          <div class="modal-body">
-            By confirming you agree to the new payment terms etc etc
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-  <%= f.submit "Confirm", class: "btn btn-primary" %>
-            <% end %>
+      <!-- Modal OK-->
+      <div class="modal fade" id="myModalOK" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+              By confirming you agree to the new payment terms etc etc
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+    <%= f.submit "Confirm", class: "btn btn-primary" %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Modal for when missing Radio Input-->
-    <div class="modal fade" id="myModalMissingRadioInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Oops</h4>
-          </div>
-          <div class="modal-body">
-            You're missing an input. Please select Accept / Reject for all invoices
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+      <!-- Modal for when missing Radio Input-->
+      <div class="modal fade" id="myModalMissingRadioInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Oops</h4>
+            </div>
+            <div class="modal-body">
+              You're missing an input. Please select Accept / Reject for all invoices
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-<% end %>
+  <% end %>
 
-<br><br>
+  <br><br><br><br>
+</div>
 
 <script>
 
   var list = document.getElementById('totalEarlyPayment');
+  var list2 = document.getElementById('totalDiscount');
   var pinsid = <%=raw @pinsid%>;
   var pinOfferHash = <%=raw @offerAmounts %>;
+  var discountHash = <%=raw @discount %>;
   var radios = [[]];
   var acceptedPins = [];
   var totalOfferAmount = 0
+  var totalDiscount = 0
   var totalNumberOfCheckedButtons = 0
 
   $('#markAllAccepted').on('click', function () {
@@ -166,21 +175,30 @@
 
   function calculateTotal(){
     totalOfferAmount = 0
+    totalDiscount = 0
     for( i = 0; i < radios.length; i++ ) {
       if(acceptedPins[i]){
       var invoiceOfferString = pinOfferHash[acceptedPins[i]];
       totalOfferAmount = totalOfferAmount + Number(invoiceOfferString)
+      var invoiceDiscountString = discountHash[acceptedPins[i]];
+      totalDiscount = totalDiscount + Number(invoiceDiscountString)
       }
     }
   }
 
   function addTotal(){
     list.removeChild(list.firstChild);
+    list2.removeChild(list2.firstChild);
     var li = format1(totalOfferAmount,"£");
+    var li2 = format1(totalDiscount,"£");
     var z = document.createElement('div');
+    var x = document.createElement('div');
     z.innerHTML = li;
+    x.innerHTML = li2;
     document.body.appendChild(z);
-    list.appendChild(z);            
+    document.body.appendChild(x);
+    list.appendChild(z);
+    list2.appendChild(x);            
   } 
 
   function format1(n, currency) {

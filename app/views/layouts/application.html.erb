@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Invoice Butler</title>
+  <title>Invoicely</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,6 +10,11 @@
 <body>
 
 	<%= render 'layouts/header' %>
+
+  <% if current_page?(offersreceived_path) or  current_page?(acceptedoffers_path) or  current_page?(new_user_session_path) %>
+    <%= render 'layouts/supplierheader' %>
+  <% end %>
+
 	<div class="container">
     <% flash.each do |name, msg| %>
     	<%= content_tag(:div, msg, class: "alert alert-info") %>
@@ -19,3 +24,6 @@
 
 </body>
 </html>
+
+
+
