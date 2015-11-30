@@ -18,10 +18,13 @@
 
 .invtable {
 
+	font-size: 13px;
+
 	thead tr th {
 		background-color: white;
 		text-align: center;
 		vertical-align: middle;
+		padding: 3px;
 	}
 
 	thead tr th a {
@@ -34,6 +37,7 @@
 	th {
 		width: 120px;
 		border: 1px solid black;
+		font-weight: 500;
 
 		.current {
 			 background-repeat: no-repeat;
@@ -56,6 +60,15 @@
   }
   .btn-no.active {
     background-color: #C0382B;
+  }
+  .right{
+  	text-align: right;
+  }
+  .middle{
+  	text-align: center;
+  }
+  .left{
+  	text-align: left;
   }
 }
 

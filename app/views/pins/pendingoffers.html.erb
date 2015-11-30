@@ -30,20 +30,20 @@
   <tbody>
     <% @pins.each do |pin| %>
       <tr>
-        <th><%= pin.suppler_name %></th>
-        <th><%= pin.invoice_number %></th>
-        <th><%= pin.description %></th>
-        <th><%= date(pin.invoice_date) %></th>
-        <th><%= date(pin.due_date) %></th>
-        <th><%= pin.invoice_curr %></th>
-        <th><%= currency(pin.invoice_amount) %></th>
-        <th><%= pin.status %></th>
-        <th><%= pin.supplier_email %></th>
-        <th><%= date(pin.offer_sent_date) %></th>
-        <th><%= date(pin.prop_settlement_date) %></th>
-        <th><%= currency(pin.offer_amount) %></th>
-        <th><%= currency(pin.saving) %></th>
-        <th><%= date(pin.offer_expirey_date) %></th>
+        <th class="middle"><%= pin.suppler_name %></th>
+        <th class="middle"><%= pin.invoice_number %></th>
+        <th class="left"  ><%= pin.description %></th>
+        <th class="middle"><%= date(pin.invoice_date) %></th>
+        <th class="middle"><%= date(pin.due_date) %></th>
+        <th class="middle"><%= pin.invoice_curr %></th>
+        <th class="right" ><%= currency(pin.invoice_amount) %></th>
+        <th class="middle"><%= pin.status %></th>
+        <th class="middle"><%= pin.supplier_email %></th>
+        <th class="middle"><%= date(pin.offer_sent_date) %></th>
+        <th class="middle"><%= date(pin.prop_settlement_date) %></th>
+        <th class="right" ><%= currency(pin.offer_amount) %></th>
+        <th class="right" ><%= currency(pin.saving) %></th>
+        <th class="middle"><%= date(pin.offer_expirey_date) %></th>
       </tr>
     <% end %>  
   </tbody>
