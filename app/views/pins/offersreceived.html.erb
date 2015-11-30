@@ -70,11 +70,14 @@
           Mark all
         </button>
       </div>
-      <br><br>
+      <div>
+        <div style='float:left; font-size: 20px; padding-top: 21px'>Discount:&nbsp;&nbsp;</div>
+        <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 20px'>£ 0.00</div>
+      </div>
+      <br><br><br>
       <div>
         <div style='float:left; font-size: 20px; padding-top: 24px'>Total selected for early payment:&nbsp;&nbsp;</div>
         <div id="totalEarlyPayment" style='font-size: 40px; float: left;'>£ 0.00</div>
-        <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 24px'>£ 0.00</div>
       </div>
       <br><br><br><br>
       <button type="button" class="btn btn-primary btn-lg pull-left" id="modalBtn">
@@ -90,12 +93,19 @@
               <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
             </div>
             <div class="modal-body">
-              By confirming you agree to the new payment terms etc etc
+              <div class="content">
+                <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s). Totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
+                <p>By pressing confirm you are agreeing to the new payment terms etc</p>
+              </div>
+              <div class='noneSelected'>
+                <p>No early payments selected.</p>
+              </div>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
     <%= f.submit "Confirm", class: "btn btn-primary" %>
-              <% end %>
+    <% end %>
             </div>
           </div>
         </div>
@@ -120,7 +130,7 @@
       </div>
   <% end %>
 
-  <br><br><br><br>
+  <br><br><br><br><br>
 </div>
 
 <script>
@@ -165,7 +175,7 @@
           totalNumberOfCheckedButtons ++
           if (radios2[x].value == 'Accept'){
             var num = radios2[x].name.replace(/^\D+|\D+$/g, "")  
-            acceptedPins[i] = num           
+            acceptedPins[i] = num
           }
         }
       }
@@ -198,7 +208,9 @@
     document.body.appendChild(z);
     document.body.appendChild(x);
     list.appendChild(z);
-    list2.appendChild(x);            
+    list2.appendChild(x);
+    document.querySelector('.content .earlyPaymentAmountAccepted').innerHTML = li;
+    document.querySelector('.content .earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
   } 
 
   function format1(n, currency) {
@@ -211,6 +223,13 @@
     $("#modalBtn").click(function(){
       if (allRadioButtonsSelected()) {
         $("#myModalOK").modal();
+          if (acceptedPins.filter(Number).length == 0){
+            document.getElementsByClassName('noneSelected')[0].style.display='initial';
+            document.getElementsByClassName('content')[0].style.display='none';
+          } else {
+            document.getElementsByClassName('content')[0].style.display='initial';
+            document.getElementsByClassName('noneSelected')[0].style.display='none';
+          }
       } else {
         $("#myModalMissingRadioInput").modal();
       }
@@ -224,6 +243,8 @@
       return false
     }
   }
+
+
 
 </script>
 
