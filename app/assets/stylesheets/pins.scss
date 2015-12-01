@@ -23,10 +23,10 @@
 	.darkhead {
 		background-color: #7EB5B6;
 		color: white;
-		font-style: italic;
+		// font-style: italic;
 		a{
 			color: white;
-			font-style: italic;
+			// font-style: italic;
 		}
 	}
 
@@ -51,8 +51,6 @@
 		border: 1px solid grey !important;
 		font-weight: 500;
 
-	
-
 		.current {
 			 background-repeat: no-repeat;
 			 background-position: left center;
@@ -70,7 +68,7 @@
 		background-color: white;
 	}
 	.btn-yes.active {
-     background-color: #5DB85C;
+     background-color: #7EB5B6;
   }
   .btn-no.active {
     background-color: #C0382B;

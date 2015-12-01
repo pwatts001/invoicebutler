@@ -9,17 +9,19 @@
 <br><br>
 
 
-<table class="invtable">
+
+
+<table class="table table-hover table-bordered table-striped invtable">
   <thead>
     <tr>
-    	<th>Company Name</th>
-      <th>User Name</th>
-      <th>Email</th>
-      <th>Sign In Count</th>
-      <th>current_sign_in_at</th>
-      <th>last_sign_in_at</th>
-      <th>created_at</th>
-      <th>updated_at</th>
+    	<th><%= sortable "company", "Company Name" %></th>
+      <th><%= sortable "user_name", "User Name" %></th>
+      <th><%= sortable "email", "Email" %></th>
+      <th><%= sortable "sign_in_count", "Sign In Count" %></th>
+      <th><%= sortable "current_sign_in_at", "current_sign_in_at" %></th>
+      <th><%= sortable "last_sign_in_at", "last_sign_in_at" %></th>
+      <th><%= sortable "created_at", "created_at" %></th>
+      <th><%= sortable "updated_at", "updated_at" %></th>
     </tr>
   </thead>
   <tbody>
@@ -29,10 +31,10 @@
         <th><%= user.user_name %></th>       
         <th><%= user.email %></th>
         <th><%= user.sign_in_count %></th>
-        <th><%= user.current_sign_in_at.strftime("%d %b %Y") %></th>
-        <th><%= user.last_sign_in_at.strftime("%d %b %Y") %></th>
-        <th><%= user.created_at.strftime("%d %b %Y") %></th>
-        <th><%= user.updated_at.strftime("%d %b %Y") %></th>
+        <th><%= fulldate(user.current_sign_in_at) %></th>
+        <th><%= fulldate(user.last_sign_in_at) %></th>
+        <th><%= fulldate(user.created_at) %></th>
+        <th><%= fulldate(user.updated_at) %></th>
       </tr>
     <% end %>  
   </tbody>

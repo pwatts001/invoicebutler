@@ -12,13 +12,14 @@
   <br><br>
 
   <% if !@pins.first %>
-   <p>You currently have no available offers</p>
+  <br><br>
+   <p>You currently have no available offers.</p>
   <% end %>
 
   <% if @pins.first %>
     <div>
       <p>FatFace have recenlty approved <%= @pinscount %> of your invoice(s) with the option of early payment.</p>
-      <p>Please select which invoices you wish to accept early payment on and finish by submitting your responses. The new payment amounts are as per the table below. The date on which these would be paid is <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
+      <p>Please select which you wish to accept early payment on and finish by submitting your responses. The new payment details are displayed in the table below. The payment for accepted offers will be processed on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
       <p>This offer will expire on <b><%= fulldate(@pins.first.offer_expirey_date) %></b>.</p>
     </div>
     <br>
@@ -49,11 +50,11 @@
               <th class="middle date"><%= date(pin.invoice_date) %></th>
               <th class="middle date"><%= date(pin.due_date) %></th>
               <!-- <th class="middle thin"><%#= pin.invoice_curr %></th> -->
-              <th class="right currency">£<%= currency(pin.invoice_amount) %></th>
+              <th class="right currency"><%= currency(pin.invoice_amount) %></th>
               <!-- <th class="middle"><%#= pin.status %></th> -->
               <th class="middle date dark"><%= date(pin.prop_settlement_date) %></th>
               <th class="right date dark"><%= (pin.due_date - pin.prop_settlement_date).to_i %> days</th>
-              <th class="right currency dark">£<%= currency(pin.offer_amount) %></th>
+              <th class="right currency dark"><%= currency(pin.offer_amount) %></th>
               <!-- <th class="right"><%#= currency(pin.saving) %></th> -->
               <th class="middle date dark"><%= date(pin.offer_expirey_date) %></th>
               <th class="middle buttons dark"> <%= render :partial => 'accept_reject_form', :locals => {:pin => pin} %> </th>
@@ -63,7 +64,7 @@
       </table>
 
       <div class="pull-right">
-        <button type="button" id="markAllAccepted" data-complete-text="finished!" class="btn btn-success" autocomplete="off">
+        <button type="button" id="markAllAccepted" data-complete-text="finished!" class="btn btn-markAllAccept" autocomplete="off">
           Mark all
         </button>
         <button type="button" id="markAllRejected" data-complete-text="finished!" class="btn btn-danger" autocomplete="off">
@@ -94,15 +95,16 @@
             </div>
             <div class="modal-body">
               <div class="content">
-                <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s). Totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
-                <p>By pressing confirm you are agreeing to the new payment terms etc</p>
+                <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s), totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
+                <p>This payment will be processed by Fat Face on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
+                <p>By pressing confirm you are agreeing to these new payment terms.</p>
               </div>
               <div class='noneSelected'>
-                <p>No early payments selected.</p>
+                <p>No early payments selected. Are you sure?</p>
               </div>
 
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style="margin-top: 0px;">
               <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
     <%= f.submit "Confirm", class: "btn btn-primary" %>
     <% end %>
@@ -117,10 +119,10 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Oops</h4>
+              <h4 class="modal-title" id="myModalLabel">Oops...</h4>
             </div>
             <div class="modal-body">
-              You're missing an input. Please select Accept / Reject for all invoices
+              You're missing some responses. Please select Accept / Reject for all invoices.
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
@@ -243,7 +245,6 @@
       return false
     }
   }
-
 
 
 </script>

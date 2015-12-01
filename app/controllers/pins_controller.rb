@@ -2,8 +2,7 @@ class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  helper_method :sort_column, :sort_direction, :set_action_count
-
+  helper_method :sort_column, :sort_direction
 
   def import
     Pin.import(params[:file], current_user.id)
@@ -33,7 +32,7 @@ class PinsController < ApplicationController
 
   def acceptedoffers
     @pinsaccepted = Pin.where(supplier_email: current_user.email, status: 'Accept').order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-    @pinsrejected = Pin.where(supplier_email: current_user.email, status: ['Reject','expired']).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pinsrejected = Pin.where(supplier_email: current_user.email, status: ['Rejected','Expired']).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def offersreceived
@@ -98,7 +97,7 @@ class PinsController < ApplicationController
     @pinscount = Pin.where(user_id: current_user, status: "pending").count
     time = Time.new
     redirect_to pendingoffers_path, notice:"Successfully expired offers for #{@pinscount} invoices."
-    @pins.update_all "status = 'expired', offer_accepted_date ='#{time}'"
+    @pins.update_all "status = 'Expired', offer_accepted_date ='#{time}'"
   end
 
 
@@ -132,7 +131,7 @@ class PinsController < ApplicationController
           @pinsrejected << pin
         end
       end
-      redirect_to offersreceived_path, notice: "Repsonse noted. We'll sent confirmation emails"
+      redirect_to offersreceived_path, notice: "Repsonse submitted."
       #OfferMailer.response_email(@pinsaccepted,@pinsrejected).deliver
       #OfferMailer.fatface_email(@pinsaccepted,@pinsrejected).deliver
     elsif @pin.update(pin_params)
@@ -147,7 +146,7 @@ class PinsController < ApplicationController
 
   def destroy
     @pin.destroy
-    redirect_to pins_url, notice: 'Invoice was successfully deleted.'
+    redirect_to all_invoices_path, notice: 'Invoice was successfully deleted.'
   end
 
 
