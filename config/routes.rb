@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get :sendGroupOffers, to: 'pins#sendGroupOffers', as: :sendGroupOffers
   get :ExpireAllPendingOffers, to: 'pins#ExpireAllPendingOffers', as: :ExpireAllPendingOffers
   get :ExpireOffersPastExpireDate, to: 'pins#ExpireOffersPastExpireDate', as: :ExpireOffersPastExpireDate
+  get :expireInvoice, to: 'pins#expireInvoice', as: :expireInvoice
 
   devise_for :users
 

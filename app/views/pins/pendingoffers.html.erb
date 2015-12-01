@@ -25,6 +25,7 @@
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
       <!-- <th><%#= sortable "saving", "Potential Saving" %></th> -->
       <th><%= sortable "offer_expirey_date", "Offer Expiry Date" %></th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -33,17 +34,18 @@
         <th class="middle"><%= pin.suppler_name %></th>
         <th class="middle"><%= pin.invoice_number %></th>
         <th class="left"  ><%= pin.description %></th>
-        <th class="middle"><%= date(pin.invoice_date) %></th>
-        <th class="middle"><%= date(pin.due_date) %></th>
+        <th class="middle date"><%= date(pin.invoice_date) %></th>
+        <th class="middle date"><%= date(pin.due_date) %></th>
         <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
         <th class="right" ><%= currency(pin.invoice_amount) %></th>
         <th class="middle"><%= pin.status %></th>
         <th class="middle"><%= pin.supplier_email %></th>
-        <th class="middle"><%= date(pin.offer_sent_date) %></th>
-        <th class="middle"><%= date(pin.prop_settlement_date) %></th>
+        <th class="middle date"><%= date(pin.offer_sent_date) %></th>
+        <th class="middle date"><%= date(pin.prop_settlement_date) %></th>
         <th class="right" ><%= currency(pin.offer_amount) %></th>
         <!-- <th class="right" ><%#= currency(pin.saving) %></th> -->
-        <th class="middle"><%= date(pin.offer_expirey_date) %></th>
+        <th class="middle date"><%= date(pin.offer_expirey_date) %></th>
+        <th class='middle'><%= link_to '<i class="glyphicon glyphicon-share"></i> Expire'.html_safe, {:controller => "pins", :action => "expireInvoice", :pin => pin.id }%></th>
       </tr>
     <% end %>  
   </tbody>

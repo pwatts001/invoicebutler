@@ -108,12 +108,17 @@ class PinsController < ApplicationController
     @pins.each do |pin| 
       if pin.offer_expirey_date.past?
         i += 1
-        #UPDATE INVOICE STATUS TO EXPIRED!
+        pin.update(status: 'Expired')
       end
     end
     redirect_to pendingoffers_path, notice:"Successfully expired offers for #{i} invoices."
   end
 
+  def expireInvoice
+    @pin = Pin.find(params[:pin])
+    @pin.update(status: 'Expired')
+    redirect_to pendingoffers_path, notice:"Successfully expired invoice."
+  end
 
   def edit
   end
