@@ -16,14 +16,14 @@
       <th><%= sortable "description", "Description" %></th>
       <th><%= sortable "invoice_date", "Invoice Date" %></th>
       <th><%= sortable "due_date", "Due Date" %></th>
-      <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
+      <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
       <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
       <th><%= sortable "status", "Offer Status" %></th>
       <th><%= sortable "supplier_email", "Offer Sent to" %></th>
       <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
       <th><%= sortable "offer_amount", "Offer Amount" %></th>
-      <th><%= sortable "saving", "Potential Saving" %></th>
+      <!-- <th><%#= sortable "saving", "Potential Saving" %></th> -->
       <th><%= sortable "offer_expirey_date", "Offer Expiry Date" %></th>
     </tr>
   </thead>
@@ -35,14 +35,14 @@
         <th class="left"  ><%= pin.description %></th>
         <th class="middle"><%= date(pin.invoice_date) %></th>
         <th class="middle"><%= date(pin.due_date) %></th>
-        <th class="middle"><%= pin.invoice_curr %></th>
+        <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
         <th class="right" ><%= currency(pin.invoice_amount) %></th>
         <th class="middle"><%= pin.status %></th>
         <th class="middle"><%= pin.supplier_email %></th>
         <th class="middle"><%= date(pin.offer_sent_date) %></th>
         <th class="middle"><%= date(pin.prop_settlement_date) %></th>
         <th class="right" ><%= currency(pin.offer_amount) %></th>
-        <th class="right" ><%= currency(pin.saving) %></th>
+        <!-- <th class="right" ><%#= currency(pin.saving) %></th> -->
         <th class="middle"><%= date(pin.offer_expirey_date) %></th>
       </tr>
     <% end %>  
@@ -53,8 +53,9 @@
 </div>
 
 <br><br>
-<p><%= link_to "Expire All Pending Offers", :action => "ExpirePendingOffers" %></p>
-
+<p><%= link_to "Expire ALL Pending Offers", :action => "ExpireAllPendingOffers" %></p>
+<br>
+<p><%= link_to "Expire Pending Offers Past Expiry Date", :action => "ExpireOffersPastExpireDate" %></p>
 
 
 

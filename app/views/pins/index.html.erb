@@ -4,23 +4,24 @@
 </div>
 
 <br><br>
-  <%= link_to new_pin_path do %>
-    <span class="glyphicon glyphicon-plus"></span> New Invoice
-  <% end %>
+  <%#= link_to new_pin_path do %>
+    <!-- <span class="glyphicon glyphicon-plus"></span> New Invoice -->
+  <%# end %>
 
 <br><br>
 <%= form_tag import_pins_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import CSV" %>
+  <%= file_field_tag :file, :class => 'btn btn-primary'%>
+  <br>
+  <%= submit_tag "Import CSV", :class => 'btn btn-primary'%>
 <% end %>
 <br><br>
 
 <table class="table table-hover table-bordered table-striped invtable">
   <thead>
     <tr>
-      <th><%= check_box_tag "select_all" %></th>
+      <!-- <th><%#= check_box_tag "select_all" %></th> -->
       <th><%= sortable "ref", "Suppler Contact Name" %></th>
-      <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
+      <!-- <th><%#= sortable "suppler_ref", "Supplier Ref" %></th> -->
       <th><%= sortable "suppler_name", "Supplier Name" %></th>
       <th><%= sortable "invoice_number", "Invoice Number" %></th>
       <th><%= sortable "description", "Description" %></th>
@@ -41,21 +42,21 @@
   <tbody>
     <% @pins.each do |pin| %>
       <tr>
-        <th class="middle"><%= check_box_tag "ids[]", pin.id %></th>
+        <!-- <th class="middle"><%#= check_box_tag "ids[]", pin.id %></th> -->
         <th class="middle"><%= pin.ref %></th>
-        <th class="middle"><%= pin.suppler_ref %></th>
+        <!-- <th class="middle"><%#= pin.suppler_ref %></th> -->
         <th class="middle"><%= pin.suppler_name %></th>
         <th class="middle"><%= pin.invoice_number %></th>
         <th class="left"  ><%= pin.description %></th>
         <th class="middle"><%= date(pin.invoice_date) %></th>
         <th class="middle"><%= date(pin.due_date) %></th>
         <th class="middle"><%= pin.invoice_curr %></th>
-        <th class="right" ><%= currency(pin.invoice_amount) %></th>
+        <th class="right currency" ><%= currency(pin.invoice_amount) %></th>
         <th class="left"  ><%= pin.supplier_email %></th>
         <th class="middle"><%= pin.status %></th>
         <th class="middle"><%= date(pin.prop_settlement_date) %></th>
-        <th class="right" ><%= currency(pin.offer_amount) %></th>
-        <th class="right" ><%= currency(pin.saving) %></th>
+        <th class="right currency" ><%= currency(pin.offer_amount) %></th>
+        <th class="right currency" ><%= currency(pin.saving) %></th>
         <th class="middle"><%= date(pin.offer_expirey_date) %></th>
         <th class="middle"><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th class="middle"><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
@@ -70,7 +71,18 @@
 
 <br><br>
 
-<p><%= link_to "Send Offer on Imported Invoices", :action => "sendGroupOffers" %></p>
+<%if @pins.first %>
+  <% if @pins.first.prop_settlement_date.past? || @pins.first.offer_expirey_date.past?%>
+    <p>Cant send offer - either proposed settlement date or offer expirey date is in the past.</p>
+  <% else %>
+    <% if @number_of_emails == 1 && @number_of_paymentdates == 1 && @number_of_expireydates == 1 %>
+      <p><%= link_to "Send Offer on Imported Invoices", :action => "sendGroupOffers" %></p>
+    <% else %>
+      <p>Can't send offer - please check email, proposed settlement date and offer expirey date are all the same.</p>
+    <% end %>
+  <% end %>
+<% end %>
+
 <br>
 <p><%= link_to "Delete All Imported Invoices", :action => "deleteAllImported" %></p>
 <%#= button "Send Emails", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>

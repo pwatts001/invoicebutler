@@ -101,18 +101,12 @@
     </div>
   <% end %>
 
-
-
-  <% if !@pin.status %>
-    <%= f.hidden_field :status, :value => "imported" %>
-  <% end %>
-
   <%= f.hidden_field :customer_name, :value => @pin.user.company %>
-
 
   <div class="form-group">
     <%= f.label :status %>
-    <%= f.text_field :status, :value => "imported", class: "form-control" %>
+    <%= f.select :status, ['Imported', 'Pending', 'Accepted', 'Rejected', 'Expired' ]%>
+    <%#= f.text_field :status, :value => "imported", class: "form-control" %>
   </div>
 
   <% if @pin.invoice_amount %>

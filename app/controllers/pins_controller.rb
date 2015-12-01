@@ -19,24 +19,27 @@ class PinsController < ApplicationController
   end
 
   def index
-    @pins = Pin.where(user_id: current_user, status: "imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, status: "Imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @number_of_emails = Pin.where(user_id: current_user, status: "Imported").distinct.count(:supplier_email)
+    @number_of_paymentdates = Pin.where(user_id: current_user, status: "Imported").distinct.count(:prop_settlement_date)
+    @number_of_expireydates = Pin.where(user_id: current_user, status: "Imported").distinct.count(:offer_expirey_date)
   end
 
   def pendingoffers
-    @pins = Pin.where(user_id: current_user, status: "pending").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user, status: "Pending").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def acceptedoffersadmin
-    @pins = Pin.where(user_id: current_user).where.not(status: ["imported","pending"]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pins = Pin.where(user_id: current_user).where.not(status: ["Imported","Pending"]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def acceptedoffers
-    @pinsaccepted = Pin.where(supplier_email: current_user.email, status: 'Accept').order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pinsaccepted = Pin.where(supplier_email: current_user.email, status: 'Accepted').order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
     @pinsrejected = Pin.where(supplier_email: current_user.email, status: ['Rejected','Expired']).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
   end
 
   def offersreceived
-    @pins = Pin.where(supplier_email: current_user.email, status: "pending").order(sort_column + ' ' + sort_direction)
+    @pins = Pin.where(supplier_email: current_user.email, status: "Pending").order(sort_column + ' ' + sort_direction)
     @pinscount = @pins.count 
     @pinsid = @pins.map(&:id)
     @RubyHash = Hash[@pins.map{|pin| [pin.id, "#{pin.offer_amount}"]}]
@@ -56,7 +59,7 @@ class PinsController < ApplicationController
 
   def deleteAllImported
     i = 0
-    @pins = Pin.where(user_id: current_user, status: "imported")
+    @pins = Pin.where(user_id: current_user, status: "Imported")
     @pins.each do |f|
       i += 1
       f.destroy
@@ -75,11 +78,9 @@ class PinsController < ApplicationController
   end
 
 
-
-
   def sendGroupOffers
-    @pins = Pin.where(user_id: current_user, status: "imported")
-    @pinscount = Pin.where(user_id: current_user, status: "imported").count
+    @pins = Pin.where(user_id: current_user, status: "Imported")
+    @pinscount = @pins.count
     #OfferMailer.offers_email(@pins).deliver
     time = Time.new
     if @pinscount == 0
@@ -88,16 +89,29 @@ class PinsController < ApplicationController
         @recipient = @pins.first.supplier_email
     end
     redirect_to importinvoices_path, notice:"Successfully sent offer for #{@pinscount} invoices to #{@recipient}."
-    @pins.update_all "status = 'pending', offer_sent_date ='#{time}'"
+    @pins.update_all "status = 'Pending', offer_sent_date ='#{time}'"
   end
 
 
-  def ExpirePendingOffers
-    @pins = Pin.where(user_id: current_user, status: "pending")
-    @pinscount = Pin.where(user_id: current_user, status: "pending").count
+  def ExpireAllPendingOffers
+    @pins = Pin.where(user_id: current_user, status: "Pending")
+    @pinscount = @pins.count
     time = Time.new
     redirect_to pendingoffers_path, notice:"Successfully expired offers for #{@pinscount} invoices."
     @pins.update_all "status = 'Expired', offer_accepted_date ='#{time}'"
+  end
+
+  def ExpireOffersPastExpireDate
+    i = 0
+    @pins = Pin.where(user_id: current_user, status: "Pending")
+    time = Time.new
+    @pins.each do |pin| 
+      if pin.offer_expirey_date.past?
+        i += 1
+        #UPDATE INVOICE STATUS TO EXPIRED!
+      end
+    end
+    redirect_to pendingoffers_path, notice:"Successfully expired offers for #{i} invoices."
   end
 
 
@@ -125,7 +139,7 @@ class PinsController < ApplicationController
         time = Time.new
         pin.update(status: attrs)
         pin.update(offer_accepted_date: time)
-        if attrs == "Accept"
+        if attrs == "Accepted"
           @pinsaccepted << pin
         else
           @pinsrejected << pin

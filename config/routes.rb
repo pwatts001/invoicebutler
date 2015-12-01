@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   get :deleteAllImported, to: 'pins#deleteAllImported', as: :deleteAllImported
   get :deleteAll, to: 'pins#deleteAll', as: :deleteAll
   get :sendGroupOffers, to: 'pins#sendGroupOffers', as: :sendGroupOffers
-  get :ExpirePendingOffers, to: 'pins#ExpirePendingOffers', as: :ExpirePendingOffers
+  get :ExpireAllPendingOffers, to: 'pins#ExpireAllPendingOffers', as: :ExpireAllPendingOffers
+  get :ExpireOffersPastExpireDate, to: 'pins#ExpireOffersPastExpireDate', as: :ExpireOffersPastExpireDate
 
   devise_for :users
 
