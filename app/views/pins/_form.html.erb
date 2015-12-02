@@ -87,21 +87,21 @@
   </div>
 
 
-  <% if @pin.offer_sent_date %>
-    <div class="form-group">
-      <%= f.label :offer_sent_date %>
-      <%= f.date_select :offer_sent_date, class: "form-control" %>
-    </div>
-  <% end %>
+  <hr style="height: 2px; background-color: grey;"></hr>
+  <div class="form-group">
+    <%= f.label :offer_sent_date %>
+    <%= f.date_select :offer_sent_date, {:include_blank => true}, class: "form-control" %>
+  </div>
+  
 
-  <% if @pin.offer_accepted_date %>
-    <div class="form-group">
-      <%= f.label :offer_accepted_date %>
-      <%= f.date_select :offer_accepted_date, class: "form-control" %>
-    </div>
-  <% end %>
+  <hr style="height: 2px; background-color: grey;"></hr>
+  <div class="form-group">
+    <%= f.label :offer_accepted_date %>
+    <%= f.date_select :offer_accepted_date, {:include_blank => true}, class: "form-control" %>
+  </div>
+  <hr style="height: 2px; background-color: grey;"></hr>
 
-  <%= f.hidden_field :customer_name, :value => @pin.user.company %>
+  <%#= f.hidden_field :customer_name, :value => @pin.user.company %>
 
   <div class="form-group">
     <%= f.label :status %>

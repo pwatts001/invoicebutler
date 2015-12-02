@@ -9,7 +9,6 @@ class PinsController < ApplicationController
     redirect_to importinvoices_path, notice: "Invoices imported."
   end
 
-
   def all_invoices
     @pins = Pin.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
       respond_to do |format|
@@ -20,9 +19,10 @@ class PinsController < ApplicationController
 
   def index
     @pins = Pin.where(user_id: current_user, status: "Imported").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
-    @number_of_emails = Pin.where(user_id: current_user, status: "Imported").distinct.count(:supplier_email)
-    @number_of_paymentdates = Pin.where(user_id: current_user, status: "Imported").distinct.count(:prop_settlement_date)
-    @number_of_expireydates = Pin.where(user_id: current_user, status: "Imported").distinct.count(:offer_expirey_date)
+    @number_of_emails = @pins.group_by(&:supplier_email).count
+    @number_of_paymentdates = @pins.group_by(&:prop_settlement_date).count
+    @number_of_expireydates = @pins.group_by(&:offer_expirey_date).count
+    @pinsPending = Pin.where(user_id: current_user, status: "Pending").all.map {|a| a.supplier_email}.uniq
   end
 
   def pendingoffers
@@ -30,7 +30,9 @@ class PinsController < ApplicationController
   end
 
   def acceptedoffersadmin
-    @pins = Pin.where(user_id: current_user).where.not(status: ["Imported","Pending"]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pinsaccepted = Pin.where(user_id: current_user, status: 'Accepted').order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @pinsrejected = Pin.where(user_id: current_user, status: ['Rejected','Expired']).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @totalSaving = @pinsaccepted.map {|s| s['saving']}.reduce(0, :+)
   end
 
   def acceptedoffers
@@ -51,11 +53,9 @@ class PinsController < ApplicationController
   def show
   end
 
-
   def new
     @pin = current_user.pins.build
   end
-
 
   def deleteAllImported
     i = 0
@@ -77,7 +77,6 @@ class PinsController < ApplicationController
     redirect_to all_invoices_path, notice:"Successfully deleted all #{i} invoices"
   end
 
-
   def sendGroupOffers
     @pins = Pin.where(user_id: current_user, status: "Imported")
     @pinscount = @pins.count
@@ -91,7 +90,6 @@ class PinsController < ApplicationController
     redirect_to importinvoices_path, notice:"Successfully sent offer for #{@pinscount} invoices to #{@recipient}."
     @pins.update_all "status = 'Pending', offer_sent_date ='#{time}'"
   end
-
 
   def ExpireAllPendingOffers
     @pins = Pin.where(user_id: current_user, status: "Pending")
@@ -108,7 +106,7 @@ class PinsController < ApplicationController
     @pins.each do |pin| 
       if pin.offer_expirey_date.past?
         i += 1
-        pin.update(status: 'Expired')
+        pin.update(:status => 'Expired', :offer_accepted_date => time)
       end
     end
     redirect_to pendingoffers_path, notice:"Successfully expired offers for #{i} invoices."
@@ -116,24 +114,22 @@ class PinsController < ApplicationController
 
   def expireInvoice
     @pin = Pin.find(params[:pin])
-    @pin.update(status: 'Expired')
+    time = Time.new
+    @pin.update(:status => 'Expired', :offer_accepted_date => time)
     redirect_to pendingoffers_path, notice:"Successfully expired invoice."
   end
 
   def edit
   end
 
-
   def create
     @pin = current_user.pins.build(pin_params)
-
     if @pin.save
       redirect_to importinvoices_path, notice: 'Invoice was successfully added.'
     else
       render :new
     end
   end
-
 
   def update
     if params[:pins]
@@ -142,8 +138,7 @@ class PinsController < ApplicationController
       params[:pins].each do |id, attrs|
         pin = Pin.find_by_id(id)
         time = Time.new
-        pin.update(status: attrs)
-        pin.update(offer_accepted_date: time)
+        pin.update(:status => attrs, :offer_accepted_date => time)
         if attrs == "Accepted"
           @pinsaccepted << pin
         else
@@ -161,7 +156,6 @@ class PinsController < ApplicationController
       render :edit
     end
   end
-
 
   def destroy
     @pin.destroy

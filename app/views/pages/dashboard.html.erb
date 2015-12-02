@@ -7,6 +7,7 @@
 <table class="table table-hover table-bordered table-striped invtable">
   <thead>
     <tr>
+      <th><%= sortable "id", "User ID" %></th>
     	<th><%= sortable "company", "Company Name" %></th>
       <th><%= sortable "user_name", "User Name" %></th>
       <th><%= sortable "email", "Email" %></th>
@@ -15,19 +16,24 @@
       <th><%= sortable "last_sign_in_at", "last_sign_in_at" %></th>
       <th><%= sortable "created_at", "created_at" %></th>
       <th><%= sortable "updated_at", "updated_at" %></th>
+      <!-- <th>Edit</th> -->
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.each do |user| %> 
       <tr>
+        <th><%= user.id %></th>
       	<th><%= user.company %></th>
         <th><%= user.user_name %></th>       
         <th><%= user.email %></th>
         <th><%= user.sign_in_count %></th>
-        <th><%= fulldate(user.current_sign_in_at) %></th>
-        <th><%= fulldate(user.last_sign_in_at) %></th>
-        <th><%= fulldate(user.created_at) %></th>
-        <th><%= fulldate(user.updated_at) %></th>
+        <th class="middle"><%= fulldate(user.current_sign_in_at) %></th>
+        <th class="middle"><%= fulldate(user.last_sign_in_at) %></th>
+        <th class="middle"><%= fulldate(user.created_at) %></th>
+        <th class="middle"><%= fulldate(user.updated_at) %></th>
+<!--         <th class="middle"><%#= link_to edit_user_registration_path(user) do %><span class="glyphicon glyphicon-pencil"></span> Edit<%# end %></th> -->
+        <th class="middle"><%= link_to '<i class="glyphicon glyphicon-trash"></i> Delete'.html_safe, admin_destroy_user_path(user), method: :delete, data: { confirm: "You sure?" } %></th>
       </tr>
     <% end %>  
   </tbody>
@@ -38,4 +44,6 @@
 <div class="center">
    <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 </div>
-
+<p>Download All:
+  <%= link_to "CSV", dashboard_path(format: "csv") %> 
+</p>

@@ -18,7 +18,7 @@
 
   <% if @pins.first %>
     <div>
-      <p>FatFace have recenlty approved <%= @pinscount %> of your invoice(s) with the option of early payment.</p>
+      <p>FatFace have recenlty approved <b><%= @pinscount %></b> of your invoice(s) with the option of early payment.</p>
       <p>Please select which you wish to accept early payment on and finish by submitting your responses. The new payment details are displayed in the table below. The payment for accepted offers will be processed on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
       <p>This offer will expire on <b><%= fulldate(@pins.first.offer_expirey_date) %></b>.</p>
     </div>
@@ -96,7 +96,7 @@
             <div class="modal-body">
               <div class="content">
                 <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s), totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
-                <p>This payment will be processed by Fat Face on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
+                <p>This payment will be processed by FatFace on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
                 <p>By pressing confirm you are agreeing to these new payment terms.</p>
               </div>
               <div class='noneSelected'>

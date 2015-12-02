@@ -16,7 +16,7 @@
 <% end %>
 <br><br>
 
-<table class="table table-hover table-bordered table-striped invtable">
+<table class="table table-hover table-bordered table-striped invtable" style='font-size: 11px;'>
   <thead>
     <tr>
       <!-- <th><%#= check_box_tag "select_all" %></th> -->
@@ -27,7 +27,7 @@
       <th><%= sortable "description", "Description" %></th>
       <th><%= sortable "invoice_date", "Invoice Date" %></th>
       <th><%= sortable "due_date", "Due Date" %></th>
-      <th><%= sortable "invoice_curr", "Invoice Currency" %></th>
+      <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
       <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
       <th><%= sortable "supplier_email", "Supplier Email" %></th>
       <th><%= sortable "status", "Invoice Status" %></th>
@@ -48,16 +48,16 @@
         <th class="middle"><%= pin.suppler_name %></th>
         <th class="middle"><%= pin.invoice_number %></th>
         <th class="left"  ><%= pin.description %></th>
-        <th class="middle"><%= date(pin.invoice_date) %></th>
-        <th class="middle"><%= date(pin.due_date) %></th>
-        <th class="middle"><%= pin.invoice_curr %></th>
-        <th class="right currency" ><%= currency(pin.invoice_amount) %></th>
+        <th class="middle date"><%= date(pin.invoice_date) %></th>
+        <th class="middle date"><%= date(pin.due_date) %></th>
+        <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
+        <th class="right currency2" ><%= currency(pin.invoice_amount) %></th>
         <th class="left"  ><%= pin.supplier_email %></th>
         <th class="middle"><%= pin.status %></th>
-        <th class="middle"><%= date(pin.prop_settlement_date) %></th>
-        <th class="right currency" ><%= currency(pin.offer_amount) %></th>
-        <th class="right currency" ><%= currency(pin.saving) %></th>
-        <th class="middle"><%= date(pin.offer_expirey_date) %></th>
+        <th class="middle date"><%= date(pin.prop_settlement_date) %></th>
+        <th class="right currency2" ><%= currency(pin.offer_amount) %></th>
+        <th class="right currency2" ><%= currency(pin.saving) %></th>
+        <th class="middle date"><%= date(pin.offer_expirey_date) %></th>
         <th class="middle"><%= link_to edit_pin_path(pin) do %><span class="glyphicon glyphicon-pencil"></span> Edit<% end %></th>
         <th class="middle"><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete<% end %></th>
         
@@ -69,7 +69,13 @@
    <%= will_paginate @pins, renderer: BootstrapPagination::Rails %>
 </div>
 
-<br><br>
+<%if @pins.first %>
+  <%if @pinsPending.include? @pins.first.supplier_email  %>
+  <p>This supplier already has pending offers, please ensure the proposed settlement date and expiry date above match the previous offer.</p>
+  <% end %>
+<% end %>
+
+<br>
 
 <%if @pins.first %>
   <% if @pins.first.prop_settlement_date.past? || @pins.first.offer_expirey_date.past?%>

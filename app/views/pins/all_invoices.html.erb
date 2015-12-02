@@ -11,8 +11,8 @@
   <thead>
     <tr>
       <!-- <th><%#= check_box_tag "select_all" %></th> -->
+      <th><%= sortable "user_id", "Uploaded By" %></th>
       <th><%= sortable "created_at", "Created At" %></th>
-      <th><%= sortable "user_id", "User Id" %></th>
       <th><%= sortable "ref", "Suppler Contact Name" %></th>
       <th><%= sortable "suppler_ref", "Supplier Ref" %></th>
       <th><%= sortable "suppler_name", "Supplier Name" %></th>
@@ -40,8 +40,8 @@
     <% @pins.each do |pin| %>
       <tr>
         <!-- <th><%#= check_box_tag "ids[]", pin.id %></th> -->
+        <th class="middle"><%= pin.user.user_name %></th>
         <th class="middle"><%= date(pin.created_at) %></th>
-        <th class="middle"><%= pin.user_id %></th>
         <th class="middle"><%= pin.ref %></th>
         <th class="middle"><%= pin.suppler_ref %></th>
         <th class="middle"><%= pin.suppler_name %></th>

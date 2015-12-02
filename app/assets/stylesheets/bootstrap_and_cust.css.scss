@@ -76,12 +76,21 @@ $jumbotron-bg:                    white;
 	}
 
 	#markAllAccepted{
-		background-color: #7EB5B6;
+		background-color: #628F68;
+		color: white;
 	}
 }
 
+  .faqHeader {
+    font-size: 27px;
+    margin: 20px;
+  }
 
+  .panel-heading [data-toggle="collapse"]:after {
+    float: right;
+    color: #F58723;
+    font-size: 18px;
+    line-height: 22px;
+   }
 
-
-
-
+  

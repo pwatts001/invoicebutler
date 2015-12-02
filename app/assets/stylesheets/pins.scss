@@ -69,10 +69,12 @@
 		background-color: white;
 	}
 	.btn-yes.active {
-     background-color: #7EB5B6;
+    background-color: #628F68;
+  	color: white;
   }
   .btn-no.active {
     background-color: #C0382B;
+    color: white;
   }
   .right{
   	text-align: right;
@@ -89,8 +91,15 @@
   .thin{
   	width: 80px;
   }
+  .thiner{
+  	width: 60px;
+  }
   .currency{
   	width: 130px;
+  	font-weight: bold;
+  }
+  .currency2{
+  	width: 100px;
   	font-weight: bold;
   }
    .buttons{

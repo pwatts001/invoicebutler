@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
+
   #root to: "pins#index"
   root to: "pages#home"
 
