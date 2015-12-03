@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
-@import url(https://fonts.googleapis.com/css?family=Maven+Pro:500,700);
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700);
 //CHECK WHICH OF THESE FONT WEIGHTS ARE NOT BEING USED THEN REMOVE!
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,900,800,700,600,500,300,200,100);
 
@@ -37,7 +37,7 @@ $jumbotron-bg:                    white;
 	padding-bottom: 10px;
 	margin-bottom: 0px;
 	width: 100%;
-	background-image: url('backgroundimage.jpeg');
+	background-image: url('/assets/backgroundimage.jpeg');
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
