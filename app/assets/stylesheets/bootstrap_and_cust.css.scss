@@ -1,7 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 @import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700);
-//CHECK WHICH OF THESE FONT WEIGHTS ARE NOT BEING USED THEN REMOVE!
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,900,800,700,600,500,300,200,100);
+@import url(https://fonts.googleapis.com/css?family=Raleway:100);
 
 $body-bg:                         #F6F5F1;
 $font-family-sans-serif:          'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -104,7 +103,7 @@ html, body {
 		background-color: rgba(0, 0, 0, 0.55);
 		display: inline-block;
 		padding: 0px 25px 3px 25px;
-		margin-top: 150px
+		margin-top: 150px;
 	}
 
 	.homeLine{
@@ -114,6 +113,23 @@ html, body {
 		padding: 0px 25px 3px 25px;
 		margin-top: 40px
 	}
+
+	@media only screen and (max-width: 760px) {
+		.homeTitle{
+			font-size: 80px !important;
+			text-align: center;
+			margin : 150px auto 0 auto;
+			width: 370px;
+			display: inherit;
+		}
+
+		.homeLine{
+			text-align: center;
+		}
+	}
+
+
+
 
 	.homeText{
 		font-size: 23px;
