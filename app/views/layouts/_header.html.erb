@@ -2,7 +2,8 @@
 <nav class="navbar navbar-static-top navbar-default">
 
   <% if current_page?(root_path) %>
-    <div class="container" id='homepageNav'>
+    <div class="container" id='homepageNav' style='display: none;'>
+    <!-- <div class="container" id='homepageNav'> -->
   <% else %>
     <div class="container">
   <% end %>
@@ -38,11 +39,8 @@
 </nav>
 
 
-
-<!-- style='display: none;' id='homepageNav' -->
-
 <script type="text/javascript">
-// $(document).ready(function() {
-//     $('#homepageNav').delay(0).fadeIn(4000);
-// });
+$(document).ready(function() {
+    $('#homepageNav').delay(0).fadeIn(4000);
+});
 </script> 

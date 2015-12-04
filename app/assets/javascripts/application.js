@@ -27,37 +27,19 @@ function moveScroller() {
         var st = $(window).scrollTop();
         var ot = $("#scroller-anchor").offset().top;
         var s = $("#scroller");
-        var ot2 = $("#scroller-anchor2").offset().top;
         var s2 = $("#scroller2");
         if(st > ot) {
-            s.css({
-                position: "fixed",
-                top: "0px"
-            })
-            s2.css({
-                    position: "relative",
-                    top: "",
-            })
-
-            ;
+            document.getElementById("scroller").className = "center fatfaceheadertop";
+            s2.css({position: "relative", top: ""});
         } else {
             if(st <= ot) {
-                s.css({
-                    position: "relative",
-                    top: "",
-                    
-                })
-            s2.css({
-             position: "fixed",
-                top: "0px",
-            })
-
-
-
-                ;
+                document.getElementById("scroller").className = "center fatfaceheader";
+                s2.css({position: "fixed", top: "0px"});
             }
         }
     };
     $(window).scroll(move);
     move();
 }
+
+

@@ -185,9 +185,12 @@ html, body {
 
 
 .fatfaceheader{
-	background-color: #424242;
+	background: url(http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg) #2d2d2d !important;
 	opacity: 1;
 	height: 120px;
+	width: 100%;
+	position: relative;
+
 
 	.logohelper {
 	  display: inline-block;
@@ -199,6 +202,31 @@ html, body {
 	  height: 85px;
 	}
 }
+
+	.fatfaceheadertop{
+		background: url(http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg) #2d2d2d !important;
+		opacity: 1;
+		height: 50px;
+		width: 100%;
+		position: fixed;
+		top: 0px;
+		z-index: 1;
+
+		.logohelper {
+		  display: inline-block;
+		  height: 100%;
+		  vertical-align: middle;
+		}
+
+		img {
+		  height: 38px;
+		}
+	}
+
+
+
+
+
 
 
 .ffportal{
