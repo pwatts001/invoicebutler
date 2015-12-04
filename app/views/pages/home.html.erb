@@ -1,14 +1,5 @@
-<!-- 	<%# if user_signed_in? %>
-	<% #else %>
-		<p>
-			<%#= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
-			<%#= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-		</p>
-	<%# end %> -->
 
-
-
-<div class='container'>
+<!-- <div class='container'>
 	<div class='homeTitle'>
 		Invoice<span style="color: #72B74C">ly</span>
 	</div>
@@ -16,4 +7,98 @@
 		Unlocking the power of <span style="color: #72B74C">y</span>our accounts payab<span style="color: #72B74C">le.</span>
 	</div>
 	<br><br>
-</div
+</div> -->
+
+
+
+<div class='container'>
+	<div class='homeTitle'>
+		Invoice<span style="color: #72B74C">ly</span>
+	</div>
+
+	<div style='width: 100%'></div>
+	<div class='homeLine'>
+		<div class="type-wrap">
+  		<div id="typed-strings" style="display: none;">
+    		<p>The time<span style="color: #72B74C">ly</span> payment of <span style="color: #72B74C">y</span>our supplier invoices...</p>
+    		<p>Unlocking the power of <span style="color: #72B74C">y</span>our accounts payab<span style="color: #72B74C">le.</span></p>
+  		</div>
+			<span id="typed"><p>Unlocking the power of <span style="color: #72B74C">y</span>our accounts payab<span style="color: #72B74C">le.</span></p></span><!-- <span class="typed-cursor">|</span> -->
+		</div>
+	</div>
+	<br><br>
+</div>
+
+
+<!-- <div class="type-wrap">
+  <div id="typed-strings" style="display: none;">
+    <p>The timely payment of your supplier invoices...</p>
+    <p>Unlocking the power of your accounts payable.</p>
+  </div>
+	<span id="typed" style="white-space:pre;"></span><span class="typed-cursor">|</span>
+</div> -->
+
+<script>
+    $(function(){
+        $("#typed").typed({
+            // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 30,
+            backDelay: 500,
+            loop: false,
+            contentType: 'html', // or text
+            // defaults to false for infinite loop
+            loopCount: false,
+            callback: function(){ foo(); },
+            resetCallback: function() { newTyped(); }
+        });
+
+        $(".reset").click(function(){
+            $("#typed").typed('reset');
+        });
+
+    });
+
+    function newTyped(){ /* A new typed object */ }
+
+    function foo(){ console.log("Callback"); }
+
+    </script>
+
+    <style>
+        /* code for animated blinking cursor */
+        .typed-cursor{
+            opacity: 1;
+            font-weight: 100;
+            -webkit-animation: blink 0.7s infinite;
+            -moz-animation: blink 0.7s infinite;
+            -ms-animation: blink 0.7s infinite;
+            -o-animation: blink 0.7s infinite;
+            animation: blink 0.7s infinite;
+        }
+        @-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+        @-webkit-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+        @-moz-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+        @-ms-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+        @-o-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+    </style>

@@ -1,5 +1,4 @@
 <div class='ffportal'>
-
   <div class='welcometitle'>
     <h1>Welcome, <%= current_user.user_name %></h1>
   </div>
@@ -14,6 +13,7 @@
   <% if !@pins.first %>
   <br><br>
    <p>You currently have no available offers.</p>
+   <br><br><br><br><br><br>
   <% end %>
 
   <% if @pins.first %>

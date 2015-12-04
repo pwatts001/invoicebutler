@@ -1,5 +1,4 @@
 <div class='ffportal'>
-
   <div class='welcometitle'>
     <h1>Welcome, <%= current_user.user_name %></h1>
   </div>
@@ -14,6 +13,7 @@
   <br><br>
   <% if !@pinsaccepted.first && !@pinsrejected.first %>
    <p>You currently have no offer history.</p>
+   <br><br><br><br><br><br>
   <% end %>
 
   <% if @pinsaccepted.first %>
