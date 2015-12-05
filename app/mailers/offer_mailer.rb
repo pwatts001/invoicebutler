@@ -1,10 +1,11 @@
-class OfferMailer < ActionMailer::Base  
+class OfferMailer < ActionMailer::Base
+	add_template_helper(ApplicationHelper)
   default :from => "fatface.offers@invoicely.co.uk"  
 
     def offers_email(pins)  
-	    @pins = pins  
+	    @pins = pins
 	    #mail(:to => @pin.suppler_name, :replyto => "phil@invoicely.co.uk", :subject => "Hi #{pin.suppler_ref}")  
-	    mail(:to => @pins.first.supplier_email, :replyto => "fatface.offers@invoicely.co.uk", :subject => "Good news! Fat Face has approved your invoices")  
+	    mail(:to => @pins.first.supplier_email, :replyto => "fatface.offers@invoicely.co.uk", :subject => "Good news! Fat Face has approved your invoices")
   	end
 
     def response_email(pinsaccepted,pinsrejected)  

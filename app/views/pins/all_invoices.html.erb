@@ -80,9 +80,9 @@
 </p>
 
 <br>
-<p><%= link_to "Delete All Invoices", :action => "deleteAll" %></p>
-<%#= button "Send Emails", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-<%# end %>
+<!-- <p><%#= link_to "Delete All Invoices", :action => "deleteAll" %></p> -->
+<p><%= link_to "Delete All Invoices", "/deleteAll", :data => {:confirm => 'Delete ALL invoices in the database - are you sure?'} %></p>
+
 
 <br><br>
 

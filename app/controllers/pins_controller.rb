@@ -80,7 +80,7 @@ class PinsController < ApplicationController
   def sendGroupOffers
     @pins = Pin.where(user_id: current_user, status: "Imported")
     @pinscount = @pins.count
-    #OfferMailer.offers_email(@pins).deliver
+    OfferMailer.offers_email(@pins).deliver
     time = Time.new
     if @pinscount == 0
         @recipient = "no one"
