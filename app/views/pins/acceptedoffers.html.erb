@@ -39,8 +39,8 @@
     <tbody>
       <% @pinsaccepted.each do |pin| %>
         <tr>
-          <th class="middle thin"><%= pin.invoice_number %></th>
-          <th class="left"  ><%= pin.description %></th>
+          <th class="middle"><%= pin.invoice_number %></th>
+          <th class="middle"  ><%= pin.description %></th>
           <th class="middle date"><%= date(pin.invoice_date) %></th>
           <th class="middle date"><%= date(pin.due_date) %></th>
           <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
@@ -88,8 +88,8 @@
       <tbody>
         <% @pinsrejected.each do |pin| %>
           <tr>
-            <th class="middle thin"><%= pin.invoice_number %></th>
-            <th class="left"  ><%= pin.description %></th>
+            <th class="middle"><%= pin.invoice_number %></th>
+            <th class="middle"><%= pin.description %></th>
             <th class="middle date"><%= date(pin.invoice_date) %></th>
             <th class="middle date"><%= date(pin.due_date) %></th>
             <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
