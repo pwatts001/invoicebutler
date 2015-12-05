@@ -9,6 +9,7 @@
 
 <% if @pinsaccepted.first %>
 	<p>They have accepted an early payment on below invoice(s):</p>
+
 	<table>
 	  <thead>
 			<tr>
@@ -33,7 +34,7 @@
 	        <th><%= pin.invoice_date %></th>
 	        <th><%= pin.due_date %></th>
 	        <th><%= pin.invoice_curr %></th>
-	        <th><%= pin.invoice_amount %></th>
+	        <th><%= pin.gross_invoice_amount %></th>
 	        <th><%= pin.prop_settlement_date %></th>
 	        <th><%= pin.offer_amount %></th>
 	        <th><%= pin.status %></th>
@@ -41,6 +42,7 @@
 	    <% end %>
 	  </tbody>
 	</table>
+	
 	<br><br>
 	<p>Fat Face have saved <%= saving %> on these invoice(s).</p>
 	<p>An early payment of <%= totalEarlyPayment %> will need to be made on <%= date %>.</p>
@@ -73,7 +75,7 @@
 	        <th><%= pin.invoice_date %></th>
 	        <th><%= pin.due_date %></th>
 	        <th><%= pin.invoice_curr %></th>
-	        <th><%= pin.invoice_amount %></th>
+	        <th><%= pin.gross_invoice_amount %></th>
 	        <th><%= pin.prop_settlement_date %></th>
 	        <th><%= pin.offer_amount %></th>
 	        <th><%= pin.status %></th>

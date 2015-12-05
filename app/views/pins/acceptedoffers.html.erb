@@ -23,11 +23,11 @@
     <thead>
       <tr>
         <th><%= sortable "invoice_number", "Invoice Number" %></th>
-        <th><%= sortable "description", "Description" %></th>
+        <th><%= sortable "description", "Fat Face Ref" %></th>
         <th><%= sortable "invoice_date", "Invoice Date" %></th>
         <th><%= sortable "due_date", "Old Due Date" %></th>
         <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
-        <th><%= sortable "invoice_amount", "Old Invoice Amount" %></th>
+        <th><%= sortable "gross_invoice_amount", "Old Gross Invoice Amount" %></th>
         <th class='darkhead'><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
         <th class='darkhead'><%= sortable "offer_accepted_date", "Offer Accepted Date" %></th>
         <!-- <th><%#= sortable "status", "Offer Status" %></th> -->
@@ -44,7 +44,7 @@
           <th class="middle date"><%= date(pin.invoice_date) %></th>
           <th class="middle date"><%= date(pin.due_date) %></th>
           <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
-          <th class="right currency"><%= currency(pin.invoice_amount) %></th>
+          <th class="right currency"><%= currency(pin.gross_invoice_amount) %></th>
           <th class="middle date"><%= date(pin.offer_sent_date) %></th>
           <th class="middle date"><%= date(pin.offer_accepted_date) %></th>
           <!-- <th class="middle"><%#= pin.status %></th> -->
@@ -72,11 +72,11 @@
       <thead>
         <tr>
           <th><%= sortable "invoice_number", "Invoice Number" %></th>
-          <th><%= sortable "description", "Description" %></th>
+          <th><%= sortable "description", "Fat Face Ref" %></th>
           <th><%= sortable "invoice_date", "Invoice Date" %></th>
           <th><%= sortable "due_date", "Due Date" %></th>
           <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
-          <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
+          <th><%= sortable "gross_invoice_amount", "Gross Invoice Amount" %></th>
           <th class='darkhead'><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
           <th class='darkhead'><%= sortable "status", "Offer Response" %></th>
           <th class='darkhead'><%= sortable "offer_accepted_date", "Offer Response/Expired Date" %></th>
@@ -93,7 +93,7 @@
             <th class="middle date"><%= date(pin.invoice_date) %></th>
             <th class="middle date"><%= date(pin.due_date) %></th>
             <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
-            <th class="right currency" ><%= currency(pin.invoice_amount) %></th>
+            <th class="right currency" ><%= currency(pin.gross_invoice_amount) %></th>
             <th class="middle date"><%= date(pin.offer_sent_date) %></th>
             <th class="middle thin"><%= pin.status %></th>
             <th class="middle date"><%= date(pin.offer_accepted_date) %></th>

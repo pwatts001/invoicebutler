@@ -24,11 +24,11 @@
       <!-- <th><%#= sortable "suppler_ref", "Supplier Ref" %></th> -->
       <th><%= sortable "suppler_name", "Supplier Name" %></th>
       <th><%= sortable "invoice_number", "Invoice Number" %></th>
-      <th><%= sortable "description", "Description" %></th>
+      <th><%= sortable "description", "Fat Face Ref" %></th>
       <th><%= sortable "invoice_date", "Invoice Date" %></th>
       <th><%= sortable "due_date", "Due Date" %></th>
       <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
-      <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
+      <th><%= sortable "gross_invoice_amount", "Gross Invoice Amount" %></th>
       <th><%= sortable "supplier_email", "Supplier Email" %></th>
       <th><%= sortable "status", "Invoice Status" %></th>
       <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
@@ -51,7 +51,7 @@
         <th class="middle date"><%= date(pin.invoice_date) %></th>
         <th class="middle date"><%= date(pin.due_date) %></th>
         <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
-        <th class="right currency2" ><%= currency(pin.invoice_amount) %></th>
+        <th class="right currency2" ><%= currency(pin.gross_invoice_amount) %></th>
         <th class="left"  ><%= pin.supplier_email %></th>
         <th class="middle"><%= pin.status %></th>
         <th class="middle date"><%= date(pin.prop_settlement_date) %></th>

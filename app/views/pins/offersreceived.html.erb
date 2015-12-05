@@ -29,11 +29,11 @@
         <thead>
           <tr>
             <th><%= sortable "invoice_number", "Invoice Number" %></th>
-            <th><%= sortable "description", "Description" %></th>
+            <th><%= sortable "description", "Fat Face Ref" %></th>
             <th><%= sortable "invoice_date", "Invoice Date" %></th>
             <th><%= sortable "due_date", "Due Date" %></th>
             <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
-            <th><%= sortable "invoice_amount", "Invoice Amount" %></th>
+            <th><%= sortable "gross_invoice_amount", "Gross Invoice Amount" %></th>
             <!-- <th><%#= sortable "status", "Offer Status" %></th> -->
             <th class='darkhead'><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
             <th class='darkhead'>Acceleration</th>  
@@ -51,7 +51,7 @@
               <th class="middle date"><%= date(pin.invoice_date) %></th>
               <th class="middle date"><%= date(pin.due_date) %></th>
               <!-- <th class="middle thin"><%#= pin.invoice_curr %></th> -->
-              <th class="right currency"><%= currency(pin.invoice_amount) %></th>
+              <th class="right currency"><%= currency(pin.gross_invoice_amount) %></th>
               <!-- <th class="middle"><%#= pin.status %></th> -->
               <th class="middle date dark"><%= date(pin.prop_settlement_date) %></th>
               <th class="right date dark"><%= (pin.due_date - pin.prop_settlement_date).to_i %> days</th>

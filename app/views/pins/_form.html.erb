@@ -32,7 +32,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :description %>
+     <%= f.label "Fat Face Ref" %>
     <%= f.text_field :description, class: "form-control" %>
   </div>
 
@@ -52,8 +52,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :invoice_amount %>
-    <%= f.text_field :invoice_amount, class: "form-control" %>
+    <%= f.label :gross_invoice_amount %>
+    <%= f.text_field :gross_invoice_amount, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -109,7 +109,7 @@
     <%#= f.text_field :status, :value => "imported", class: "form-control" %>
   </div>
 
-  <% if @pin.invoice_amount %>
+  <% if @pin.gross_invoice_amount %>
     <div class="form-group">
       <%= f.submit "Edit Invoice", class: "btn btn-primary" %>
     </div>
