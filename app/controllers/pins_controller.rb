@@ -146,7 +146,7 @@ class PinsController < ApplicationController
         end
       end
       redirect_to offersreceived_path, notice: "Repsonse submitted."
-      #OfferMailer.response_email(@pinsaccepted,@pinsrejected).deliver
+      OfferMailer.response_email(@pinsaccepted,@pinsrejected).deliver
       #OfferMailer.fatface_email(@pinsaccepted,@pinsrejected).deliver
     elsif @pin.update(pin_params)
       if params[:commit] == 'Edit Invoice'

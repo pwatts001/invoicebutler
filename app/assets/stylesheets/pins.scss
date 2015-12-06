@@ -67,10 +67,12 @@
 	.btn-yes.active {
     background-color: #628F68;
   	color: white;
+  	z-index: 0;
   }
   .btn-no.active {
     background-color: #C0382B;
     color: white;
+    z-index: 0;
   }
   .right{
   	text-align: right;

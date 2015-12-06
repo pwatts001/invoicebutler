@@ -24,7 +24,7 @@ class OfferMailer < ActionMailer::Base
 	    	link = @pinsrejected.first.string
 	    end
 			
-	    mail(:to => email, :replyto => "fatface.offers@invoicely.co.uk", :subject => "Response confirmed") do |format|
+	    mail(:to => email, :replyto => "fatface.offers@invoicely.co.uk", :subject => "Fat Face offers - response confirmed") do |format|
 			  format.html {
 			    render locals: { name: name, totalEarlyPayment: totalEarlyPayment, date: date, link: link }
 			  }
