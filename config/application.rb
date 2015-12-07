@@ -26,5 +26,9 @@ module Pinteresting
 
     #required for heroku
     config.assets.initialize_on_precompile = false
+
+    #fonts
+    config.assets.enabled = true  
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"  
   end
 end
