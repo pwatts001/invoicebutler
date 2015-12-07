@@ -52,5 +52,9 @@
     <%= link_to "CSV", dashboard_path(format: "csv") %> 
   </p>
   <p>To add new users/suppliers, logout then visit: http://www.invoicely.co.uk/users/sign_up</p>
+  <p>logo</p>
+  <%= image_tag("FFlogo85.png", :alt => "logo") %>
+
+
 <% end %>
 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
