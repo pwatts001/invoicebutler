@@ -175,7 +175,7 @@
                                        <tbody>
                                           <!-- Title -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 38px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 38px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
                                                 Hi <%= name %>,
                                              </td>
                                           </tr>
@@ -187,7 +187,7 @@
                                           <!-- End of spacing -->
                                           <!-- content -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 Thank you for submitting your responses to Fat Face’s early settlement offers. We hope you found our supplier portal easy to use. Please do let us know if you have any feedback.
                                              </td>
                                           </tr>
@@ -203,7 +203,7 @@
                                              </tr>
 	                                          <!-- more content -->
 	                                          <tr>
-	                                              <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+	                                              <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
 	                                                You have selected to receive no accelerated payments.
 	                                              </td>
 	                                          </tr>
@@ -251,7 +251,7 @@
 	                                       <tbody>
 	                                       	  <!-- more content -->
 	                                          <tr>
-	                                              <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+	                                              <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
 	                                              	<% if @pinsaccepted.first %>
 	                                                	You have accepted an early payment on the below invoices:
 	                                                <% end %>
@@ -269,23 +269,23 @@
 	                                                <table border="1" class="invoicetable" style="border: 1px solid back;">
 	                                                   <thead>
 	                                                      <tr>
-	                                                         <th style="font-family: 'Maven Pro', sans-serif !important;">Invoice Number</th>
-	                                                         <th class='date' style="font-family: 'Maven Pro', sans-serif !important;">Invoice Date</th>
-	                                                         <th class='date' style="font-family: 'Maven Pro', sans-serif !important;">Old Due Date</th>
-	                                                         <th style="font-family: 'Maven Pro', sans-serif !important;">Old Invoice Amount</th>
-	                                                         <th class="green date" style="font-family: 'Maven Pro', sans-serif !important;">New Settlement Date</th>
-	                                                         <th class="green" style="font-family: 'Maven Pro', sans-serif !important;">New Settlement Amount</th>
+	                                                         <th style="font-family: 'Maven Pro', Arial, sans-serif !important;">Invoice Number</th>
+	                                                         <th class='date' style="font-family: 'Maven Pro', Arial, sans-serif !important;">Invoice Date</th>
+	                                                         <th class='date' style="font-family: 'Maven Pro', Arial, sans-serif !important;">Old Due Date</th>
+	                                                         <th style="font-family: 'Maven Pro', Arial, sans-serif !important;">Old Invoice Amount</th>
+	                                                         <th class="green date" style="font-family: 'Maven Pro', Arial, sans-serif !important;">New Settlement Date</th>
+	                                                         <th class="green" style="font-family: 'Maven Pro', Arial, sans-serif !important;">New Settlement Amount</th>
 	                                                      </tr>
 	                                                   </thead>
 	                                                   <tbody>
 	                                                      <% @pinsaccepted.each do |pin| %>
 	                                                         <tr>
-	                                                            <th style="font-family: 'Maven Pro', sans-serif !important;"><%= pin.invoice_number %></th>
-	                                                            <th style="font-family: 'Maven Pro', sans-serif !important;"><%= date(pin.invoice_date) %></th>
-	                                                            <th style="font-family: 'Maven Pro', sans-serif !important;"><%= date(pin.due_date) %></th>
-	                                                            <th class="right" style="font-family: 'Maven Pro', sans-serif !important;"><%= currency(pin.gross_invoice_amount) %></th>
+	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= pin.invoice_number %></th>
+	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.invoice_date) %></th>
+	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.due_date) %></th>
+	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.gross_invoice_amount) %></th>
 	                                                            <th><%= date(pin.prop_settlement_date) %></th>
-	                                                            <th class="right" style="font-family: 'Maven Pro', sans-serif !important;"><%= currency(pin.offer_amount) %></th>
+	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.offer_amount) %></th>
 	                                                         </tr>
 	                                                      <% end %>                                                                             
 	                                                   </tbody>
@@ -341,7 +341,7 @@
                                              </tr>
                                              <!-- Spacing -->
    			                                 <tr>
-   			                                   <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+   			                                   <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
    			                                      You will receive <b><%= currency(totalEarlyPayment) %></b> on <b><%= fulldate(date) %></b>.
    			                                   </td>
    			                                 </tr>
@@ -353,7 +353,7 @@
                                           <!-- Spacing -->                                          
                                           <!-- Title -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 You can login to the Invoicely supplier portal using the button below at any point to keep track of your offer history.
                                              </td>
                                           </tr>
@@ -365,7 +365,7 @@
                                           <!-- button -->
                                           <tr style="text-align: center;">
                                              <td height="35">
-                                                <a href="<%= link %>" class="portalBtn" style="font-family: 'Maven Pro', sans-serif !important;" >Enter Supplier Portal</a>
+                                                <a href="<%= link %>" class="portalBtn" style="font-family: 'Maven Pro', Arial, sans-serif !important;" >Enter Supplier Portal</a>
                                              </td>
                                           </tr>
                                           <!-- End of button -->
@@ -416,7 +416,7 @@
                                           <!-- Spacing -->
                                           <!-- Title -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 If you have any questions please get in touch by replying to this email,
                                              </td>
                                           </tr>
@@ -427,7 +427,7 @@
                                           </tr>                                          
                                           <!-- button -->
                                           <tr>
-                                             <td height="35" style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td height="35" style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 Kind regards,
                                              </td>
                                           </tr>
@@ -438,7 +438,7 @@
                                           </tr>                                          
                                           <!-- content -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align: left; line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align: left; line-height: 24px;">
                                                 Invoicely on behalf of Fat Face
                                              </td>
                                           </tr>
@@ -485,8 +485,8 @@
                               </tr>
                               <!-- Spacing -->
                               <tr>
-                                 <td align="center" valign="middle" style="font-family: 'Maven Pro', sans-serif !important; font-size: 12px; color: #F6F5F1; line-height: 17px; padding: 10px;">
-                                    Your contact details have been provided to the Invoicely team by Fat Face. If any of your details are incorrect or if you no longer want to receive these offers please get in touch at <a href="mailto:fatface.offers@invoicely.co.uk" target="_top" style="font-family: 'Maven Pro', sans-serif; color: #F6F5F1">fatface.offers@invoicely.co.uk</a>.
+                                 <td align="center" valign="middle" style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 12px; color: #F6F5F1; line-height: 17px; padding: 10px;">
+                                    Your contact details have been provided to the Invoicely team by Fat Face. If any of your details are incorrect or if you no longer want to receive these offers please get in touch at <a href="mailto:fatface.offers@invoicely.co.uk" target="_top" style="font-family: 'Maven Pro', Arial, sans-serif; color: #F6F5F1">fatface.offers@invoicely.co.uk</a>.
                                  </td>
                               </tr>
                               <!-- Spacing -->
