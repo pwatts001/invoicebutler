@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 //@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700);
-@import url(https://fonts.googleapis.com/css?family=Raleway:100);
+//@import url(https://fonts.googleapis.com/css?family=Raleway:100);
 
 
 $body-bg:                         #F6F5F1;
@@ -32,7 +32,7 @@ $jumbotron-bg:                    white;
 }
 
 .navbar {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'ralewaythin', sans-serif;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	margin-bottom: 0px;
@@ -93,7 +93,7 @@ html, body {
 	background-size: cover;
 
 	.container{
-		font-family: 'Raleway', sans-serif;
+		font-family: 'ralewaythin', sans-serif;
 		color: white;
 		font-weight: 100;
 
