@@ -4,7 +4,7 @@
   </div>
 
   <br><br><br><br>
-  test
+
   <table class="table table-hover table-bordered table-striped invtable">
     <thead>
       <tr>
@@ -52,3 +52,4 @@
     <%= link_to "CSV", dashboard_path(format: "csv") %> 
   </p>
 <% end %>
+<%= link_to "Log out", destroy_user_session_path, method: :delete %>
