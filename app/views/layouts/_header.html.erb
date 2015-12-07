@@ -26,18 +26,19 @@
             <li><%= link_to "FAQ's", faqs_path %></li>        
           <% if user_signed_in? %>
             <li><%= link_to "Dashboard", offersreceived_path %></li>
-            <li><%= link_to "(Admin Panel)", all_invoices_path %></li>
-            <li><%#= link_to "Account Settings", edit_user_registration_path %></li>
-            <li><%= link_to "(Log out)", destroy_user_session_path, method: :delete %></li>
+            <% if current_user.id == 20 %>
+              <li><%= link_to "(Admin Panel)", all_invoices_path %></li>
+              <li><%#= link_to "Account Settings", edit_user_registration_path %></li>
+              <li><%= link_to "(Log out)", destroy_user_session_path, method: :delete %></li>
+            <% end %>
           <% else %>
-            <li><%= link_to "(Log in)", new_user_session_path %></li>
+            <li><%#= link_to "(Log in)", new_user_session_path %></li>
           <% end %>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </div><!-- /.container -->
 </nav>
-
 
 <script type="text/javascript">
 $(document).ready(function() {

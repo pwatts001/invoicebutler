@@ -1,5 +1,6 @@
 <h1>Edit Invoice</h1>
+<% if current_user.id == 20 %>
+	<%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', all_invoices_path %>
+	<%= link_to 'Back', all_invoices_path %>
+<% end %>

@@ -1,111 +1,112 @@
+<% if current_user.id == 20 %>
+  <div class="center">
+    <%= render 'layouts/dashboardpages' %>
+  </div>
 
-<div class="center">
-  <%= render 'layouts/dashboardpages' %>
-</div>
-
-<br><br>
+  <br><br>
 
 
-<br><br>
-<p style='font-size: 24px;'><b>Accepted</b></p>
-<p>Total amount saved &nbsp;&nbsp;&nbsp;<b style='font-size: 24px;'><%= currency(@totalSaving) %></b></p>
-<table class="table table-hover table-bordered table-striped invtable" style='font-size: 11px;'>
-  <thead>
-    <tr>
-      <!-- <th><%#= sortable "ref", "Your Invoice Ref" %></th> -->
-      <!-- <th><%#= sortable "suppler_ref", "Supplier Ref" %></th> -->
-      <th><%= sortable "suppler_name", "Supplier Name" %></th>
-      <th><%= sortable "invoice_number", "Invoice Number" %></th>
-      <th><%= sortable "description", "Fat Face Ref" %></th>
-      <th><%= sortable "invoice_date", "Invoice Date" %></th>
-      <th><%= sortable "due_date", "Due Date" %></th>
-      <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
-      <th><%= sortable "gross_invoice_amount", "Gross Invoice Amount" %></th>
-      <th><%= sortable "supplier_email", "Offer Sent to" %></th>
-      <th><%= sortable "status", "Offer Status" %></th>
-      <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
-      <th><%= sortable "prop_settlement_date", "New Settlement Date" %></th>
-      <th><%= sortable "offer_amount", "New Amount" %></th>
-      <th><%= sortable "saving", "Saving" %></th>
-      <th><%= sortable "offer_accepted_date", "Supplier Action Date" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pinsaccepted.each do |pin| %>
+  <br><br>
+  <p style='font-size: 24px;'><b>Accepted</b></p>
+  <p>Total amount saved &nbsp;&nbsp;&nbsp;<b style='font-size: 24px;'><%= currency(@totalSaving) %></b></p>
+  <table class="table table-hover table-bordered table-striped invtable" style='font-size: 11px;'>
+    <thead>
       <tr>
-        <!-- <th class="middle"><%#= pin.ref %></th> -->
-        <!-- <th class="middle thiner"><%#= pin.suppler_ref %></th> -->
-        <th class="middle"><%= pin.suppler_name %></th>
-        <th class="middle"><%= pin.invoice_number %></th>
-        <th class="middle"><%= pin.description %></th>
-        <th class="middle thin"><%= date(pin.invoice_date) %></th>
-        <th class="middle thin"><%= date(pin.due_date) %></th>
-        <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
-        <th class="right currency2"><%= currency(pin.gross_invoice_amount) %></th>
-        <th class="left"><%= pin.supplier_email %></th>
-        <th class="middle thiner"><%= pin.status %></th>
-        <th class="middle thin"><%= date(pin.offer_sent_date) %></th>
-        <th class="middle thin"><%= date(pin.prop_settlement_date) %></th>
-        <th class="right currency2"><%= currency(pin.offer_amount) %></th>
-        <th class="right currency2"><%= currency(pin.saving) %></th>
-        <th class="middle thin"><%= date(pin.offer_accepted_date) %></th>
+        <!-- <th><%#= sortable "ref", "Your Invoice Ref" %></th> -->
+        <!-- <th><%#= sortable "suppler_ref", "Supplier Ref" %></th> -->
+        <th><%= sortable "suppler_name", "Supplier Name" %></th>
+        <th><%= sortable "invoice_number", "Invoice Number" %></th>
+        <th><%= sortable "description", "Fat Face Ref" %></th>
+        <th><%= sortable "invoice_date", "Invoice Date" %></th>
+        <th><%= sortable "due_date", "Due Date" %></th>
+        <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
+        <th><%= sortable "gross_invoice_amount", "Gross Invoice Amount" %></th>
+        <th><%= sortable "supplier_email", "Offer Sent to" %></th>
+        <th><%= sortable "status", "Offer Status" %></th>
+        <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
+        <th><%= sortable "prop_settlement_date", "New Settlement Date" %></th>
+        <th><%= sortable "offer_amount", "New Amount" %></th>
+        <th><%= sortable "saving", "Saving" %></th>
+        <th><%= sortable "offer_accepted_date", "Supplier Action Date" %></th>
       </tr>
-    <% end %>  
-  </tbody>
-</table>
-<div class="center">
-   <%= will_paginate @pinsaccepted, renderer: BootstrapPagination::Rails %>
-</div>
-<br><br>
-<br><br>
-<p style='font-size: 24px;'><b>Rejected / Expired</b></p>
-<br>
-<table class="table table-hover table-bordered table-striped invtable" style='font-size: 11px;'>
-  <thead>
-    <tr>
-      <!-- <th><%#= sortable "ref", "Your Invoice Ref" %></th> -->
-      <!-- <th><%#= sortable "suppler_ref", "Supplier Ref" %></th> -->
-      <th><%= sortable "suppler_name", "Supplier Name" %></th>
-      <th><%= sortable "invoice_number", "Invoice Number" %></th>
-      <th><%= sortable "description", "Fat Face Ref" %></th>
-      <th><%= sortable "invoice_date", "Invoice Date" %></th>
-      <th><%= sortable "due_date", "Due Date" %></th>
-      <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
-      <th><%= sortable "gross_invoice_amount", "Gross Invoice Amount" %></th>
-      <th><%= sortable "supplier_email", "Offer Sent to" %></th>
-      <th><%= sortable "status", "Offer Status" %></th> 
-      <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
-      <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
-      <th><%= sortable "offer_amount", "Offer Amount" %></th>
-      <!-- <th><%#= sortable "saving", "Potential Saving" %></th> -->
-      <th><%= sortable "offer_accepted_date", "Supplier Action Date" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pinsrejected.each do |pin| %>
+    </thead>
+    <tbody>
+      <% @pinsaccepted.each do |pin| %>
+        <tr>
+          <!-- <th class="middle"><%#= pin.ref %></th> -->
+          <!-- <th class="middle thiner"><%#= pin.suppler_ref %></th> -->
+          <th class="middle"><%= pin.suppler_name %></th>
+          <th class="middle"><%= pin.invoice_number %></th>
+          <th class="middle"><%= pin.description %></th>
+          <th class="middle thin"><%= date(pin.invoice_date) %></th>
+          <th class="middle thin"><%= date(pin.due_date) %></th>
+          <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
+          <th class="right currency2"><%= currency(pin.gross_invoice_amount) %></th>
+          <th class="left"><%= pin.supplier_email %></th>
+          <th class="middle thiner"><%= pin.status %></th>
+          <th class="middle thin"><%= date(pin.offer_sent_date) %></th>
+          <th class="middle thin"><%= date(pin.prop_settlement_date) %></th>
+          <th class="right currency2"><%= currency(pin.offer_amount) %></th>
+          <th class="right currency2"><%= currency(pin.saving) %></th>
+          <th class="middle thin"><%= date(pin.offer_accepted_date) %></th>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+  <div class="center">
+     <%= will_paginate @pinsaccepted, renderer: BootstrapPagination::Rails %>
+  </div>
+  <br><br>
+  <br><br>
+  <p style='font-size: 24px;'><b>Rejected / Expired</b></p>
+  <br>
+  <table class="table table-hover table-bordered table-striped invtable" style='font-size: 11px;'>
+    <thead>
       <tr>
-        <!-- <th class="middle"><%#= pin.ref %></th> -->
-        <!-- <th class="middle"><%#= pin.suppler_ref %></th> -->
-        <th class="middle"><%= pin.suppler_name %></th>
-        <th class="middle"><%= pin.invoice_number %></th>
-        <th class="middle"><%= pin.description %></th>
-        <th class="middle thin"><%= date(pin.invoice_date) %></th>
-        <th class="middle thin"><%= date(pin.due_date) %></th>
-        <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
-        <th class="right currency2"><%= currency(pin.gross_invoice_amount) %></th>
-        <th class="left"><%= pin.supplier_email %></th>
-        <th class="middle"><%= pin.status %></th>
-        <th class="middle thin"><%= date(pin.offer_sent_date) %></th>
-        <th class="middle thin"><%= date(pin.prop_settlement_date) %></th>
-        <th class="right currency2"><%= currency(pin.offer_amount) %></th>
-        <!-- <th class="right currency2"><%#= currency(pin.saving) %></th> -->
-        <th class="middle date"><%= date(pin.offer_accepted_date) %></th>
+        <!-- <th><%#= sortable "ref", "Your Invoice Ref" %></th> -->
+        <!-- <th><%#= sortable "suppler_ref", "Supplier Ref" %></th> -->
+        <th><%= sortable "suppler_name", "Supplier Name" %></th>
+        <th><%= sortable "invoice_number", "Invoice Number" %></th>
+        <th><%= sortable "description", "Fat Face Ref" %></th>
+        <th><%= sortable "invoice_date", "Invoice Date" %></th>
+        <th><%= sortable "due_date", "Due Date" %></th>
+        <!-- <th><%#= sortable "invoice_curr", "Invoice Currency" %></th> -->
+        <th><%= sortable "gross_invoice_amount", "Gross Invoice Amount" %></th>
+        <th><%= sortable "supplier_email", "Offer Sent to" %></th>
+        <th><%= sortable "status", "Offer Status" %></th> 
+        <th><%= sortable "offer_sent_date", "Offer Sent Date" %></th>
+        <th><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
+        <th><%= sortable "offer_amount", "Offer Amount" %></th>
+        <!-- <th><%#= sortable "saving", "Potential Saving" %></th> -->
+        <th><%= sortable "offer_accepted_date", "Supplier Action Date" %></th>
       </tr>
-    <% end %>  
-  </tbody>
-</table>
-<div class="center">
-   <%= will_paginate @pinsrejected, renderer: BootstrapPagination::Rails %>
-</div>
+    </thead>
+    <tbody>
+      <% @pinsrejected.each do |pin| %>
+        <tr>
+          <!-- <th class="middle"><%#= pin.ref %></th> -->
+          <!-- <th class="middle"><%#= pin.suppler_ref %></th> -->
+          <th class="middle"><%= pin.suppler_name %></th>
+          <th class="middle"><%= pin.invoice_number %></th>
+          <th class="middle"><%= pin.description %></th>
+          <th class="middle thin"><%= date(pin.invoice_date) %></th>
+          <th class="middle thin"><%= date(pin.due_date) %></th>
+          <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
+          <th class="right currency2"><%= currency(pin.gross_invoice_amount) %></th>
+          <th class="left"><%= pin.supplier_email %></th>
+          <th class="middle"><%= pin.status %></th>
+          <th class="middle thin"><%= date(pin.offer_sent_date) %></th>
+          <th class="middle thin"><%= date(pin.prop_settlement_date) %></th>
+          <th class="right currency2"><%= currency(pin.offer_amount) %></th>
+          <!-- <th class="right currency2"><%#= currency(pin.saving) %></th> -->
+          <th class="middle date"><%= date(pin.offer_accepted_date) %></th>
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+  <div class="center">
+     <%= will_paginate @pinsrejected, renderer: BootstrapPagination::Rails %>
+  </div>
+<% end %>
 <br><br>
 
