@@ -109,7 +109,12 @@
 <table width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" background="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg">
    <tbody>
       <tr>
-         <td>
+         <td background="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg" bgcolor="#2d2d2d" valign="top">
+         <!--[if gte mso 9]>
+         <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000;">
+         <v:fill type="tile" src="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg" color="#2d2d2d" />
+         <v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
+         <![endif]-->
             <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
                <tbody>
                   <tr>
@@ -138,7 +143,11 @@
                      </td>
                   </tr>
                </tbody>
-            </table>
+            </table>      
+         <!--[if gte mso 9]>
+         </v:textbox>
+         </v:rect>
+         <![endif]-->
          </td>
       </tr>
    </tbody>
@@ -166,7 +175,7 @@
                                        <tbody>
                                           <!-- Title -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif; font-size: 38px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 38px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
                                                 Hi <%= @pins.first.ref %>,
                                              </td>
                                           </tr>
@@ -178,7 +187,7 @@
                                           <!-- End of spacing -->
                                           <!-- content -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 Good news - Fat Face has recently approved <b><%= @pins.count %></b> of your invoice(s) with the option of early payment on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.
                                              </td>
                                           </tr>
@@ -229,23 +238,23 @@
                                                    <thead>
                                                       <tr>
                                                          <th style="font-family: 'Maven Pro', sans-serif;">Invoice Number</th>
-                                                         <th class='date' style="font-family: 'Maven Pro', sans-serif;">Invoice Date</th>
-                                                         <th class='date' style="font-family: 'Maven Pro', sans-serif;">Due Date</th>
+                                                         <th class='date' style="font-family: 'Maven Pro', sans-serif !important;">Invoice Date</th>
+                                                         <th class='date' style="font-family: 'Maven Pro', sans-serif !important;">Due Date</th>
                                                          <th style="font-family: 'Maven Pro', sans-serif;">Invoice Amount</th>
-                                                         <th class="green date" style="font-family: 'Maven Pro', sans-serif;">Proposed Settlement Date</th>
-                                                         <th class="green" style="font-family: 'Maven Pro', sans-serif;">Acceleration</th>
-                                                         <th class="green" style="font-family: 'Maven Pro', sans-serif;">New Offer Amount</th>
+                                                         <th class="green date" style="font-family: 'Maven Pro', sans-serif !important;">Proposed Settlement Date</th>
+                                                         <th class="green" style="font-family: 'Maven Pro', sans-serif !important;">Acceleration</th>
+                                                         <th class="green" style="font-family: 'Maven Pro', sans-serif !important;">New Offer Amount</th>
                                                       </tr>
                                                    </thead>
                                                    <tbody>
                                                       <% @pins.each do |pin| %>
                                                          <tr>
-                                                            <th style="font-family: 'Maven Pro', sans-serif;"><%= pin.invoice_number %></th>
-                                                            <th style="font-family: 'Maven Pro', sans-serif;"><%= date(pin.invoice_date) %></th>
-                                                            <th style="font-family: 'Maven Pro', sans-serif;"><%= date(pin.due_date) %></th>
+                                                            <th style="font-family: 'Maven Pro', sans-serif !important;"><%= pin.invoice_number %></th>
+                                                            <th style="font-family: 'Maven Pro', sans-serif !important;"><%= date(pin.invoice_date) %></th>
+                                                            <th style="font-family: 'Maven Pro', sans-serif !important;"><%= date(pin.due_date) %></th>
                                                             <th class="right"><%= currency(pin.gross_invoice_amount) %></th>
-                                                            <th style="font-family: 'Maven Pro', sans-serif;"><%= date(pin.prop_settlement_date) %></th>
-                                                            <th style="font-family: 'Maven Pro', sans-serif;"><%= (pin.due_date - pin.prop_settlement_date).to_i %> days</th>
+                                                            <th style="font-family: 'Maven Pro', sans-serif !important;"><%= date(pin.prop_settlement_date) %></th>
+                                                            <th style="font-family: 'Maven Pro', sans-serif !important;"><%= (pin.due_date - pin.prop_settlement_date).to_i %> days</th>
                                                             <th class="right"><%= currency(pin.offer_amount) %></th>
                                                          </tr>
                                                       <% end %>                                                                             
@@ -301,7 +310,7 @@
                                           <!-- Spacing -->
                                           <!-- Title -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', sans-serif !important;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 To review your offers and accept the new terms please click below to access your bespoke supplier portal.
                                              </td>
                                           </tr>
@@ -313,7 +322,7 @@
                                           <!-- button -->
                                           <tr style="text-align: center;">
                                              <td height="35">
-                                                <a href="<%= @pins.first.string %>" class="portalBtn" style="font-family: 'Maven Pro', sans-serif;">Enter Supplier Portal</a>
+                                                <a href="<%= @pins.first.string %>" class="portalBtn" style="font-family: 'Maven Pro', sans-serif !important;">Enter Supplier Portal</a>
                                              </td>
                                           </tr>
                                           <!-- End of button -->
@@ -323,7 +332,7 @@
                                           </tr>                                          
                                           <!-- content -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', sans-serif !important;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 This offer will expire on <b><%= fulldate(@pins.first.offer_expirey_date) %></b>, please make sure to action before then.
                                              </td>
                                           </tr>
@@ -375,7 +384,7 @@
                                           <!-- Spacing -->
                                           <!-- Title -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', sans-serif !important;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 If you have any questions please get in touch by replying to this email,
                                              </td>
                                           </tr>
@@ -386,7 +395,7 @@
                                           </tr>                                          
                                           <!-- button -->
                                           <tr>
-                                             <td height="35" style="font-family: 'Maven Pro', sans-serif;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
+                                             <td height="35" style="font-family: 'Maven Pro', sans-serif !important;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
                                                 Kind regards,
                                              </td>
                                           </tr>
@@ -397,7 +406,7 @@
                                           </tr>                                          
                                           <!-- content -->
                                           <tr>
-                                             <td style="font-family: 'Maven Pro', sans-serif;font-size: 16px; color: #333333; text-align: left; line-height: 24px;">
+                                             <td style="font-family: 'Maven Pro', sans-serif !important; font-size: 16px; color: #333333; text-align: left; line-height: 24px;">
                                                 Invoicely on behalf of Fat Face
                                              </td>
                                           </tr>
@@ -430,7 +439,12 @@
             <table width="600" cellpadding="0" cellspacing="0" border="1" align="center" class="devicewidth" background="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg">
                <tbody>
                   <tr>
-                     <td width="100%">
+                     <td width="100%" background="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg" bgcolor="#2d2d2d" valign="top">
+                     <!--[if gte mso 9]>
+                     <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000;">
+                     <v:fill type="tile" src="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg" color="#2d2d2d" />
+                     <v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
+                     <![endif]--> 
                         <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
                            <tbody>
                               <!-- Spacing -->
@@ -439,7 +453,7 @@
                               </tr>
                               <!-- Spacing -->
                               <tr>
-                                 <td align="center" valign="middle" style="font-family: 'Maven Pro', sans-serif;font-size: 12px; color: #F6F5F1; line-height: 17px; padding: 10px;">
+                                 <td align="center" valign="middle" style="font-family: 'Maven Pro', sans-serif !important; font-size: 12px; color: #F6F5F1; line-height: 17px; padding: 10px;">
                                     Your contact details have been provided to the Invoicely team by Fat Face. If any of your details are incorrect or if you no longer want to receive these offers please get in touch at <a href="mailto:fatface.offers@invoicely.co.uk" target="_top" style="color: #F6F5F1; font-family: 'Maven Pro', sans-serif">fatface.offers@invoicely.co.uk</a>.
                                  </td>
                               </tr>
@@ -450,6 +464,10 @@
                               <!-- Spacing -->
                            </tbody>
                         </table>
+                     <!--[if gte mso 9]>
+                     </v:textbox>
+                     </v:rect>
+                     <![endif]-->
                      </td>
                   </tr>
                </tbody>
