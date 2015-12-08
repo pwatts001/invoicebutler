@@ -42,7 +42,7 @@
          .date {
             width: 70px;
          }
-         .portalBtn {
+/*         .portalBtn {
             text-decoration: none !important;
             cursor: pointer;
             border: 1px solid transparent;
@@ -51,7 +51,7 @@
             color: #fff;
             background-color: #7EB5B6;
             font-size: 34px;
-         }
+         }*/
          /*IPAD STYLES*/
          @media only screen and (max-width: 640px) {
          a[href^="tel"], a[href^="sms"] {
@@ -91,12 +91,15 @@
          table[class=devicewidthinner] {width: 260px!important;text-align:center!important;}
          table[class=icontext] {width: 186px!important;text-align:center!important;}
          table[class="emhide"]{display: none!important;}
-         
-         .portalBtn{
+/*         .portalBtn{
             width: 248px;
             height: 64px;
             font-size: 23px;
+         }*/
+         .portalBtn2{
+            font-size: 23px;
          }
+
          #invoiceTable{
             display: none;
          }
@@ -105,6 +108,11 @@
    </head>
 
    <body>
+<!--[if mso]>
+<style type="text/css">
+body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
+</style>
+<![endif]-->
 <!-- Start of header -->
 <table width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" background="http://www.fatface.com/content/ebiz/fatface/resources/images/ff-header-bg.jpg">
    <tbody>
@@ -311,7 +319,7 @@
                                           <!-- Title -->
                                           <tr>
                                              <td style="font-family: 'Maven Pro', Arial, sans-serif !important;font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
-                                                To review your offers and accept the new terms please click below to access your bespoke supplier portal.
+                                                To review your offers and accept or reject the new terms please click below to access your bespoke supplier portal.
                                              </td>
                                           </tr>
                                           <!-- End of Title -->
@@ -321,8 +329,18 @@
                                           </tr>                                          
                                           <!-- button -->
                                           <tr style="text-align: center;">
-                                             <td height="35">
-                                                <a href="<%= @pins.first.string %>" class="portalBtn" style="font-family: 'Maven Pro', Arial, sans-serif !important;">Enter Supplier Portal</a>
+                                             <td>
+                                                <!-- old button -->
+                                                <!-- <a href="<%= @pins.first.string %>" class="portalBtn" style="font-family: 'Maven Pro', Arial, sans-serif !important;">Enter Supplier Portal</a> -->
+                                                <table bgcolor="#7EB5B6" style="border-radius: 8px;" cellpadding="23" cellspacing="0" border="0" align="center">
+                                                   <tbody>
+                                                      <tr style="text-align: center; font-size: 34px; color: white;">
+                                                         <td>
+                                                            <a href="<%= @pins.first.string %>"  class="portalBtn2" style="font-family: 'Maven Pro', Arial, sans-serif !important; color: white; cursor: pointer; text-decoration: none !important;">Enter Supplier Portal</a>
+                                                         </td>
+                                                      </tr>
+                                                   </tbody>
+                                                </table>
                                              </td>
                                           </tr>
                                           <!-- End of button -->
