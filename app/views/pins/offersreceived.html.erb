@@ -95,14 +95,14 @@
               <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
             </div>
             <div class="modal-body">
-              <div class="selectedContent">
-              <!-- <div id="selectedContent"> -->
+              <!-- <div class="selectedContent"> -->
+              <div id="selectedContent">
                 <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s), totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
                 <p>This payment will be processed by Fat Face on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
                 <p>By pressing confirm you are agreeing to these new payment terms.</p>
               </div>
-              <div class='noneSelected'>
-              <!-- <div id='noneSelected'> -->
+              <!-- <div class='noneSelected'> -->
+              <div id='noneSelected'>
                 <p>No early payments selected. Are you sure?</p>
               </div>
 
@@ -214,8 +214,10 @@
     document.body.appendChild(x);
     list.appendChild(z);
     list2.appendChild(x);
-    document.querySelector('.selectedContent .earlyPaymentAmountAccepted').innerHTML = li;
-    document.querySelector('.selectedContent .earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
+    //document.querySelector('.selectedContent .earlyPaymentAmountAccepted').innerHTML = li;
+    //document.querySelector('.selectedContent .earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;  
+    document.querySelector('.earlyPaymentAmountAccepted').innerHTML = li;
+    document.querySelector('.earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
   } 
 
   function format1(n, currency) {
@@ -224,21 +226,25 @@
       });
   }
 
+//////////////////////////////////////////try again
+
   $(document).ready(function(){
     $("#modalBtn").click(function(){
       if (allRadioButtonsSelected()) {
         $("#myModalOK").modal();
+          var noneSelected = document.getElementById('noneSelected');
+          var selectedContent = document.getElementById('selectedContent');
+
           if (acceptedPins.filter(Number).length == 0){
-            //change for IE8
-            //document.getElementsByClassName('noneSelected')[0].style.display='initial';
-            //document.getElementsByClassName('selectedContent')[0].style.display='none';
-            document.querySelectorAll('.noneSelected')[0].style.display='initial';
-            document.querySelectorAll('.selectedContent')[0].style.display='none';
+            //none selected, hide content and display none selected div
+            noneSelected.style.display = 'initial';
+            selectedContent.style.display = 'none';
+
           } else {
-            //document.getElementsByClassName('selectedContent')[0].style.display='initial';
-            //document.getElementsByClassName('noneSelected')[0].style.display='none';
-            document.querySelectorAll('.selectedContent')[0].style.display='initial';
-            document.querySelectorAll('.noneSelected')[0].style.display='none';
+            //at least one invoice selected
+            //leave
+            noneSelected.style.display = 'none';
+            selectedContent.style.display = 'initial';
           }
       } else {
         $("#myModalMissingRadioInput").modal();
@@ -246,6 +252,29 @@
     });
   });
 
+
+//////////////////////////////////////////original
+  // $(document).ready(function(){
+  //   $("#modalBtn").click(function(){
+  //     if (allRadioButtonsSelected()) {
+  //       $("#myModalOK").modal();
+  //         if (acceptedPins.filter(Number).length == 0){
+  //           //document.getElementsByClassName('noneSelected')[0].style.display='initial';
+  //           //document.getElementsByClassName('selectedContent')[0].style.display='none';
+  //           document.querySelectorAll('.noneSelected')[0].style.display='initial';
+  //           document.querySelectorAll('.selectedContent')[0].style.display='none';
+  //         } else {
+  //           //document.getElementsByClassName('selectedContent')[0].style.display='initial';
+  //           //document.getElementsByClassName('noneSelected')[0].style.display='none';
+  //           document.querySelectorAll('.selectedContent')[0].style.display='initial';
+  //           document.querySelectorAll('.noneSelected')[0].style.display='none';
+  //         }
+  //     } else {
+  //       $("#myModalMissingRadioInput").modal();
+  //     }
+  //   });
+  // });
+//////////////////////////////////////////original
   function allRadioButtonsSelected(){
     if (totalNumberOfCheckedButtons == pinsid.length) {
       return true
