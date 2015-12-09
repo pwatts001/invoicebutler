@@ -116,9 +116,10 @@
   display: table;
 }
 .hideDisplay {
-  display: none;
+  // display: none;
+  // visibility: hidden;
   visibility: hidden;
-  opacity: 0;
+  background-color: red;
 }
 
 	// table-striped>tbody>tr:nth-child(odd)>td.dark, .table-striped>tbody>tr:nth-child(odd)>th.dark{
