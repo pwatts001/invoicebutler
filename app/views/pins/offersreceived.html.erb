@@ -216,6 +216,7 @@
     list2.appendChild(x);
     //document.querySelector('.selectedContent .earlyPaymentAmountAccepted').innerHTML = li;
     //document.querySelector('.selectedContent .earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;  
+    //this should go in below
     //document.querySelector('.earlyPaymentAmountAccepted').innerHTML = li;
     //document.querySelector('.earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
   } 
@@ -230,7 +231,8 @@
 
   $(document).ready(function(){
     $("#modalBtn").click(function(){
-      if (allRadioButtonsSelected()) {
+      //if (allRadioButtonsSelected()) {
+      if (true) {
         $("#myModalOK").modal();
           var noneSelected = document.getElementById('noneSelected');
           var selectedContent = document.getElementById('selectedContent');
