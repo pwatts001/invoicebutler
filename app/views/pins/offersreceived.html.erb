@@ -233,16 +233,22 @@
     $("#modalBtn").click(function(){
       if (allRadioButtonsSelected()) {
         $("#myModalOK").modal();
-          //if (acceptedPins.filter(Number).length == 0){
-          if (true){
-            //none selected, hide content and display none selected div
-            document.getElementById("noneSelected").className = "showDisplay";
-            document.getElementById("selectedContent").className = "hideDisplay";
+
+          var hasSelectedAtLeastOneInvoice = false
+
+          for (i = 0; i < acceptedPins.length; i++) {
+              if (i === Number) { break; }
+              hasSelectedAtLeastOne = true
+          }
+
+          if (hasSelectedAtLeastOneInvoice){
+            document.getElementById("noneSelected").className = "hideDisplay";
+            document.getElementById("selectedContent").className = "showDisplay";
           } else {
-            //at least one invoice selected
             document.getElementById("noneSelected").className = "showDisplay";
             document.getElementById("selectedContent").className = "hideDisplay";
           }
+
       } else {
         $("#myModalMissingRadioInput").modal();
       }
