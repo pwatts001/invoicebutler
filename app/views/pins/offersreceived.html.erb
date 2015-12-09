@@ -231,30 +231,17 @@
 
   $(document).ready(function(){
     $("#modalBtn").click(function(){
-      //if (allRadioButtonsSelected()) {
-      if (true) {
+      if (allRadioButtonsSelected()) {
         $("#myModalOK").modal();
-          // var noneSelected = document.getElementById('noneSelected');
-          // var selectedContent = document.getElementById('selectedContent');
-          //   noneSelected.style.display = 'initial';
-          //   selectedContent.style.display = 'none';
-
-            document.getElementById("noneSelected").className = "showDisplay"
-            document.getElementById("selectedContent").className = "hideDisplay"
-            //selectedContent.visibility = "hidden";
-            //noneSelected.visibility = "visible";
-
-          // if (acceptedPins.filter(Number).length == 0){
-          //   //none selected, hide content and display none selected div
-          //   noneSelected.style.display = 'initial';
-          //   selectedContent.style.display = 'none';
-
-          // } else {
-          //   //at least one invoice selected
-          //   //leave
-          //   noneSelected.style.display = 'none';
-          //   selectedContent.style.display = 'initial';
-          // }
+          if (acceptedPins.filter(Number).length == 0){
+            //none selected, hide content and display none selected div
+            document.getElementById("noneSelected").className = "showDisplay";
+            document.getElementById("selectedContent").className = "hideDisplay";
+          } else {
+            //at least one invoice selected
+            document.getElementById("noneSelected").className = "hideDisplay";
+            document.getElementById("selectedContent").className = "showDisplay";
+          }
       } else {
         $("#myModalMissingRadioInput").modal();
       }
