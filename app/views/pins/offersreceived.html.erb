@@ -109,12 +109,11 @@
             <div class="modal-footer" style="margin-top: 0px;">
               <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
     <%= f.submit "Confirm", class: "btn btn-primary" %>
-    
             </div>
           </div>
         </div>
       </div>
-<% end %>
+    <% end %>
       <!-- Modal for when missing Radio Input-->
       <div class="modal fade" id="myModalMissingRadioInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -215,9 +214,9 @@
     list2.appendChild(x);
     //document.querySelector('.selectedContent .earlyPaymentAmountAccepted').innerHTML = li;
     //document.querySelector('.selectedContent .earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;  
-    //this should go in below
-    //document.querySelector('.earlyPaymentAmountAccepted').innerHTML = li;
-    //document.querySelector('.earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
+    //BELOW TWO LINES NEED CHANGING FOR INTERNET EXPLORER 8
+    document.querySelector('.earlyPaymentAmountAccepted').innerHTML = li;
+    document.querySelector('.earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
   } 
 
   function format1(n, currency) {
