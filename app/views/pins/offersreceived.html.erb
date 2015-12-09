@@ -231,16 +231,18 @@
 
   $(document).ready(function(){
     $("#modalBtn").click(function(){
+                  document.getElementById("noneSelected").className = "hideDisplay";
+            document.getElementById("selectedContent").className = "showDisplay";
       if (allRadioButtonsSelected()) {
         $("#myModalOK").modal();
           if (acceptedPins.filter(Number).length == 0){
             //none selected, hide content and display none selected div
-            document.getElementById("noneSelected").className = "showDisplay";
-            document.getElementById("selectedContent").className = "hideDisplay";
+            //document.getElementById("noneSelected").className = "showDisplay";
+            //document.getElementById("selectedContent").className = "hideDisplay";
           } else {
             //at least one invoice selected
-            document.getElementById("noneSelected").className = "hideDisplay";
-            document.getElementById("selectedContent").className = "showDisplay";
+            //document.getElementById("noneSelected").className = "hideDisplay";
+            //document.getElementById("selectedContent").className = "showDisplay";
           }
       } else {
         $("#myModalMissingRadioInput").modal();
