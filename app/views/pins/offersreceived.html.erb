@@ -236,18 +236,20 @@
         $("#myModalOK").modal();
           var noneSelected = document.getElementById('noneSelected');
           var selectedContent = document.getElementById('selectedContent');
-
-          if (acceptedPins.filter(Number).length == 0){
-            //none selected, hide content and display none selected div
-            noneSelected.style.display = 'initial';
+                      noneSelected.style.display = 'initial';
             selectedContent.style.display = 'none';
 
-          } else {
-            //at least one invoice selected
-            //leave
-            noneSelected.style.display = 'none';
-            selectedContent.style.display = 'initial';
-          }
+          // if (acceptedPins.filter(Number).length == 0){
+          //   //none selected, hide content and display none selected div
+          //   noneSelected.style.display = 'initial';
+          //   selectedContent.style.display = 'none';
+
+          // } else {
+          //   //at least one invoice selected
+          //   //leave
+          //   noneSelected.style.display = 'none';
+          //   selectedContent.style.display = 'initial';
+          // }
       } else {
         $("#myModalMissingRadioInput").modal();
       }
