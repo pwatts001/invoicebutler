@@ -95,12 +95,14 @@
               <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
             </div>
             <div class="modal-body">
-              <div class="content">
+              <div class="selectedContent">
+              <!-- <div id="selectedContent"> -->
                 <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s), totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
                 <p>This payment will be processed by Fat Face on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
                 <p>By pressing confirm you are agreeing to these new payment terms.</p>
               </div>
               <div class='noneSelected'>
+              <!-- <div id='noneSelected'> -->
                 <p>No early payments selected. Are you sure?</p>
               </div>
 
@@ -212,8 +214,8 @@
     document.body.appendChild(x);
     list.appendChild(z);
     list2.appendChild(x);
-    document.querySelector('.content .earlyPaymentAmountAccepted').innerHTML = li;
-    document.querySelector('.content .earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
+    document.querySelector('.selectedContent .earlyPaymentAmountAccepted').innerHTML = li;
+    document.querySelector('.selectedContent .earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
   } 
 
   function format1(n, currency) {
@@ -229,13 +231,13 @@
           if (acceptedPins.filter(Number).length == 0){
             //change for IE8
             //document.getElementsByClassName('noneSelected')[0].style.display='initial';
-            //document.getElementsByClassName('content')[0].style.display='none';
+            //document.getElementsByClassName('selectedContent')[0].style.display='none';
             document.querySelectorAll('.noneSelected')[0].style.display='initial';
-            document.querySelectorAll('.content')[0].style.display='none';
+            document.querySelectorAll('.selectedContent')[0].style.display='none';
           } else {
-            //document.getElementsByClassName('content')[0].style.display='initial';
+            //document.getElementsByClassName('selectedContent')[0].style.display='initial';
             //document.getElementsByClassName('noneSelected')[0].style.display='none';
-            document.querySelectorAll('.content')[0].style.display='initial';
+            document.querySelectorAll('.selectedContent')[0].style.display='initial';
             document.querySelectorAll('.noneSelected')[0].style.display='none';
           }
       } else {
