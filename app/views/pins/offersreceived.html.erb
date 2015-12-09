@@ -95,20 +95,22 @@
               <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
             </div>
             <div class="modal-body">
-              hi
-<!--               <div id="selectedContent">
+
+              <div id="selectedContent">
                 <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s), totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
                 <p>This payment will be processed by Fat Face on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
                 <p>By pressing confirm you are agreeing to these new payment terms.</p>
               </div>
               <div id='noneSelected'>
                 <p>No early payments selected. Are you sure?</p>
-              </div> -->
+              </div>
 
             </div>
             <div class="modal-footer" style="margin-top: 0px;">
               <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-    <%= f.submit "Confirm", class: "btn btn-primary" %>
+    <%#= f.submit "Confirm", class: "btn btn-primary" %>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+    
     <% end %>
             </div>
           </div>
