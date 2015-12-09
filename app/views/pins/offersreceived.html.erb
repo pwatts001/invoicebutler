@@ -108,54 +108,12 @@
             </div>
             <div class="modal-footer" style="margin-top: 0px;">
               <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-    <%= f.submit "Confirm", class: "btn btn-primary" %>
-    <% end %>
+    <%#= f.submit "Confirm", class: "btn btn-primary" %>
+    <%# end %>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
-      <!-- Modal for when missing Radio Input-->
-      <div class="modal fade" id="myModalOKTEST" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
-            </div>
-            <div class="modal-body">
-
-              <div id="selectedContent2">
-                <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s), totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
-                <p>This payment will be processed by Fat Face on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
-                <p>By pressing confirm you are agreeing to these new payment terms.</p>
-              </div>
-              <div id='noneSelected2'>
-                <p>No early payments selected. Are you sure?</p>
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-
-
-
-
-
 
       <!-- Modal for when missing Radio Input-->
       <div class="modal fade" id="myModalMissingRadioInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -273,7 +231,7 @@
   $(document).ready(function(){
     $("#modalBtn").click(function(){
       if (allRadioButtonsSelected()) {
-        $("#myModalOKTEST").modal();
+        $("#myModalOK").modal();
 
           var hasSelectedAtLeastOneInvoice = false
 
@@ -283,11 +241,11 @@
           }
 
           if (hasSelectedAtLeastOneInvoice){
-            document.getElementById("noneSelected2").className = "hideDisplay";
-            document.getElementById("selectedContent2").className = "showDisplay";
+            document.getElementById("noneSelected").className = "hideDisplay";
+            document.getElementById("selectedContent").className = "showDisplay";
           } else {
-            document.getElementById("noneSelected2").className = "showDisplay";
-            document.getElementById("selectedContent2").className = "hideDisplay";
+            document.getElementById("noneSelected").className = "showDisplay";
+            document.getElementById("selectedContent").className = "hideDisplay";
           }
 
       } else {
