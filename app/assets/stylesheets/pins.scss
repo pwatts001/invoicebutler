@@ -116,10 +116,8 @@
   display: table;
 }
 .hideDisplay {
-  // display: none;
-  // visibility: hidden;
+  display: none;
   visibility: hidden;
-  background-color: red;
 }
 
 	// table-striped>tbody>tr:nth-child(odd)>td.dark, .table-striped>tbody>tr:nth-child(odd)>th.dark{
