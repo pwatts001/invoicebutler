@@ -111,6 +111,15 @@
   }
 }
 
+
+.showDisplay {
+  display: table;
+}
+.hideDisplay {
+  display: none;
+  visibility: hidden;
+}
+
 	// table-striped>tbody>tr:nth-child(odd)>td.dark, .table-striped>tbody>tr:nth-child(odd)>th.dark{
 	// 	background-color: #7EB5B6;
 	// 	color: white;

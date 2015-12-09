@@ -234,10 +234,15 @@
       //if (allRadioButtonsSelected()) {
       if (true) {
         $("#myModalOK").modal();
-          var noneSelected = document.getElementById('noneSelected');
-          var selectedContent = document.getElementById('selectedContent');
-                      noneSelected.style.display = 'initial';
-            selectedContent.style.display = 'none';
+          // var noneSelected = document.getElementById('noneSelected');
+          // var selectedContent = document.getElementById('selectedContent');
+          //   noneSelected.style.display = 'initial';
+          //   selectedContent.style.display = 'none';
+
+            document.getElementById("noneSelected").className = "showDisplay"
+            document.getElementById("selectedContent").className = "hideDisplay"
+            //selectedContent.visibility = "hidden";
+            //noneSelected.visibility = "visible";
 
           // if (acceptedPins.filter(Number).length == 0){
           //   //none selected, hide content and display none selected div
