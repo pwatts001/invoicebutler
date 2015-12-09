@@ -227,11 +227,16 @@
       if (allRadioButtonsSelected()) {
         $("#myModalOK").modal();
           if (acceptedPins.filter(Number).length == 0){
-            document.getElementsByClassName('noneSelected')[0].style.display='initial';
-            document.getElementsByClassName('content')[0].style.display='none';
+            //change for IE8
+            //document.getElementsByClassName('noneSelected')[0].style.display='initial';
+            //document.getElementsByClassName('content')[0].style.display='none';
+            document.querySelectorAll('.noneSelected')[0].style.display='initial';
+            document.querySelectorAll('.content')[0].style.display='none';
           } else {
-            document.getElementsByClassName('content')[0].style.display='initial';
-            document.getElementsByClassName('noneSelected')[0].style.display='none';
+            //document.getElementsByClassName('content')[0].style.display='initial';
+            //document.getElementsByClassName('noneSelected')[0].style.display='none';
+            document.querySelectorAll('.content')[0].style.display='initial';
+            document.querySelectorAll('.noneSelected')[0].style.display='none';
           }
       } else {
         $("#myModalMissingRadioInput").modal();
