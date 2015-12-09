@@ -232,9 +232,10 @@
   $(document).ready(function(){
     $("#modalBtn").click(function(){
       if (allRadioButtonsSelected()) {
-                          document.getElementById("noneSelected").className = "hideDisplay";
-            document.getElementById("selectedContent").className = "showDisplay";
+          //here fine
         $("#myModalOK").modal();
+            document.getElementById("noneSelected").className = "showDisplay";
+            document.getElementById("selectedContent").className = "hideDisplay";
           if (acceptedPins.filter(Number).length == 0){
             //none selected, hide content and display none selected div
             //document.getElementById("noneSelected").className = "showDisplay";
