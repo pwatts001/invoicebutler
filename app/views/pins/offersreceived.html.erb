@@ -212,8 +212,6 @@
     document.body.appendChild(x);
     list.appendChild(z);
     list2.appendChild(x);
-    //document.querySelector('.earlyPaymentAmountAccepted').innerHTML = li;
-    //document.querySelector('.earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;
 
     var numberOfAcceptedInvoices = 0
 
@@ -222,8 +220,6 @@
         numberOfAcceptedInvoices ++
       }
     }
-
-
     document.querySelector('.earlyPaymentAmountAccepted').innerText = li;
     document.querySelector('.earlyPaymentInvoiceNumber').innerText = numberOfAcceptedInvoices;        
   } 
@@ -253,30 +249,6 @@
       }
     });
   });
-
-
-//////////////////////////////////////////original 
-  // $(document).ready(function(){
-  //   $("#modalBtn").click(function(){
-  //     if (allRadioButtonsSelected()) {
-  //       $("#myModalOK").modal();
-  //         if (acceptedPins.filter(Number).length == 0){
-  //           //document.getElementsByClassName('noneSelected')[0].style.display='initial';
-  //           //document.getElementsByClassName('selectedContent')[0].style.display='none';
-  //           document.querySelectorAll('.noneSelected')[0].style.display='initial';
-  //           document.querySelectorAll('.selectedContent')[0].style.display='none';
-  //         } else {
-  //           //document.getElementsByClassName('selectedContent')[0].style.display='initial';
-  //           //document.getElementsByClassName('noneSelected')[0].style.display='none';
-  //           document.querySelectorAll('.selectedContent')[0].style.display='initial';
-  //           document.querySelectorAll('.noneSelected')[0].style.display='none';
-  //         }
-  //     } else {
-  //       $("#myModalMissingRadioInput").modal();
-  //     }
-  //   });
-  // });
-//////////////////////////////////////////original
 
   function allRadioButtonsSelected(){
     if (totalNumberOfCheckedButtons == pinsid.length) {

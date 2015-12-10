@@ -11,9 +11,10 @@ class PagesController < ApplicationController
 
  	def dashboard
     @users = User.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 20)
+    @usersAll = Uesr.all
       respond_to do |format|
         format.html
-        format.csv { send_data @users.to_csv }
+        format.csv { send_data @usersAll.to_csv }
       end
   end
 
