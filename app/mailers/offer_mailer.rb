@@ -45,10 +45,14 @@ class OfferMailer < ActionMailer::Base
 	    	supplieremail = @pinsrejected.first.supplier_email
 	    	suppliername = @pinsrejected.first.suppler_name
 	    end
+
+	    if @pinsrejected.first
+	    	lostSaving = @pinsrejected.map {|s| s['saving']}.reduce(0, :+)
+	    end
 			
 	    mail(:to => 'fatface.offers@invoicely.co.uk', :replyto => "fatface.offers@invoicely.co.uk", :subject => "Offer response from #{suppliername}") do |format|
 			  format.html {
-			    render locals: { suppliername: suppliername, supplieremail: supplieremail, totalEarlyPayment: totalEarlyPayment, saving: saving, date: date }
+			    render locals: { suppliername: suppliername, supplieremail: supplieremail, totalEarlyPayment: totalEarlyPayment, saving: saving, lostSaving: lostSaving, date: date }
 			  }
 			end
   	end  
