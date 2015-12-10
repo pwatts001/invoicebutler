@@ -212,11 +212,10 @@
     document.body.appendChild(x);
     list.appendChild(z);
     list2.appendChild(x);
-    //document.querySelector('.selectedContent .earlyPaymentAmountAccepted').innerHTML = li;
-    //document.querySelector('.selectedContent .earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;  
-    //BELOW TWO LINES NEED CHANGING FOR INTERNET EXPLORER 8
-    document.querySelector('.earlyPaymentAmountAccepted').innerHTML = li;
-    document.querySelector('.earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;          
+    //document.querySelector('.earlyPaymentAmountAccepted').innerHTML = li;
+    //document.querySelector('.earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;
+    document.querySelector('.earlyPaymentAmountAccepted').innerText = li;
+    document.querySelector('.earlyPaymentInvoiceNumber').innerText = acceptedPins.filter(Number).length;          
   } 
 
   function format1(n, currency) {
@@ -225,7 +224,6 @@
       });
   }
 
-//////////////////////////////////////////try again
 
   $(document).ready(function(){
     $("#modalBtn").click(function(){
@@ -254,7 +252,7 @@
   });
 
 
-//////////////////////////////////////////original
+//////////////////////////////////////////original 
   // $(document).ready(function(){
   //   $("#modalBtn").click(function(){
   //     if (allRadioButtonsSelected()) {
@@ -276,6 +274,7 @@
   //   });
   // });
 //////////////////////////////////////////original
+
   function allRadioButtonsSelected(){
     if (totalNumberOfCheckedButtons == pinsid.length) {
       return true
