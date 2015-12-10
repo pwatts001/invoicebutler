@@ -55,10 +55,11 @@
   </div>
 
   <br><br>
-  <p><%= link_to "Expire ALL Pending Offers", :action => "ExpireAllPendingOffers" %></p>
+  <!-- <p><%#= link_to "Expire ALL Pending Offers", :action => "ExpireAllPendingOffers" %></p> -->
+  <p><%= link_to "Expire ALL Pending Offers", "/ExpireAllPendingOffers", :data => {:confirm => 'Are you sure?'} %></p>
   <br>
-  <p><%= link_to "Expire Pending Offers Past Expiry Date", :action => "ExpireOffersPastExpireDate" %></p>
-
+  <!-- <p><%#= link_to "Expire Pending Offers Past Expiry Date", :action => "ExpireOffersPastExpireDate" %></p> -->
+  <p><%= link_to "Expire Pending Offers Past Expiry Date", "/ExpireOffersPastExpireDate", :data => {:confirm => 'Are you sure?'} %></p>
 <% end %>
 
 

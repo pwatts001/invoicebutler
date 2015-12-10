@@ -82,7 +82,8 @@
       <p>Cant send offer - either proposed settlement date or offer expirey date is in the past.</p>
     <% else %>
       <% if @number_of_emails == 1 && @number_of_paymentdates == 1 && @number_of_expireydates == 1 %>
-        <p><%= link_to "Send Offer on Imported Invoices", :action => "sendGroupOffers" %></p>
+        <!-- <p><%#= link_to "Send Offer on Imported Invoices", :action => "sendGroupOffers" %></p> -->
+        <p><%= link_to "Send Offer on Imported Invoices", "/sendGroupOffers", :data => {:confirm => 'Send Offer - are you sure?'} %></p>
       <% else %>
         <p>Can't send offer - please check email, proposed settlement date and offer expirey date are all the same.</p>
       <% end %>
@@ -90,9 +91,8 @@
   <% end %>
 
   <br>
-  <p><%= link_to "Delete All Imported Invoices", :action => "deleteAllImported" %></p>
-  <%#= button "Send Emails", data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-  <%# end %>
+  <!-- <p><%#= link_to "Delete All Imported Invoices", :action => "deleteAllImported" %></p> -->
+  <p><%= link_to "Delete All Imported Invoices", "/deleteAllImported", :data => {:confirm => 'Delete all imported invoices - are you sure?'} %></p>
 <% end %>
 <br><br>
 
