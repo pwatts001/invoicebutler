@@ -214,8 +214,18 @@
     list2.appendChild(x);
     //document.querySelector('.earlyPaymentAmountAccepted').innerHTML = li;
     //document.querySelector('.earlyPaymentInvoiceNumber').innerHTML = acceptedPins.filter(Number).length;
+
+    var numberOfAcceptedInvoices = 0
+
+    for (i = 0; i < acceptedPins.length; i++) {
+      if (!isNaN(acceptedPins[i])) {
+        numberOfAcceptedInvoices ++
+      }
+    }
+
+
     document.querySelector('.earlyPaymentAmountAccepted').innerText = li;
-    document.querySelector('.earlyPaymentInvoiceNumber').innerText = acceptedPins.filter(Number).length;          
+    document.querySelector('.earlyPaymentInvoiceNumber').innerText = numberOfAcceptedInvoices;        
   } 
 
   function format1(n, currency) {
@@ -230,14 +240,7 @@
       if (allRadioButtonsSelected()) {
         $("#myModalOK").modal();
 
-          var hasSelectedAtLeastOneInvoice = false
-
-          for (i = 0; i < acceptedPins.length; i++) {
-              if (i === Number) { break; }
-              hasSelectedAtLeastOneInvoice = true
-          }
-
-          if (hasSelectedAtLeastOneInvoice){
+          if (acceptedPins.length){
             document.getElementById("noneSelected").className = "hideDisplay";
             document.getElementById("selectedContent").className = "showDisplay";
           } else {
