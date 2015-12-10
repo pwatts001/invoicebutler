@@ -18,10 +18,9 @@
 
   <% if @pins.first %>
     <div>
-      <p>Fat Face has recently approved <b><%= @pinscount %></b> of your invoice(s) with the option of early payment on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
+      <p>Fat Face has recently approved <span style="font-family:maven_probold" ><%= @pinscount %></span> of your invoice(s) with the option of early payment on <span style="font-family:maven_probold"><%= fulldate(@pins.first.prop_settlement_date) %></span>.</p>
       <p>The proposed terms are displayed in the table below. Please respond using the Accept/Reject buttons and finish by submitting your responses.</p>
-      <!-- <p>The payment for accepted offers will be processed on <b><%#= fulldate(@pins.first.prop_settlement_date) %></b>.</p> -->
-      <p>This offer will expire on <b><%= fulldate(@pins.first.offer_expirey_date) %></b>.</p>
+      <p>This offer will expire on <span style="font-family:maven_probold"><%= fulldate(@pins.first.offer_expirey_date) %></span>.</p>
     </div>
     <br>
     <%= form_for @pins.first, html: { multipart: true } do |f| %>
@@ -97,8 +96,8 @@
             <div class="modal-body">
 
               <div id="selectedContent">
-                <p>You have selected early payment on <b><span class='earlyPaymentInvoiceNumber'></span></b> invoice(s), totalling <b><span class='earlyPaymentAmountAccepted'></span></b>.</p>
-                <p>This payment will be processed by Fat Face on <b><%= fulldate(@pins.first.prop_settlement_date) %></b>.</p>
+                <p>You have selected early payment on <span class='earlyPaymentInvoiceNumber' style="font-family:maven_probold"></span> invoice(s), totalling <span class='earlyPaymentAmountAccepted' style="font-family:maven_probold"></span>.</p>
+                <p>This payment will be processed by Fat Face on <span style="font-family:maven_probold"><%= fulldate(@pins.first.prop_settlement_date) %></span>.</p>
                 <p>By pressing confirm you are agreeing to these new payment terms.</p>
               </div>
               <div id='noneSelected'>
