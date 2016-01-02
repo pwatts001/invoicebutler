@@ -43,7 +43,11 @@ class PinsController < ApplicationController
 
   def offersreceived
     @pins = Pin.where(supplier_email: current_user.email, status: "Pending").order(sort_column + ' ' + sort_direction)
-    @pinscount = @pins.count 
+    @pinscount = @pins.count
+    if @pins.first
+      @invoice_curr = @pins.first.invoice_curr
+      @invoice_currJSON = @pins.first.invoice_curr.to_json
+    end
     @pinsid = @pins.map(&:id)
     @RubyHash = Hash[@pins.map{|pin| [pin.id, "#{pin.offer_amount}"]}]
     @offerAmounts = @RubyHash.to_json

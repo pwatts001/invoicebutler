@@ -73,12 +73,14 @@
       </div>
       <div>
         <div style='float:left; font-size: 20px; padding-top: 21px'>Discount:&nbsp;&nbsp;</div>
-        <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 20px'>£ 0.00</div>
+        <!-- <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 20px'>£ 0.00</div> -->
+        <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 20px'><%= currency(0, @invoice_curr, 1) %></div>
       </div>
       <br><br><br>
       <div>
         <div style='float:left; font-size: 20px; padding-top: 24px'>Total selected for early payment:&nbsp;&nbsp;</div>
-        <div id="totalEarlyPayment" style='font-size: 40px; float: left;'>£ 0.00</div>
+        <!-- <div id="totalEarlyPayment" style='font-size: 40px; float: left;'>£ 0.00</div> -->
+        <div id="totalEarlyPayment" style='font-size: 40px; float: left;'><%= currency(0, @invoice_curr, 1) %></div>
       </div>
       <br><br><br><br>
       <button type="button" class="btn btn-primary btn-lg pull-left" id="modalBtn">
@@ -139,9 +141,10 @@
 
   var list = document.getElementById('totalEarlyPayment');
   var list2 = document.getElementById('totalDiscount');
-  var pinsid = <%=raw @pinsid%>;
+  var pinsid = <%=raw @pinsid %>;
   var pinOfferHash = <%=raw @offerAmounts %>;
   var discountHash = <%=raw @discount %>;
+  var currency = <%=raw @invoice_currJSON %>;
   var radios = [[]];
   var acceptedPins = [];
   var totalOfferAmount = 0
@@ -201,8 +204,8 @@
   function addTotal(){
     list.removeChild(list.firstChild);
     list2.removeChild(list2.firstChild);
-    var li = format1(totalOfferAmount,"£");
-    var li2 = format1(totalDiscount,"£");
+    var li = format1(totalOfferAmount,currency);
+    var li2 = format1(totalDiscount,currency);
     var z = document.createElement('div');
     var x = document.createElement('div');
     z.innerHTML = li;
@@ -224,7 +227,12 @@
   } 
 
   function format1(n, currency) {
-      return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
+    if (currency == "EUR"){
+      var currencySymbol = "€"
+    } else {
+      var currencySymbol = "£"
+    }
+      return currencySymbol + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
           return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
       });
   }
