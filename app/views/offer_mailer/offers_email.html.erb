@@ -260,10 +260,10 @@ body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
                                                             <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= pin.invoice_number %></th>
                                                             <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.invoice_date) %></th>
                                                             <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.due_date) %></th>
-                                                            <th class="right"><%= currency(pin.gross_invoice_amount) %></th>
+                                                            <th class="right"><%= currency(pin.gross_invoice_amount, pin.invoice_curr) %></th>
                                                             <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.prop_settlement_date) %></th>
                                                             <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= (pin.due_date - pin.prop_settlement_date).to_i %> days</th>
-                                                            <th class="right"><%= currency(pin.offer_amount) %></th>
+                                                            <th class="right"><%= currency(pin.offer_amount, pin.invoice_curr) %></th>
                                                          </tr>
                                                       <% end %>                                                                             
                                                    </tbody>

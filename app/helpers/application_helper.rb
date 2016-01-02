@@ -7,8 +7,12 @@ module ApplicationHelper
     link_to title, params.merge(:sort => column, :direction => direction, :page => nil), {:class => css_class}
   end
 
-    def currency(number)
-      number_to_currency(number, :unit => "£", :separator => ".", :delimiter => ",")
+    def currency(number, string)
+      if string == "EUR" 
+        number_to_currency(number, :unit => "€", :separator => ".", :delimiter => ",")
+      else
+        number_to_currency(number, :unit => "£", :separator => ".", :delimiter => ",")
+      end
     end
 
      def date(date)

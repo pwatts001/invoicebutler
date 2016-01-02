@@ -37,13 +37,13 @@
           <th class="middle date"><%= date(pin.invoice_date) %></th>
           <th class="middle date"><%= date(pin.due_date) %></th>
           <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
-          <th class="right" ><%= currency(pin.gross_invoice_amount) %></th>
+          <th class="right" ><%= currency(pin.gross_invoice_amount, pin.invoice_curr) %></th>
           <th class="middle"><%= pin.status %></th>
           <th class="middle"><%= pin.supplier_email %></th>
           <th class="middle date"><%= date(pin.offer_sent_date) %></th>
           <th class="middle date"><%= date(pin.prop_settlement_date) %></th>
-          <th class="right" ><%= currency(pin.offer_amount) %></th>
-          <!-- <th class="right" ><%#= currency(pin.saving) %></th> -->
+          <th class="right" ><%= currency(pin.offer_amount, pin.invoice_curr) %></th>
+          <!-- <th class="right" ><%#= currency(pin.saving, pin.invoice_curr) %></th> -->
           <th class="middle date"><%= date(pin.offer_expirey_date) %></th>
           <th class='middle'><%= link_to '<i class="glyphicon glyphicon-share"></i> Expire'.html_safe, {:controller => "pins", :action => "expireInvoice", :pin => pin.id }%></th>
         </tr>

@@ -8,7 +8,7 @@
 
   <br><br>
   <p style='font-size: 24px;'><b>Accepted</b></p>
-  <p>Total amount saved &nbsp;&nbsp;&nbsp;<b style='font-size: 24px;'><%= currency(@totalSaving) %></b></p>
+  <p>Total amount saved &nbsp;&nbsp;&nbsp;<b style='font-size: 24px;'><%= currency(@totalSaving, "GBP") %></b></p>
   <table class="table table-hover table-bordered table-striped invtable" style='font-size: 11px;'>
     <thead>
       <tr>
@@ -41,13 +41,13 @@
           <th class="middle thin"><%= date(pin.invoice_date) %></th>
           <th class="middle thin"><%= date(pin.due_date) %></th>
           <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
-          <th class="right currency2"><%= currency(pin.gross_invoice_amount) %></th>
+          <th class="right currency2"><%= currency(pin.gross_invoice_amount, pin.invoice_curr) %></th>
           <th class="left"><%= pin.supplier_email %></th>
           <th class="middle thiner"><%= pin.status %></th>
           <th class="middle thin"><%= date(pin.offer_sent_date) %></th>
           <th class="middle thin"><%= date(pin.prop_settlement_date) %></th>
-          <th class="right currency2"><%= currency(pin.offer_amount) %></th>
-          <th class="right currency2"><%= currency(pin.saving) %></th>
+          <th class="right currency2"><%= currency(pin.offer_amount, pin.invoice_curr) %></th>
+          <th class="right currency2"><%= currency(pin.saving, pin.invoice_curr) %></th>
           <th class="middle thin"><%= date(pin.offer_accepted_date) %></th>
         </tr>
       <% end %>  
@@ -92,13 +92,13 @@
           <th class="middle thin"><%= date(pin.invoice_date) %></th>
           <th class="middle thin"><%= date(pin.due_date) %></th>
           <!-- <th class="middle"><%#= pin.invoice_curr %></th> -->
-          <th class="right currency2"><%= currency(pin.gross_invoice_amount) %></th>
+          <th class="right currency2"><%= currency(pin.gross_invoice_amount, pin.invoice_curr) %></th>
           <th class="left"><%= pin.supplier_email %></th>
           <th class="middle"><%= pin.status %></th>
           <th class="middle thin"><%= date(pin.offer_sent_date) %></th>
           <th class="middle thin"><%= date(pin.prop_settlement_date) %></th>
-          <th class="right currency2"><%= currency(pin.offer_amount) %></th>
-          <!-- <th class="right currency2"><%#= currency(pin.saving) %></th> -->
+          <th class="right currency2"><%= currency(pin.offer_amount, pin.invoice_curr) %></th>
+          <!-- <th class="right currency2"><%#= currency(pin.saving, pin.invoice_curr) %></th> -->
           <th class="middle date"><%= date(pin.offer_accepted_date) %></th>
         </tr>
       <% end %>  

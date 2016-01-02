@@ -273,9 +273,9 @@ body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= pin.invoice_number %></th>
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.invoice_date) %></th>
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.due_date) %></th>
-	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.gross_invoice_amount) %></th>
+	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.gross_invoice_amount, pin.invoice_curr) %></th>
 	                                                            <th><%= date(pin.prop_settlement_date) %></th>
-	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.offer_amount) %></th>
+	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.offer_amount, pin.invoice_curr) %></th>
 	                                                         </tr>
 	                                                      <% end %>                                                                             
 	                                                   </tbody>
@@ -297,7 +297,7 @@ body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
                                              </tr>                                                                                 
                                           <tr>
 					                                  <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
-					                                    	<p>Fat Face have saved <b><%= currency(saving) %></b> on these invoice(s).</p>
+					                                    	<p>Fat Face have saved <b><%= currency(saving, @pinsaccepted.first.invoice_curr) %></b> on these invoice(s).</p>
 					                                  </td> 
                                           </tr>
                                        </tbody>
@@ -371,9 +371,9 @@ body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= pin.invoice_number %></th>
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.invoice_date) %></th>
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.due_date) %></th>
-	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.gross_invoice_amount) %></th>
+	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.gross_invoice_amount, pin.invoice_curr) %></th>
 	                                                            <th><%= date(pin.prop_settlement_date) %></th>
-	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.offer_amount) %></th>
+	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.offer_amount, pin.invoice_curr) %></th>
 	                                                         </tr>
 	                                                      <% end %>                                                                             
 	                                                   </tbody>
@@ -395,7 +395,7 @@ body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
                                              </tr>                                      
                                           <tr>
 					                                  <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
-					                                    	<p>Fat Face have not saved <b><%= currency(lostSaving) %></b> on these invoice(s).</p>
+					                                    	<p>Fat Face have not saved <b><%= currency(lostSaving, @pinsrejected.first.invoice_curr) %></b> on these invoice(s).</p>
 					                                  </td> 
                                           </tr>
                                        </tbody>

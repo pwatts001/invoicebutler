@@ -292,9 +292,9 @@ body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= pin.invoice_number %></th>
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.invoice_date) %></th>
 	                                                            <th style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= date(pin.due_date) %></th>
-	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.gross_invoice_amount) %></th>
+	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.gross_invoice_amount, pin.invoice_curr) %></th>
 	                                                            <th><%= date(pin.prop_settlement_date) %></th>
-	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.offer_amount) %></th>
+	                                                            <th class="right" style="font-family: 'Maven Pro', Arial, sans-serif !important;"><%= currency(pin.offer_amount, pin.invoice_curr) %></th>
 	                                                         </tr>
 	                                                      <% end %>                                                                             
 	                                                   </tbody>
@@ -351,7 +351,7 @@ body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
                                              <!-- Spacing -->
    			                                 <tr>
    			                                   <td style="font-family: 'Maven Pro', Arial, sans-serif !important; font-size: 16px; color: #333333; text-align:left;line-height: 24px;">
-   			                                      You will receive <b><%= currency(totalEarlyPayment) %></b> on <b><%= fulldate(date) %></b>.
+   			                                      You will receive <b><%= currency(totalEarlyPayment, @pinsaccepted.first.invoice_curr) %></b> on <b><%= fulldate(date) %></b>.
    			                                   </td>
    			                                 </tr>
                                           <% end %>
