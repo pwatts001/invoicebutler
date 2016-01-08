@@ -229,7 +229,11 @@
   function format1(n, currency) {
     if (currency == "EUR"){
       var currencySymbol = "€"
-    } else {
+    }
+    else if (currency == "USD"){
+      var currencySymbol = "$"
+    }
+    else {
       var currencySymbol = "£"
     }
       return currencySymbol + " " + n.toFixed(2).replace(/./g, function(c, i, a) {

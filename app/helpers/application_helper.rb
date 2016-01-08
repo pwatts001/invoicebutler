@@ -11,12 +11,16 @@ module ApplicationHelper
       if space == 1 
         if string == "EUR" 
           number_to_currency(number, :unit => "€ ", :separator => ".", :delimiter => ",")
+        elsif string == "USD" 
+          number_to_currency(number, :unit => "$ ", :separator => ".", :delimiter => ",")
         else
           number_to_currency(number, :unit => "£ ", :separator => ".", :delimiter => ",")
         end
       else
         if string == "EUR" 
           number_to_currency(number, :unit => "€", :separator => ".", :delimiter => ",")
+        elsif string == "USD" 
+          number_to_currency(number, :unit => "$", :separator => ".", :delimiter => ",")
         else
           number_to_currency(number, :unit => "£", :separator => ".", :delimiter => ",")
         end
