@@ -37,6 +37,7 @@
             <th class='darkhead'><%= sortable "prop_settlement_date", "Proposed Settlement Date" %></th>
             <th class='darkhead'>Acceleration</th>  
             <th class='darkhead'><%= sortable "offer_amount", "New Offer Amount" %></th>
+            <th class='darkhead'>Discount</th>
             <!-- <th><%#= sortable "saving", "Requested Discount" %></th> -->
             <th class='darkhead'><%= sortable "offer_expirey_date", "Offer Expiry Date" %></th>
             <th class='darkhead actions'>Available Actions</th>
@@ -56,6 +57,7 @@
               <th class="right date dark"><%= (pin.due_date - pin.prop_settlement_date).to_i %> days</th>
               <th class="right currency dark"><%= currency(pin.offer_amount, pin.invoice_curr) %></th>
               <!-- <th class="right"><%#= currency(pin.saving, pin.invoice_curr) %></th> -->
+              <th class="middle thin"><%= (pin.saving / pin.gross_invoice_amount * 100).round(2) %>%</th>
               <th class="middle date dark"><%= date(pin.offer_expirey_date) %></th>
               <th class="middle buttons dark"> <%= render :partial => 'accept_reject_form', :locals => {:pin => pin} %> </th>
             </tr>
@@ -71,14 +73,18 @@
           Mark all
         </button>
       </div>
-      <div>
+<!--       <div>
         <div style='float:left; font-size: 20px; padding-top: 21px'>Discount:&nbsp;&nbsp;</div>
-        <!-- <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 20px'>£ 0.00</div> -->
         <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 20px'><%= currency(0, @invoice_curr, 1) %></div>
+      </div> -->
+      <div>
+        <div style='float:left; font-size: 20px; padding-top: 21px'>Total discount:&nbsp;&nbsp;</div>
+        <!-- <div id="totalDiscount" style='font-size: 20px; float: left; padding-top: 20px'>£ 0.00</div> -->
+        <div id="totalDiscountPercent" style='font-size: 20px; float: left; padding-top: 20px'>0.00%</div>
       </div>
       <br><br><br>
       <div>
-        <div style='float:left; font-size: 20px; padding-top: 24px'>Total selected for early payment:&nbsp;&nbsp;</div>
+        <div style='float:left; font-size: 20px; padding-top: 24px'>Net total selected for early payment:&nbsp;&nbsp;</div>
         <!-- <div id="totalEarlyPayment" style='font-size: 40px; float: left;'>£ 0.00</div> -->
         <div id="totalEarlyPayment" style='font-size: 40px; float: left;'><%= currency(0, @invoice_curr, 1) %></div>
       </div>
@@ -140,7 +146,8 @@
 <script>
 
   var list = document.getElementById('totalEarlyPayment');
-  var list2 = document.getElementById('totalDiscount');
+  // var list2 = document.getElementById('totalDiscount');
+  var list3 = document.getElementById('totalDiscountPercent');
   var pinsid = <%=raw @pinsid %>;
   var pinOfferHash = <%=raw @offerAmounts %>;
   var discountHash = <%=raw @discount %>;
@@ -191,6 +198,7 @@
   function calculateTotal(){
     totalOfferAmount = 0
     totalDiscount = 0
+    totalPercent = 0
     for( i = 0; i < radios.length; i++ ) {
       if(acceptedPins[i]){
       var invoiceOfferString = pinOfferHash[acceptedPins[i]];
@@ -199,21 +207,33 @@
       totalDiscount = totalDiscount + Number(invoiceDiscountString)
       }
     }
+    if (totalDiscount == 0) {
+      totalPercent = 0.00
+    } else{
+      totalPercent = totalDiscount / ( totalDiscount + totalOfferAmount) * 100
+    }
   }
 
   function addTotal(){
     list.removeChild(list.firstChild);
-    list2.removeChild(list2.firstChild);
+    // list2.removeChild(list2.firstChild);
+    list3.removeChild(list3.firstChild);
     var li = format1(totalOfferAmount,currency);
-    var li2 = format1(totalDiscount,currency);
+    // var li2 = format1(totalDiscount,currency);
+    var li3 = totalPercent.toFixed(2) + '%';      
+
     var z = document.createElement('div');
-    var x = document.createElement('div');
+    // var x = document.createElement('div');
+    var y = document.createElement('div');
     z.innerHTML = li;
-    x.innerHTML = li2;
+    // x.innerHTML = li2;
+    y.innerHTML = li3;
     document.body.appendChild(z);
-    document.body.appendChild(x);
+    // document.body.appendChild(x);
+    document.body.appendChild(y);
     list.appendChild(z);
-    list2.appendChild(x);
+    // list2.appendChild(x);
+    list3.appendChild(y);
 
     var numberOfAcceptedInvoices = 0
 
